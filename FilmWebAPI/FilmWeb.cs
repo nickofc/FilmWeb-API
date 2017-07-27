@@ -46,6 +46,14 @@ namespace FilmWebAPI
         }
 
         #region Post Methods
+            
+        /// <summary>
+        /// Pozwala zalogować się do serwisu.
+        /// </summary>
+        /// <param name="username">Nazwa użytkownika lub adres e-mail.</param>
+        /// <param name="password">Hasło.</param>
+        /// <exception cref="FilmWebException">Wrzuca wyjątek jeśli dane do logowania są błędne.</exception>
+        /// <returns>Zwraca informacje o użytkowniku.</returns>
         public async Task<User> Login(string username, string password, CancellationToken token = default (CancellationToken))
         {
             var login = new Login(username, password);
