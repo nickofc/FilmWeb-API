@@ -24,6 +24,8 @@ namespace FilmWebAPI
         private CookieContainer _cookie;
         private readonly HttpExecute _httpExecute;
 
+        //TODO: Max age regex pattern t(s?):(\\d+)$
+
         public FilmWeb(CookieContainer cookies = default(CookieContainer), int timeout = 10)
         {
             _cookie = cookies ?? new CookieContainer();

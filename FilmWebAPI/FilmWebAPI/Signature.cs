@@ -12,7 +12,7 @@ namespace FilmWebAPI
         private readonly string _method;
         private string _signature;
 
-        public Signature(string method)
+        private Signature(string method)
         {
             _method = method ?? throw new ArgumentNullException(nameof(method), "Nazwa metody nie może być pusta!");
         }
