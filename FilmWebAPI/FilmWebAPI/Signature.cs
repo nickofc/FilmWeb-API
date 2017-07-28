@@ -30,7 +30,7 @@ namespace FilmWebAPI
             return _signature;
         }
 
-        public static Signature Create(string method, params string[] strings)
+        public static Signature Create(string method, params object[] strings)
         {
             if (strings != null && strings.Any())
             {
@@ -38,5 +38,6 @@ namespace FilmWebAPI
             }
             return new Signature(method);
         }
+
     }
 }

@@ -64,6 +64,13 @@ namespace FilmWebAPI
             }
         }
 
+
+        
+        public async Task GetCommends(long movieId, int pageId,CancellationToken token = default(CancellationToken))
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
 

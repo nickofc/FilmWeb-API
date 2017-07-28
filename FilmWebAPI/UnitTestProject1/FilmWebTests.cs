@@ -37,5 +37,13 @@ namespace UnitTestProject1
             var cinemas = await FilmWeb.GetAllCinemas();
             Assert.IsTrue(cinemas.Any(), "cinemas.Any()");
         }
+
+
+        [TestMethod]
+        public async Task GetComments()
+        {
+             await FilmWeb.GetCommends(57104, 1);
+
+        }
     }
 }

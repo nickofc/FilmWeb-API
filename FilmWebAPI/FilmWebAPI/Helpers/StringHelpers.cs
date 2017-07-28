@@ -7,7 +7,7 @@ namespace FilmWebAPI.Helpers
 {
     public static class StringHelpers
     {
-        public static string ToCsv(string[] strings)
+        public static string ToCsv(object[] strings)
         {
             if (strings == null) return string.Empty;
 

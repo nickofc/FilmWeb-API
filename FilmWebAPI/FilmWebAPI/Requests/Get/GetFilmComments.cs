@@ -6,13 +6,10 @@ using System.Threading.Tasks;
 
 namespace FilmWebAPI.Requests.Get
 {
+    [Obsolete("Prawdobodobnie FilmWebAPI nie obsługuje tej metody!", true)]
     public class GetFilmComments : RequestBase<dynamic>
     {
-        //protected String createApiSignature()
-        //{
-        //    return getMethodName() + " [" + this.filmId + "," + (this.pageNo * 5) + "," + ((this.pageNo + 1) * 5) + "]";
-        //}
-        public GetFilmComments(long movieId, int pageId) : base(Signature.Create($"getFilmComments_{movieId}_{pageId}"), FilmWebHttpMethod.Get)
+        public GetFilmComments(long movieId, int pageId) : base(Signature.Create($"getFilmComments", movieId, pageId * 5, (pageId + 1) * 5), FilmWebHttpMethod.Get)
         {
         }
 

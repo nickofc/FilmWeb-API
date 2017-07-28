@@ -31,7 +31,7 @@ namespace FilmWebAPI.Helpers
         }
 
 
-        internal static string ToCSV(string method, params string[] strings)
+        internal static string ToCSV(string method, params object[] strings)
         {
             return $"{method} [{StringHelpers.ToCsv(strings)}]\n";
         }
