@@ -1,2 +1,2 @@
 language: csharp
-solution: FilmWebAPI/FilmWebAPI/FilmWebAPI.sln
+solution: FilmWebAPI/FilmWebAPI/FilmWebAPI.csproj
