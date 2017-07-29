@@ -12,7 +12,7 @@ namespace FilmWebAPI.Requests.Get
 {
     public class GetAllCinemas : RequestBase<IEnumerable<Cinema>>
     {
-        public GetAllCinemas() : base(Signature.Create("getAllCinemas", "-1"), FilmWebHttpMethod.Get)
+        public GetAllCinemas() : base(Signature.Create("getAllCinemas", -1), FilmWebHttpMethod.Get)
         {
         }
 

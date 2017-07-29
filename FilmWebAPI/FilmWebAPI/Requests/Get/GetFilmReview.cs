@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace FilmWebAPI.Requests.Get
 {
-    public class GetAllCities : RequestBase<dynamic>
+    public class GetFilmReview : RequestBase<dynamic>
     {
-        public GetAllCities() : base(Signature.Create("getAllCities", -1), FilmWebHttpMethod.Get)
+        public GetFilmReview(long movieId) : base(Signature.Create("getFilmReview", movieId), FilmWebHttpMethod.Get)
         {
         }
 
-        public override async Task<dynamic> Parse(HttpResponseMessage responseMessage)
+        public override Task<dynamic> Parse(HttpResponseMessage responseMessage)
         {
             throw new NotImplementedException();
         }

@@ -8,7 +8,7 @@ namespace FilmWebAPI.Requests.Get
 {
     public class GetFilmDescription : RequestBase<dynamic>
     {
-        public GetFilmDescription(long movieId) : base(Signature.Create("getFilmDescription", movieId.ToString()), FilmWebHttpMethod.Get)
+        public GetFilmDescription(long movieId) : base(Signature.Create("getFilmDescription", movieId), FilmWebHttpMethod.Get)
         {
         }
 

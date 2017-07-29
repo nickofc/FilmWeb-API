@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace FilmWebAPI.Requests.Get
 {
-    public class GetCinemaRepertoireDays : RequestBase<dynamic>
+    public class IsLoggedUser : RequestBase<dynamic>
     {
-        public GetCinemaRepertoireDays(long cinemaId) : base(Signature.Create("getCinemaRepertoireDays"), FilmWebHttpMethod.Get)
+
+        public IsLoggedUser() : base(Signature.Create("isLoggedUser"), (RequestBase<dynamic>.FilmWebHttpMethod) RequestBase<dynamic>.FilmWebHttpMethod.Get)
         {
         }
 

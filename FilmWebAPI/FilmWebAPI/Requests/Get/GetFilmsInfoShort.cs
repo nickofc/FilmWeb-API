@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace FilmWebAPI.Requests.Get
 {
-    public class GetCinemaRepertoireDays : RequestBase<dynamic>
+    public class GetFilmsInfoShort : RequestBase<dynamic>
     {
-        public GetCinemaRepertoireDays(long cinemaId) : base(Signature.Create("getCinemaRepertoireDays"), FilmWebHttpMethod.Get)
+        public GetFilmsInfoShort(long movieId) : base(Signature.Create("getFilmsInfoShort", movieId), FilmWebHttpMethod.Get)
         {
         }
 

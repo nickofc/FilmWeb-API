@@ -8,7 +8,7 @@ namespace FilmWebAPI.Requests.Get
 {
     public class GetCityRepertoireDays : RequestBase<dynamic>
     {
-        public GetCityRepertoireDays(long cityId) : base(Signature.Create("getCityRepertoireDays", cityId.ToString()), FilmWebHttpMethod.Get)
+        public GetCityRepertoireDays(long cityId) : base(Signature.Create("getCityRepertoireDays", cityId), FilmWebHttpMethod.Get)
         {
         }
 

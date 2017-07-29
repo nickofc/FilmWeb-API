@@ -32,11 +32,7 @@ namespace FilmWebAPI
 
         public static Signature Create(string method, params object[] strings)
         {
-            if (strings != null && strings.Any())
-            {
-                return new Signature(HashHelpers.ToCSV(method, strings));
-            }
-            return new Signature(method);
+            return strings != null && strings.Any() ? new Signature(HashHelpers.ToCSV(method, strings)) : new Signature(method);
         }
 
     }

@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FilmWebAPI", "FilmWebAPI\FilmWebAPI.csproj", "{94AF952B-F553-4ED1-9485-E059C9A63F6A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject1", "UnitTestProject1\UnitTestProject1.csproj", "{18C8A8C1-732C-4AC5-8838-87471D7BEA27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTestProject1", "UnitTestProject1\UnitTestProject1.csproj", "{18C8A8C1-732C-4AC5-8838-87471D7BEA27}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +15,7 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{94AF952B-F553-4ED1-9485-E059C9A63F6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{94AF952B-F553-4ED1-9485-E059C9A63F6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94AF952B-F553-4ED1-9485-E059C9A63F6A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{94AF952B-F553-4ED1-9485-E059C9A63F6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94AF952B-F553-4ED1-9485-E059C9A63F6A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{18C8A8C1-732C-4AC5-8838-87471D7BEA27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
