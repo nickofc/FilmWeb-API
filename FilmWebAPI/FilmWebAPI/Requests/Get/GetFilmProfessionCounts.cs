@@ -8,7 +8,7 @@ namespace FilmWebAPI.Requests.Get
 {
     public class GetFilmProfessionCounts : RequestBase<dynamic>
     {
-        public GetFilmProfessionCounts(int movieId) : base(Signature.Create("getFilmProfessionCounts", movieId), FilmWebHttpMethod.Get)
+        public GetFilmProfessionCounts(long movieId) : base(Signature.Create("getFilmProfessionCounts", movieId), FilmWebHttpMethod.Get)
         {
         }
 

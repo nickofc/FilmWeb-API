@@ -18,13 +18,17 @@ namespace FilmWebAPI
             _filmWebHttpMethod = filmWebHttpMethod;
         }
 
+        protected RequestBase()
+        {
+            
+        }
         public enum FilmWebHttpMethod
         {
             Get,
             Post,
         }
 
-        public HttpRequestMessage GetRequestMessage()
+        public virtual HttpRequestMessage GetRequestMessage()
         {
             var query = new Dictionary<string, string>
             {
@@ -47,4 +51,5 @@ namespace FilmWebAPI
 
         public abstract Task<T> Parse(HttpResponseMessage responseMessage);
     }
+
 }

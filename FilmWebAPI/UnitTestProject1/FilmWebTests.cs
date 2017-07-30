@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using FilmWebAPI;
+using FilmWebAPI.Requests.Get;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace UnitTestProject1
@@ -15,7 +16,7 @@ namespace UnitTestProject1
         public FilmWeb FilmWeb = new FilmWeb();
 
         [TestMethod]
-        public async Task LoginTest()
+        public async Task LoginTests()
         {
             string username = "";
             string password = "";
@@ -28,22 +29,25 @@ namespace UnitTestProject1
             Assert.IsNotNull(loginResult, "loginResult != null");
 
 
+            // próba logowania z nie prawid³owym has³em / loginem
             await Assert.ThrowsExceptionAsync<FilmWebException>(async () => await FilmWeb.Login("username", "password"));
         }
 
         [TestMethod]
-        public async Task Getallcinemas()
+        public async Task GenerateCaptchaTests()
+        {
+            var captcha = await FilmWeb.GenerateCaptcha();
+
+        }
+
+
+        [TestMethod]
+        public async Task GetAllCinemasTests()
         {
             var cinemas = await FilmWeb.GetAllCinemas();
             Assert.IsTrue(cinemas.Any(), "cinemas.Any()");
         }
 
 
-        [TestMethod]
-        public async Task GetComments()
-        {
-             await FilmWeb.GetCommends(57104, 1);
-
-        }
     }
 }
