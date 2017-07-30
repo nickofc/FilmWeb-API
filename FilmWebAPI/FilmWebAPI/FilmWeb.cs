@@ -277,22 +277,15 @@ namespace FilmWebAPI
                 return await channels.Parse(message).ConfigureAwait(false);
             }
         }
-        public async Task<IEnumerable<Cinema>> GetAds(CancellationToken token = default(CancellationToken))
-        {
-            var ads = new GetAds();
-            using (var message = await _httpExecute.Execute(ads.GetRequestMessage(), token))
-            {
-                return await ads.Parse(message).ConfigureAwait(false);
-            }
-        }
-        public async Task<IEnumerable<Cinema>> GenerateCaptcha(CancellationToken token = default(CancellationToken))
-        {
-            var captcha = new GenerateCaptcha();
-            using (var message = await _httpExecute.Execute(captcha.GetRequestMessage(), token))
-            {
-                return await captcha.Parse(message).ConfigureAwait(false);
-            }
-        }
+
+        //public async Task<IEnumerable<Cinema>> GenerateCaptcha(CancellationToken token = default(CancellationToken))
+        //{
+        //    var captcha = new GenerateCaptcha();
+        //    using (var message = await _httpExecute.Execute(captcha.GetRequestMessage(), token))
+        //    {
+        //        return await captcha.Parse(message).ConfigureAwait(false);
+        //    }
+        //}
 
 
         #endregion

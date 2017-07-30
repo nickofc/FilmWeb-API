@@ -36,8 +36,7 @@ namespace UnitTestProject1
         [TestMethod]
         public async Task GenerateCaptchaTests()
         {
-            var captcha = await FilmWeb.GenerateCaptcha();
-
+   
         }
 
 
