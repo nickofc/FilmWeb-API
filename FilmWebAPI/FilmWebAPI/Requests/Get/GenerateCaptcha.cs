@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace FilmWebAPI.Requests.Get
 {
+    [Obsolete("Nie potrzeba używać tej klasy.", true)]
     public class GenerateCaptcha : RequestBase<dynamic>
     {
         public GenerateCaptcha() : base(Signature.Create("generateCaptcha"), FilmWebHttpMethod.Get)
