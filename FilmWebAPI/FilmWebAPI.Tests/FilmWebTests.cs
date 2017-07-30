@@ -1,17 +1,20 @@
 using System;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace FilmWebAPI.Tests
 {
-    [TestClass]
     public class FilmWebTests
     {
-        public FilmWeb FilmWeb = new FilmWeb();
+        private readonly FilmWeb _filmWeb;
 
-        [TestMethod]
+        public FilmWebTests()
+        {
+            _filmWeb = new FilmWeb();
+        }
+
+        [Fact]
         public async Task LoginTests()
         {
             string username = "";
@@ -19,8 +22,13 @@ namespace FilmWebAPI.Tests
 
             if (!string.IsNullOrWhiteSpace(username) || !string.IsNullOrWhiteSpace(password))
             {
-                var loginResult = await FilmWeb.Login(username, password);
-                Assert.IsNotNull(loginResult, "loginResult != null");
+                var result = await _filmWeb.Login(username, password);  
+                Assert.NotNull(result);
+                Assert.NotNull(result.Birthday);
+                Assert.NotNull(result.Id);
+                Assert.NotNull(result.Name);
+                Assert.NotNull(result.Nick);
+                Assert.NotNull(result.Sex);
             }
             else
             {
@@ -28,14 +36,7 @@ namespace FilmWebAPI.Tests
             }
 
             // próba logowania z nie prawid³owym has³em / loginem
-            await Assert.ThrowsExceptionAsync<FilmWebException>(async () => await FilmWeb.Login("username", "password"));
-        }
-
-        [TestMethod]
-        public async Task GetAllCinemasTests()
-        {
-            var cinemas = await FilmWeb.GetAllCinemas();
-            Assert.IsTrue(cinemas.Any(), "cinemas.Any()");
+            await Assert.ThrowsAsync<FilmWebException>(async () => await _filmWeb.Login("username", "password"));
         }
     }
 }
