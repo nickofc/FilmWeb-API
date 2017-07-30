@@ -50,14 +50,5 @@ namespace FilmWebAPI.Tests
         }
 
 
-        [Fact]
-        public void GetAllCinemasTests2()
-        {
-            while (true)
-            {
-                Thread.Sleep(10);
-            }
-        }
-
     }
 }
