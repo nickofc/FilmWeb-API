@@ -1,5 +1,7 @@
 using System;
 using System.Diagnostics;
+using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -38,5 +40,24 @@ namespace FilmWebAPI.Tests
             // próba logowania z nie prawid³owym has³em / loginem
             await Assert.ThrowsAsync<FilmWebException>(async () => await _filmWeb.Login("username", "password"));
         }
+
+
+        [Fact]
+        public async Task GetAllCinemasTests()
+        {
+            var cinemas = await _filmWeb.GetAllCinemas();
+            Assert.True(cinemas.Any(), "cinemas.Any()");
+        }
+
+
+        [Fact]
+        public void GetAllCinemasTests2()
+        {
+            while (true)
+            {
+                Thread.Sleep(10);
+            }
+        }
+
     }
 }
