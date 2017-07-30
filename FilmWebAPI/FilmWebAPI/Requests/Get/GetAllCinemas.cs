@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using FilmWebAPI.Models;
 using Newtonsoft.Json;
@@ -21,30 +22,26 @@ namespace FilmWebAPI.Requests.Get
             var content = await responseMessage.Content.ReadAsStringAsync();
             if (content.StartsWith("ok"))
             {
-                var jsonBody = content.Remove(0, 3).Replace("t:43200", string.Empty);
-                var json = JsonConvert.DeserializeObject<JArray>(jsonBody);
+                var jsonBody = content.Remove(0, 3);
+                var json = JsonConvert.DeserializeObject<JArray>(Regex.Replace(jsonBody, "t(s?):(\\d+)$", string.Empty));
 
-                IEnumerable<Cinema> GetCinemas(JArray o)
+                return json.Skip(1).Select(token =>
                 {
-                    for (int i = 1; i < o.Count; i++)
+                    var array = token as JArray;
+                    if (array == null) return null;
+
+                    return new Cinema
                     {
-                        yield return new Cinema
-                        {
-                            Id = o[i][0].Value<int>(),
-                            Name = o[i][1].Value<string>(),
-                            Latitude = o[i][2].Value<double>(),
-                            Longitude = o[1][3].Value<double>(),
-                            CityId = o[i][4].Value<int>(),
-                            Address = o[i][5].Value<string>(),
-                            Phone = o[i][6].Value<string>(),
-                        };
-                    }
-                }
-
-                return GetCinemas(json);
+                        Id = array[0].ToObject<int>(),
+                        Name = array[1].ToObject<string>(),
+                        Latitude = array[2].ToObject<double>(),
+                        Longitude = array[3].ToObject<double>(),
+                        CityId = array[4].ToObject<int>(),
+                        Address = array[5].ToObject<string>(),
+                        Phone = array[6].ToObject<string>(),
+                    };
+                });
             }
-
-
             throw new FilmWebException(FilmWebExceptionType.UnableToGetData);
         }
     }

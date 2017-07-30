@@ -38,7 +38,9 @@ namespace FilmWebAPI.Models
         {
             this.Type = type;
             this.OrderOnList = GetOrderOnList(type);
-        }
+        }
+
+
     }
 
     public enum Type

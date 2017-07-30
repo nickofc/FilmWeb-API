@@ -242,7 +242,7 @@ namespace FilmWebAPI
             }
         }
 
-        public async Task<IEnumerable<Cinema>> GetBornTodayPersons(CancellationToken token = default(CancellationToken))
+        public async Task<PersonBirthdate[]> GetBornTodayPersons(CancellationToken token = default(CancellationToken))
         {
             var persons = new GetBornTodayPersons();
             using (var message = await _httpExecute.Execute(persons.GetRequestMessage(), token))
@@ -251,7 +251,7 @@ namespace FilmWebAPI
             }
         }
 
-        public async Task<IEnumerable<Cinema>> GetAllCities(CancellationToken token = default(CancellationToken))
+        public async Task<IEnumerable<City>> GetAllCities(CancellationToken token = default(CancellationToken))
         {
             var cities = new GetAllCities();
             using (var message = await _httpExecute.Execute(cities.GetRequestMessage(), token))
@@ -269,7 +269,7 @@ namespace FilmWebAPI
             }
         }
 
-        public async Task<IEnumerable<Cinema>> GetAllChannels(CancellationToken token = default(CancellationToken))
+        public async Task<IEnumerable<Channel>> GetAllChannels(CancellationToken token = default(CancellationToken))
         {
             var channels = new GetAllChannels();
             using (var message = await _httpExecute.Execute(channels.GetRequestMessage(), token))

@@ -46,9 +46,29 @@ namespace FilmWebAPI.Tests
         public async Task GetAllCinemasTests()
         {
             var cinemas = await _filmWeb.GetAllCinemas();
-            Assert.True(cinemas.Any(), "cinemas.Any()");
+            Assert.True(cinemas.Any());
         }
 
 
+        [Fact]
+        public async Task GetAllChannelsTests()
+        {
+            var channels = await _filmWeb.GetAllChannels();
+            Assert.True(channels.Any());
+        }
+
+        [Fact]
+        public async Task GetAllCitiesTests()
+        {
+            var cities = await _filmWeb.GetAllCities();
+            Assert.True(cities.Any());
+        }
+
+        [Fact]
+        public async Task GetBornTodayPersonsTests()
+        {
+            var birthdates = await _filmWeb.GetBornTodayPersons();
+            Assert.True(birthdates.Any());
+        }
     }
 }
