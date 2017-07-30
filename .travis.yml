@@ -1,7 +1,2 @@
 language: csharp
-sudo: false
-mono:
-  - latest
-script:
-  - sh build.sh
-  - sh test.sh
+solution: FilmWeb-API/FilmWebAPI/FilmWebAPI.sln
