@@ -1,31 +1,45 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-#exit if any command fails
-set -e
+set -x
 
-artifactsFolder="./artifacts"
+rm -rf bin/
+mkdir bin/
 
-if [ -d $artifactsFolder ]; then  
-  rm -R $artifactsFolder
-fi
+cp packages/NUnit.*/lib/nunit.framework.dll bin/
 
-dotnet restore
+################################################################################
 
-# Ideally we would use the 'dotnet test' command to test netcoreapp and net451 so restrict for now 
-# but this currently doesn't work due to https://github.com/dotnet/cli/issues/3073 so restrict to netcoreapp
-# FilmWeb-API/FilmWebAPI/UnitTestProject1/UnitTestProject1.csproj
-# FilmWeb-API/FilmWebAPI/FilmWebAPI/FilmWebAPI.csproj
+echo 'using System;' > assembly.cs
+echo 'using System.Reflection;' >> assembly.cs
+echo 'using System.Runtime.CompilerServices;' >> assembly.cs
+echo '[assembly:AssemblyTitle ("FilmWebAPI")]' >> assembly.cs
+echo '[assembly:AssemblyDescription ("Nieoficjanlny klient API")]' >> assembly.cs
+echo '[assembly:AssemblyCopyright ("Sunnyline")]' >> assembly.cs
+echo '[assembly:CLSCompliant (true)]' >> assembly.cs
+echo '[assembly: AssemblyVersion ("1.0.0")]' >> assembly.cs
 
-dotnet test FilmWeb-API/FilmWebAPI/FilmWebAPI/FilmWebAPI -c Release -f netcoreapp1.0
+mcs \
+-unsafe \
+-debug \
+-define:DEBUG \
+-out:bin/FilmWebAPI.dll \
+-target:library \
+-recurse:assembly.cs \
+-recurse:FilmWeb-API/FilmWebAPI/FilmWebAPI/*.cs \
+/doc:bin/FilmWebAPI.xml \
+-lib:bin/
 
-# Instead, run directly with mono for the full .net version 
-dotnet build FilmWeb-API/FilmWebAPI/FilmWebAPI/FilmWebAPI -c Release -f net451
+rm assembly.cs
 
-mono \  
-FilmWeb-API/FilmWebAPI/FilmWebAPI/FilmWebAPI/bin/Release/net451/*/dotnet-test-xunit.exe \
-FilmWeb-API/FilmWebAPI/FilmWebAPI/FilmWebAPI/bin/Release/net451/*/TEST_PROJECT_NAME.dll
+################################################################################
 
-revision=${TRAVIS_JOB_ID:=1}  
-revision=$(printf "%04d" $revision) 
-
-dotnet pack FilmWeb-API/FilmWebAPI/FilmWebAPI/FilmWebAPI -c Release -o ./artifacts --version-suffix=$revision  
+mcs \
+-unsafe \
+-debug \
+-define:DEBUG \
+-out:bin/FilmWebAPI.Test.dll \
+-target:library \
+-reference:FilmWebAPI.dll \
+-reference:nunit.framework.dll \
+-recurse:FilmWeb-API/FilmWebAPI/UnitTestProject1/*.cs \
+-lib:bin/
