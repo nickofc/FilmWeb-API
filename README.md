@@ -1,4 +1,4 @@
-# FilmWebAPI ![Build](https://travis-ci.org/Sunnyline2/FilmWebAPI.svg?branch=master) 
+# FilmWebAPI ![Build](https://ci.appveyor.com/api/github/webhook?id=ynil4j8muw66uaw2) 
 Nieoficjalny klient API 
 
 Na razie biblioteka obsługuje tylko pare metod, planuje dopisać reszte.
