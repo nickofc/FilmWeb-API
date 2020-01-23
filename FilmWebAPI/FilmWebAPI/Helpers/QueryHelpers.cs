@@ -7,7 +7,8 @@ namespace FilmWebAPI.Helpers
     {
         public static string CreateQuery(string baseUrl, ICollection<KeyValuePair<string, string>> collection)
         {
-            return Microsoft.AspNetCore.WebUtilities.QueryHelpers.AddQueryString(baseUrl, collection.ToDictionary(pair => pair.Key, pair => pair.Value));
+            return Microsoft.AspNetCore.WebUtilities.QueryHelpers
+                .AddQueryString(baseUrl, collection.ToDictionary(pair => pair.Key, pair => pair.Value));
         }
     }
 }

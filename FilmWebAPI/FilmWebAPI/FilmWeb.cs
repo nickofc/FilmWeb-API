@@ -72,7 +72,7 @@ namespace FilmWebAPI
         #region Get Methods
 
 
-        public async Task<IEnumerable<Cinema>> GetFilmVideos(long movieId, int page, CancellationToken token = default(CancellationToken))
+        /*public async Task<IEnumerable<Cinema>> GetFilmVideos(long movieId, int page, CancellationToken token = default(CancellationToken))
         {
             var recommendation = new GetFilmVideos(movieId, page);
             using (var message = await _httpExecute.Execute(recommendation.GetRequestMessage(), token))
@@ -146,16 +146,15 @@ namespace FilmWebAPI
                 return await persons.Parse(message).ConfigureAwait(false);
             }
         }
-
-        public async Task<IEnumerable<Cinema>> GetFilmPersons(long movieId, int type, int page, CancellationToken token = default(CancellationToken))
+        */
+        public async Task<IEnumerable<Person>> GetFilmPersons(long movieId, int type, int page, CancellationToken token = default)
         {
             var persons = new GetFilmPersons(movieId, type, page);
-            using (var message = await _httpExecute.Execute(persons.GetRequestMessage(), token))
-            {
-                return await persons.Parse(message).ConfigureAwait(false);
-            }
-        }
+            using var message = await _httpExecute.Execute(persons.GetRequestMessage(), token);
 
+            return await persons.Parse(message).ConfigureAwait(false);
+        }
+        /*
         public async Task<IEnumerable<Cinema>> GetFilmInfoFull(long movieId, CancellationToken token = default(CancellationToken))
         {
             var filmInfoFull = new GetFilmInfoFull(movieId);
@@ -241,7 +240,7 @@ namespace FilmWebAPI
                 return await repertoireDays.Parse(message).ConfigureAwait(false);
             }
         }
-
+        */
         public async Task<PersonBirthdate[]> GetBornTodayPersons(CancellationToken token = default(CancellationToken))
         {
             var persons = new GetBornTodayPersons();

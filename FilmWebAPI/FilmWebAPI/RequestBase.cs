@@ -53,5 +53,16 @@ namespace FilmWebAPI
         }
 
         public abstract Task<T> Parse(HttpResponseMessage responseMessage);
+
+        protected async Task<string> GetJsonBody(HttpResponseMessage responseMessage)
+        {
+            var content = await responseMessage.Content.ReadAsStringAsync();
+            if (!content.StartsWith("ok"))
+            {
+                throw new FilmWebException(FilmWebExceptionType.UnableToGetData);
+            }
+
+            return content[3..];
+        }
     }
 }
