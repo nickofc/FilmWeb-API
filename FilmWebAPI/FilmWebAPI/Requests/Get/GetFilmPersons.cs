@@ -13,7 +13,8 @@ namespace FilmWebAPI.Requests.Get
 {
     public class GetFilmPersons : RequestBase<IEnumerable<Person>>
     {
-        public GetFilmPersons(long movieId, int type, int pageId) : base(Signature.Create($"getFilmPersons [{movieId},{type},{pageId * 50},{(pageId + 1) * 50}]\n"), FilmWebHttpMethod.Get)
+        public GetFilmPersons(long movieId, int type, int pageId) 
+            : base(Signature.Create("getFilmPersons", movieId, type, pageId * 50, (pageId + 1) * 50), FilmWebHttpMethod.Get)
         {
         }
 
