@@ -1,16 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using FilmWebAPI.Helpers;
 
 namespace FilmWebAPI
 {
-    public abstract class RequestBase<T> : IHttpExecutable
+    public abstract class RequestBase<T> : IHttpExecutable, IRequest<T>
     {
         private readonly Signature _signature;
         private readonly FilmWebHttpMethod _filmWebHttpMethod;
+
+        protected RequestBase()
+        {
+        }
 
         protected RequestBase(Signature signature, FilmWebHttpMethod filmWebHttpMethod)
         {
@@ -18,10 +20,6 @@ namespace FilmWebAPI
             _filmWebHttpMethod = filmWebHttpMethod;
         }
 
-        protected RequestBase()
-        {
-            
-        }
         public enum FilmWebHttpMethod
         {
             Get,
@@ -42,14 +40,29 @@ namespace FilmWebAPI
             {
                 case FilmWebHttpMethod.Get:
                     return new HttpRequestMessage(HttpMethod.Get, QueryHelpers.CreateQuery(FilmWeb.API_URL, query));
+
                 case FilmWebHttpMethod.Post:
-                    return new HttpRequestMessage(HttpMethod.Post, FilmWeb.API_URL) {Content = new FormUrlEncodedContent(query)};
+                    return new HttpRequestMessage(HttpMethod.Post, FilmWeb.API_URL)
+                    {
+                        Content = new FormUrlEncodedContent(query)
+                    };
+
                 default:
                     throw new FilmWebException("Ta metoda nie jest obsługiwana!", FilmWebExceptionType.HttpMethodNotSupported);
             }
         }
 
         public abstract Task<T> Parse(HttpResponseMessage responseMessage);
-    }
 
+        protected async Task<string> GetJsonBody(HttpResponseMessage responseMessage)
+        {
+            var content = await responseMessage.Content.ReadAsStringAsync();
+            if (!content.StartsWith("ok"))
+            {
+                throw new FilmWebException(FilmWebExceptionType.UnableToGetData);
+            }
+
+            return content[3..];
+        }
+    }
 }
