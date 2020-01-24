@@ -6,7 +6,7 @@ namespace FilmWebAPI.Requests.Get
 {
     public class GetGustometerFilms : RequestBase<dynamic>
     {
-        public GetGustometerFilms(int offset, int limit) : base(Signature.Create("getGustometerFilms", offset, limit), (RequestBase<dynamic>.FilmWebHttpMethod) RequestBase<dynamic>.FilmWebHttpMethod.Get)
+        public GetGustometerFilms(int offset, int limit) : base(Signature.Create("getGustometerFilms", offset, limit), FilmWebHttpMethod.Get)
         {
         }
 

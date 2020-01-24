@@ -4,10 +4,13 @@ namespace FilmWebAPI.Models
 {
     public class Channel
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string ImagePath { get; set; }
-        public int DayStartHour { get; set; }
+        public int Id { get; internal set; }
+
+        public string Name { get; internal set; }
+
+        public string ImagePath { get; internal set; }
+
+        public int DayStartHour { get; internal set; }
 
         public Uri GetImageUri()
         {

@@ -6,7 +6,7 @@ namespace FilmWebAPI.Requests.Get
 {
     public class GetUnreadFriendVoteFilmEventsCount : RequestBase<dynamic>
     {
-        public GetUnreadFriendVoteFilmEventsCount() : base(Signature.Create("getUnreadFriendVoteFilmEventsCount"), (RequestBase<dynamic>.FilmWebHttpMethod) RequestBase<dynamic>.FilmWebHttpMethod.Get)
+        public GetUnreadFriendVoteFilmEventsCount() : base(Signature.Create("getUnreadFriendVoteFilmEventsCount"), FilmWebHttpMethod.Get)
         {
         }
 

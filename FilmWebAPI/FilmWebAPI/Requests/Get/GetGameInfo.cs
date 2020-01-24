@@ -6,7 +6,7 @@ namespace FilmWebAPI.Requests.Get
 {
     public class GetGameInfo : RequestBase<dynamic>
     {
-        public GetGameInfo(int movieId) : base(Signature.Create("getGameInfo", movieId), (RequestBase<dynamic>.FilmWebHttpMethod) RequestBase<dynamic>.FilmWebHttpMethod.Get)
+        public GetGameInfo(int movieId) : base(Signature.Create("getGameInfo", movieId), FilmWebHttpMethod.Get)
         {
         }
 

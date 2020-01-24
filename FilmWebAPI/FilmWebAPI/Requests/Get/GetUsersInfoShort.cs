@@ -6,8 +6,7 @@ namespace FilmWebAPI.Requests.Get
 {
     public class GetUsersInfoShort : RequestBase<dynamic>
     {
-
-        public GetUsersInfoShort() : base(Signature.Create("getUsersInfoShort"), (RequestBase<dynamic>.FilmWebHttpMethod) RequestBase<dynamic>.FilmWebHttpMethod.Get)
+        public GetUsersInfoShort() : base(Signature.Create("getUsersInfoShort"), FilmWebHttpMethod.Get)
         {
         }
 

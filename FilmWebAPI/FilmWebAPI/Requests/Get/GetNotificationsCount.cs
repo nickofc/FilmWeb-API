@@ -6,7 +6,7 @@ namespace FilmWebAPI.Requests.Get
 {
     public class GetNotificationsCount : RequestBase<dynamic>
     {
-        public GetNotificationsCount() : base(Signature.Create("getUnreadNotificationsCount"), (RequestBase<dynamic>.FilmWebHttpMethod) RequestBase<dynamic>.FilmWebHttpMethod.Get)
+        public GetNotificationsCount() : base(Signature.Create("getUnreadNotificationsCount"), FilmWebHttpMethod.Get)
         {
         }
 

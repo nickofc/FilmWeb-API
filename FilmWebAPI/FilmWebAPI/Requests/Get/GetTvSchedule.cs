@@ -6,7 +6,7 @@ namespace FilmWebAPI.Requests.Get
 {
     public class GetTvSchedule : RequestBase<dynamic>
     {
-        public GetTvSchedule(long channelId, DateTime time) : base(Signature.Create("getTvSchedule", channelId, time), (RequestBase<dynamic>.FilmWebHttpMethod) RequestBase<dynamic>.FilmWebHttpMethod.Get)
+        public GetTvSchedule(long channelId, DateTime time) : base(Signature.Create("getTvSchedule", channelId, time), FilmWebHttpMethod.Get)
         {
         }
 

@@ -6,7 +6,7 @@ namespace FilmWebAPI.Requests.Get
 {
     public class GetPersonImages : RequestBase<dynamic>
     {
-        public GetPersonImages(long personId, int page) : base(Signature.Create("getPersonImages", personId, page * 100, (page + 1) * 100), (RequestBase<dynamic>.FilmWebHttpMethod) RequestBase<dynamic>.FilmWebHttpMethod.Get)
+        public GetPersonImages(long personId, int page) : base(Signature.Create("getPersonImages", personId, page * 100, (page + 1) * 100), FilmWebHttpMethod.Get)
         {
         }
 

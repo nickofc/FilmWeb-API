@@ -6,7 +6,7 @@ namespace FilmWebAPI.Requests.Get
 {
     public class GetUserFavoriteCinemas : RequestBase<dynamic>
     {
-        public GetUserFavoriteCinemas() : base(Signature.Create("getUserFavouriteCinemas", -1), (RequestBase<dynamic>.FilmWebHttpMethod) RequestBase<dynamic>.FilmWebHttpMethod.Get)
+        public GetUserFavoriteCinemas() : base(Signature.Create("getUserFavouriteCinemas", -1), FilmWebHttpMethod.Get)
         {
         }
 

@@ -6,7 +6,7 @@ namespace FilmWebAPI.Requests.Get
 {
     public class GetMainRecommended : RequestBase<dynamic>
     {
-        public GetMainRecommended() : base(Signature.Create("getMainRecommended"), (RequestBase<dynamic>.FilmWebHttpMethod) RequestBase<dynamic>.FilmWebHttpMethod.Get)
+        public GetMainRecommended() : base(Signature.Create("getMainRecommended"), FilmWebHttpMethod.Get)
         {
         }
 
