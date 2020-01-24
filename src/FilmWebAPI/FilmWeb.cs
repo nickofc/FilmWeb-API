@@ -49,13 +49,12 @@ namespace FilmWebAPI
         }
 
         /// <summary>
-        /// Pozwala zalogować się do serwisu.
+        /// Pozwala zalogować się do serwisu
         /// </summary>
-        /// <param name="username">Nazwa użytkownika lub adres e-mail.</param>
-        /// <param name="password">Hasło.</param>
+        /// <param name="username">Nazwa użytkownika lub adres e-mail</param>
+        /// <param name="password">Hasło</param>
         /// <param name="token">Token do przerwania zadania</param>
-        /// <exception cref="FilmWebException">Wrzuca wyjątek jeśli dane do logowania są błędne.</exception>
-        /// <returns>Zwraca informacje (<see cref="User"/>) o użytkowniku.</returns>
+        /// <returns>Zwraca informacje (<see cref="LoginResult"/>) o użytkowniku i stanie operacji</returns>
         public async Task<LoginResult> Login(string username, string password, CancellationToken token = default)
         {
             var login = new Login(username, password);
