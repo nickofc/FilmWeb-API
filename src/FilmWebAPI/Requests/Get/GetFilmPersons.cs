@@ -26,9 +26,13 @@ namespace FilmWebAPI.Requests.Get
                 if (!(token is JArray array))
                     return null;
 
-                return new Person(id: array[0].ToObject<long>(),
-                                  name: array[3].ToObject<string>(),
-                                  knownAs: array[1].ToObject<string>());
+                return new Person()
+                {
+                    Id = array[0].ToObject<long>(),
+                    Name = array[3].ToObject<string>(),
+                    KnownAs = array[1].ToObject<string>()
+                };
+
             }).ToArray();
         }
     }

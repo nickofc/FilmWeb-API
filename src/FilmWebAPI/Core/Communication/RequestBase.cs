@@ -9,6 +9,8 @@ namespace FilmWebAPI
         private readonly Signature _signature;
         private readonly FilmWebHttpMethod _filmWebHttpMethod;
 
+        protected RequestBase() { }
+
         protected RequestBase(Signature signature, FilmWebHttpMethod filmWebHttpMethod)
         {
             _signature = signature ?? throw new System.ArgumentNullException(nameof(signature));
