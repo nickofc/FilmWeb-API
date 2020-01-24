@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FilmWebAPI\FilmWebAPI.csproj" />
+    <ProjectReference Include="..\..\src\FilmWebAPI\FilmWebAPI.csproj" />
   </ItemGroup>
 
   <ItemGroup>
