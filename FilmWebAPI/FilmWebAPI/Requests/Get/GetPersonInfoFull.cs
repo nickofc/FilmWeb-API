@@ -6,7 +6,7 @@ namespace FilmWebAPI.Requests.Get
 {
     public class GetPersonInfoFull : RequestBase<dynamic>
     {
-        public GetPersonInfoFull(long personId) : base(Signature.Create("getPersonInfoFull", personId), (RequestBase<dynamic>.FilmWebHttpMethod) RequestBase<dynamic>.FilmWebHttpMethod.Get)
+        public GetPersonInfoFull(long personId) : base(Signature.Create("getPersonInfoFull", personId), FilmWebHttpMethod.Get)
         {
         }
 

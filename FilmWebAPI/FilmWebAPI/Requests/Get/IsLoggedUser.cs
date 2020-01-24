@@ -6,8 +6,7 @@ namespace FilmWebAPI.Requests.Get
 {
     public class IsLoggedUser : RequestBase<dynamic>
     {
-
-        public IsLoggedUser() : base(Signature.Create("isLoggedUser"), (RequestBase<dynamic>.FilmWebHttpMethod) RequestBase<dynamic>.FilmWebHttpMethod.Get)
+        public IsLoggedUser() : base(Signature.Create("isLoggedUser"), FilmWebHttpMethod.Get)
         {
         }
 

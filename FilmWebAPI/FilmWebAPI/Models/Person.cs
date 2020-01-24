@@ -2,15 +2,10 @@
 {
     public class Person
     {
-        public ulong PersonId { get; }
-        public string PersonName { get; }
-        public string KnownAs { get; }
+        public long Id { get; internal set; }
 
-        public Person(ulong personId, string personName, string knownAs)
-        {
-            PersonId = personId;
-            PersonName = personName;
-            KnownAs = knownAs;
-        }
+        public string Name { get; internal set; }
+
+        public string KnownAs { get; internal set; }
     }
 }

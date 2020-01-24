@@ -6,7 +6,7 @@ namespace FilmWebAPI.Requests.Get
 {
     public class GetNotifications : RequestBase<dynamic>
     {
-        public GetNotifications() : base(Signature.Create("getNotifications"), (RequestBase<dynamic>.FilmWebHttpMethod) RequestBase<dynamic>.FilmWebHttpMethod.Get)
+        public GetNotifications() : base(Signature.Create("getNotifications"), FilmWebHttpMethod.Get)
         {
         }
 

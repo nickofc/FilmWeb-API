@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using FilmWebAPI.Models;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using FilmWebAPI.Models;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace FilmWebAPI.Requests.Get
 {
@@ -24,7 +21,6 @@ namespace FilmWebAPI.Requests.Get
             {
                 var jsonBody = content.Remove(0, 3);
                 var json = JArray.Parse(Regex.Replace(jsonBody, "t(s?):(\\d+)$", string.Empty));
-
 
                 return json.Skip(1).Select(token =>
                 {

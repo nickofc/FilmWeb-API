@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
-using FilmWebAPI.Models;
 
 namespace FilmWebAPI.Requests.Get
 {
@@ -21,8 +18,8 @@ namespace FilmWebAPI.Requests.Get
         private const int THUMB_SIZE_FILM = 4;
         private const int THUMB_SIZE_PERSON = 2;
 
-
         private readonly string _query;
+
         public Search(string query)
         {
             _query = query;
@@ -39,6 +36,5 @@ namespace FilmWebAPI.Requests.Get
 
             return base.GetRequestMessage();
         }
-
     }
 }

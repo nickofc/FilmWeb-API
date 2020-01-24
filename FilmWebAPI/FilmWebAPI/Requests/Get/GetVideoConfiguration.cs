@@ -6,8 +6,7 @@ namespace FilmWebAPI.Requests.Get
 {
     public class GetVideoConfiguration : RequestBase<dynamic>
     {
-
-        public GetVideoConfiguration() : base(Signature.Create("getVideoConfiguration"), (RequestBase<dynamic>.FilmWebHttpMethod) RequestBase<dynamic>.FilmWebHttpMethod.Get)
+        public GetVideoConfiguration() : base(Signature.Create("getVideoConfiguration"), FilmWebHttpMethod.Get)
         {
         }
 

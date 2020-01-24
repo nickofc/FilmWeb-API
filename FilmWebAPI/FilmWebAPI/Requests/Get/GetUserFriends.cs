@@ -6,8 +6,7 @@ namespace FilmWebAPI.Requests.Get
 {
     public class GetUserFriends : RequestBase<dynamic>
     {
-
-        public GetUserFriends() : base(Signature.Create("getUserFriends"), (RequestBase<dynamic>.FilmWebHttpMethod) RequestBase<dynamic>.FilmWebHttpMethod.Get)
+        public GetUserFriends() : base(Signature.Create("getUserFriends"), FilmWebHttpMethod.Get)
         {
         }
 

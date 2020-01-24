@@ -1,23 +1,21 @@
-﻿using System;
+﻿using FilmWebAPI.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using FilmWebAPI.Models;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace FilmWebAPI.Requests.Get
 {
-    public class GetAllCinemas : RequestBase<IEnumerable<Cinema>>
+    public class GetAllCinemas : RequestBase<IReadOnlyCollection<Cinema>>
     {
         public GetAllCinemas() : base(Signature.Create("getAllCinemas", -1), FilmWebHttpMethod.Get)
         {
         }
 
-        public override async Task<IEnumerable<Cinema>> Parse(HttpResponseMessage responseMessage)
+        public override async Task<IReadOnlyCollection<Cinema>> Parse(HttpResponseMessage responseMessage)
         {
             var content = await responseMessage.Content.ReadAsStringAsync();
             if (content.StartsWith("ok"))
@@ -34,13 +32,13 @@ namespace FilmWebAPI.Requests.Get
                     {
                         Id = array[0].ToObject<int>(),
                         Name = array[1].ToObject<string>(),
-                        Latitude = array[2].ToObject<double>(),
-                        Longitude = array[3].ToObject<double>(),
+                        Latitude = array[2].Value<double?>(),
+                        Longitude = array[3].Value<double?>(),
                         CityId = array[4].ToObject<int>(),
                         Address = array[5].ToObject<string>(),
                         Phone = array[6].ToObject<string>(),
                     };
-                });
+                }).ToArray();
             }
             throw new FilmWebException(FilmWebExceptionType.UnableToGetData);
         }

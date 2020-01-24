@@ -6,8 +6,7 @@ namespace FilmWebAPI.Requests.Get
 {
     public class GetUserFriendsFilmVotesByFilm : RequestBase<dynamic>
     {
-
-        public GetUserFriendsFilmVotesByFilm(long movieId) : base(Signature.Create("getUserFriendsFilmVotesByFilm", movieId, null), (RequestBase<dynamic>.FilmWebHttpMethod) RequestBase<dynamic>.FilmWebHttpMethod.Get)
+        public GetUserFriendsFilmVotesByFilm(long movieId) : base(Signature.Create("getUserFriendsFilmVotesByFilm", movieId, null), FilmWebHttpMethod.Get)
         {
         }
 

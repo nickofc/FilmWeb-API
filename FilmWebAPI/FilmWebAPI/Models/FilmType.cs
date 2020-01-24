@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FilmWebAPI.Models
 {
@@ -10,9 +8,10 @@ namespace FilmWebAPI.Models
         {
             Movie,
             Serial,
-            Game, 
+            Game,
             Unknown,
         }
+
         public static int FILM = 0;
         public static int GAME = 2;
         public static int SERIAL = 1;
@@ -23,10 +22,13 @@ namespace FilmWebAPI.Models
             {
                 case 0:
                     return Type.Movie;
+
                 case 1:
                     return Type.Serial;
+
                 case 2:
                     return Type.Game;
+
                 default:
                     throw new ArgumentOutOfRangeException(nameof(filmType));
             }

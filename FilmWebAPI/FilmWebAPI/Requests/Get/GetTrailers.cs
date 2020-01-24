@@ -6,7 +6,7 @@ namespace FilmWebAPI.Requests.Get
 {
     public class GetTrailers : RequestBase<dynamic>
     {
-        public GetTrailers() : base(Signature.Create("getTrailers"), (RequestBase<dynamic>.FilmWebHttpMethod) RequestBase<dynamic>.FilmWebHttpMethod.Get)
+        public GetTrailers() : base(Signature.Create("getTrailers"), FilmWebHttpMethod.Get)
         {
         }
 

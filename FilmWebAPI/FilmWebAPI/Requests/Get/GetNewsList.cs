@@ -6,7 +6,7 @@ namespace FilmWebAPI.Requests.Get
 {
     public class GetNewsList : RequestBase<dynamic>
     {
-        public GetNewsList(int page) : base(Signature.Create("getNewsList", page), (RequestBase<dynamic>.FilmWebHttpMethod) RequestBase<dynamic>.FilmWebHttpMethod.Get)
+        public GetNewsList(int page) : base(Signature.Create("getNewsList", page), FilmWebHttpMethod.Get)
         {
         }
 

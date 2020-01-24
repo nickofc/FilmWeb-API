@@ -1,7 +1,4 @@
-using System;
-using System.Diagnostics;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -16,31 +13,13 @@ namespace FilmWebAPI.Tests
             _filmWeb = new FilmWeb();
         }
 
-        [Fact]
-        public async Task LoginTests()
+        [Theory]
+        [InlineData("fake-user", "fake-pass", false)]
+        public async Task LoginTests(string username, string password, bool expectedResult)
         {
-            string username = "";
-            string password = "";
-
-            if (!string.IsNullOrWhiteSpace(username) || !string.IsNullOrWhiteSpace(password))
-            {
-                var result = await _filmWeb.Login(username, password);  
-                Assert.NotNull(result);
-                Assert.NotNull(result.Birthday);
-                Assert.NotNull(result.Id);
-                Assert.NotNull(result.Name);
-                Assert.NotNull(result.Nick);
-                Assert.NotNull(result.Sex);
-            }
-            else
-            {
-                Debug.WriteLine($"{nameof(username)} or {nameof(password)} is empty!");
-            }
-
-            // próba logowania z nie prawid³owym has³em / loginem
-            await Assert.ThrowsAsync<FilmWebException>(async () => await _filmWeb.Login("username", "password"));
+            var result = await _filmWeb.Login(username, password);
+            Assert.Equal(result.IsLoggedIn, expectedResult);
         }
-
 
         [Fact]
         public async Task GetAllCinemasTests()
@@ -48,7 +27,6 @@ namespace FilmWebAPI.Tests
             var cinemas = await _filmWeb.GetAllCinemas();
             Assert.True(cinemas.Any());
         }
-
 
         [Fact]
         public async Task GetAllChannelsTests()
