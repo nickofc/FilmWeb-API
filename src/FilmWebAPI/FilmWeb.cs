@@ -7,6 +7,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using FilmWebAPI.Core.Communication;
 
 namespace FilmWebAPI
 {
@@ -65,6 +66,12 @@ namespace FilmWebAPI
         {
             var getFilmPersons = new GetFilmPersons(movieId, personType, page);
             return await ApiClient.Dispatch(getFilmPersons, token);
+        }
+
+        public async Task<Nullable<ulong>> GetMovieId(string movieTitle, CancellationToken token = default)
+        {
+            var search = new Search(movieTitle);
+            return await ApiClient.Dispatch(search, token);
         }
 
         public async Task<IReadOnlyCollection<PersonBirthdate>> GetBornTodayPersons(CancellationToken token = default)
