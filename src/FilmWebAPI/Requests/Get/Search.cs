@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace FilmWebAPI.Requests.Get
 {
-    public class Search : RequestBase<dynamic>
+    public class Search : RequestBase<Nullable<ulong>>
     {
         private const string CINEMA_TYPE = "c";
         private const string FILM_TYPE = "f";
@@ -18,23 +18,44 @@ namespace FilmWebAPI.Requests.Get
         private const int THUMB_SIZE_FILM = 4;
         private const int THUMB_SIZE_PERSON = 2;
 
-        private readonly string _query;
+        private readonly string _movieTitle;
 
-        public Search(string query)
+        public Search(string movieTitle) : base(Signature.Create("search", movieTitle), FilmWebHttpMethod.Get)
         {
-            _query = query;
+            _movieTitle = movieTitle;
         }
 
-        public override async Task<dynamic> Parse(HttpResponseMessage responseMessage)
+        public override async Task<Nullable<ulong>> Parse(HttpResponseMessage responseMessage)
         {
-            throw new NotImplementedException();
+            if (responseMessage == null)
+            {
+                throw new ArgumentNullException(nameof(responseMessage));
+            }
+
+            if (!responseMessage.IsSuccessStatusCode)
+            {
+                throw new FilmWebException(FilmWebExceptionType.UnableToGetData);
+            }
+
+            var content = await responseMessage.Content.ReadAsStringAsync();
+
+            const int MOVIE_ID_INDEX = 1;
+            foreach (var item in content.Split(new [] {"\\a"}, StringSplitOptions.None))
+            {
+                var oneResult = item.Split(new [] {"\\c"}, StringSplitOptions.None);
+                var itemType = oneResult[0];
+                if (itemType == "f" || itemType == "s")
+                {
+                    return ulong.Parse(oneResult[MOVIE_ID_INDEX]);
+                }
+            }
+            return null;
         }
 
         public override HttpRequestMessage GetRequestMessage()
         {
-            var http = new HttpRequestMessage(HttpMethod.Get, $"{SEARCH_URL}?q={_query}");
-
-            return base.GetRequestMessage();
+            var http = new HttpRequestMessage(HttpMethod.Get, $"{SEARCH_URL}?q={_movieTitle}");
+            return http;
         }
     }
 }

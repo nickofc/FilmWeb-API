@@ -1,4 +1,5 @@
-﻿using FilmWebAPI.Models;
+﻿using System;
+using FilmWebAPI.Models;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -20,5 +21,7 @@ namespace FilmWebAPI
         Task<IReadOnlyCollection<PersonBirthdate>> GetBornTodayPersons(CancellationToken token = default);
 
         Task<IReadOnlyCollection<Person>> GetFilmPersons(long movieId, PersonType personType, int page, CancellationToken token = default);
+
+        Task<Nullable<ulong>> GetMovieId(string movieTitle, CancellationToken token = default);
     }
 }

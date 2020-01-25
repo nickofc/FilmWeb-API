@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace FilmWebAPI
+namespace FilmWebAPI.Core.Communication
 {
     public class FilmWebApiClient : IFilmWebApiClient
     {
@@ -20,8 +20,10 @@ namespace FilmWebAPI
                 throw new ArgumentNullException(nameof(instance));
             }
 
-            using var message = await _httpExecute.Execute(instance.GetRequestMessage(), token).ConfigureAwait(false);
-            return await instance.Parse(message).ConfigureAwait(false);
+            using (var message = await _httpExecute.Execute(instance.GetRequestMessage(), token).ConfigureAwait(false))
+            {
+                return await instance.Parse(message).ConfigureAwait(false);
+            }
         }
     }
 }

@@ -64,7 +64,7 @@ namespace FilmWebAPI
                 throw new FilmWebException(FilmWebExceptionType.UnableToGetData);
             }
 
-            return content[3..];
+            return content.Substring(3);
         }
 
         protected async Task<ApiResponse> GetAsApiResponseAsync(HttpResponseMessage responseMessage)
@@ -80,7 +80,7 @@ namespace FilmWebAPI
                 return ApiResponse.Failure();
             }
 
-            return ApiResponse.Succeed(content[3..]);
+            return ApiResponse.Succeed(content.Substring(3));
         }
     }
 }
