@@ -20,7 +20,8 @@ namespace FilmWebAPI.Core.Communication
                 throw new ArgumentNullException(nameof(instance));
             }
 
-            using (var message = await _httpExecute.Execute(instance.GetRequestMessage(), token).ConfigureAwait(false))
+            using (var request = instance.GetRequestMessage())
+            using (var message = await _httpExecute.Execute(request, token).ConfigureAwait(false))
             {
                 return await instance.Parse(message).ConfigureAwait(false);
             }

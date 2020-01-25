@@ -1,10 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Authors>Sunnyline</Authors>
+    <Authors>nickofc</Authors>
     <Company />
     <Product>FilmWeb API</Product>
-    <Description>Nieoficjanlny klient FilmWeb API</Description>
+    <Description>Nieoficjanlny klient API FilmWeb</Description>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <RepositoryUrl></RepositoryUrl>
+    <PackageTags>FilmWeb, FilmWebAPI</PackageTags>
+    <PackageProjectUrl>https://github.com/nickofc/FilmWeb-API</PackageProjectUrl>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile></DocumentationFile>

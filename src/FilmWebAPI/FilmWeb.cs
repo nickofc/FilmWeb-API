@@ -68,7 +68,7 @@ namespace FilmWebAPI
             return await ApiClient.Dispatch(getFilmPersons, token);
         }
 
-        public async Task<Nullable<ulong>> GetMovieId(string movieTitle, CancellationToken token = default)
+        public async Task<ulong?> GetMovieId(string movieTitle, CancellationToken token = default)
         {
             var search = new Search(movieTitle);
             return await ApiClient.Dispatch(search, token);
