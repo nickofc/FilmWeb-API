@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FilmWebAPI.Requests.Get
 {
-    class GetFilmPolishTitle : RequestBase<string>
+    public class GetFilmPolishTitle : RequestBase<string>
     {
         private const int POLISH_TITLE_INDEX = 0;
 
