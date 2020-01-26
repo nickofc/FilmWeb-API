@@ -41,7 +41,7 @@ namespace FilmWebAPI.Tests
         [TestCase(1470, "Cast Away - poza światem")]
         public async Task ShouldGetPolishTitle(long movieId, string expectedPolishTitle)
         {
-            var polishTitle = await _filmWeb.GetPolishTitle((ulong)movieId);
+            var polishTitle = await _filmWeb.GetFilmPolishTitle((ulong)movieId);
             Assert.AreEqual(expectedPolishTitle, polishTitle);
         }
 
@@ -51,7 +51,7 @@ namespace FilmWebAPI.Tests
         [TestCase(1470, "Cast Away")]
         public async Task ShouldGetOriginalTitle(long movieId, string expectedOriginalTitle)
         {
-            var originalTitle = await _filmWeb.GetOriginalTitle((ulong)movieId);
+            var originalTitle = await _filmWeb.GetFilmOriginalTitle((ulong)movieId);
             Assert.AreEqual(expectedOriginalTitle, originalTitle);
         }
     }

@@ -106,15 +106,15 @@ namespace FilmWebAPI
             return await ApiClient.Dispatch(getAllChannels, token);
         }
 
-        public async Task<string> GetPolishTitle(ulong movieId, CancellationToken token = default)
+        public async Task<string> GetFilmPolishTitle(ulong movieId, CancellationToken token = default)
         {
-            var polishTitle = new GetPolishTitle(movieId);
+            var polishTitle = new GetFilmPolishTitle(movieId);
             return await ApiClient.Dispatch(polishTitle, token);
         }
 
-        public async Task<string> GetOriginalTitle(ulong movieId, CancellationToken token = default)
+        public async Task<string> GetFilmOriginalTitle(ulong movieId, CancellationToken token = default)
         {
-            var originalTitle = new GetOriginalTitle(movieId);
+            var originalTitle = new GetFilmOriginalTitle(movieId);
             return await ApiClient.Dispatch(originalTitle, token);
         }
     }

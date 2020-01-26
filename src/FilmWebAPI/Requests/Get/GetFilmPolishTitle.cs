@@ -9,11 +9,11 @@ using Newtonsoft.Json.Linq;
 
 namespace FilmWebAPI.Requests.Get
 {
-    class GetPolishTitle : RequestBase<string>
+    class GetFilmPolishTitle : RequestBase<string>
     {
         private const int POLISH_TITLE_INDEX = 0;
 
-        public GetPolishTitle(ulong movieId)
+        public GetFilmPolishTitle(ulong movieId)
             : base(Signature.Create("getFilmInfoFull", movieId), FilmWebHttpMethod.Get)
         {
         }
