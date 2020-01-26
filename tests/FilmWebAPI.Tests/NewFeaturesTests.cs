@@ -1,5 +1,6 @@
 ﻿using FilmWebAPI.Models;
 using NUnit.Framework;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -27,7 +28,7 @@ namespace FilmWebAPI.Tests
         [Test]
         [TestCase("CHILLING ADVENTURES OF SABRINA", 800447)]
         [TestCase("Forrest Gump", 998)]
-        [TestCase("Zielona mila", 862)]
+        [TestCase("Zielona Mila", 862)]
         [TestCase("Cast away", 1470)]
         public async Task ShouldFindMovieId(string movieTitle, long expectedId)
         {
@@ -53,6 +54,17 @@ namespace FilmWebAPI.Tests
         {
             var originalTitle = await _filmWeb.GetFilmOriginalTitle((ulong)movieId);
             Assert.AreEqual(expectedOriginalTitle, originalTitle);
+        }
+
+        [Test]
+        [TestCase(1470, 7.5)]
+        [TestCase(816980, 7.9)]
+        [TestCase(862, 8.6)]
+        [TestCase(799827, 9.0)]
+        public async Task ShouldGetAvgVote(long movieId, double expectedVote)
+        {
+            var avgVote = await _filmWeb.GetFilmAvgVote((ulong) movieId);
+            Assert.IsTrue(Math.Abs(avgVote - expectedVote) < 0.9);
         }
     }
 }

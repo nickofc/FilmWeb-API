@@ -2,8 +2,8 @@
 {
     public enum PersonType
     {
-        Scenarzysta = 1,
-        Rezyser,
+        Rezyser = 1,
+        Scenarzysta,
         Zdjecia,
         Muzyka,
         Scenografia,

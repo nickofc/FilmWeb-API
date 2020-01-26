@@ -117,5 +117,11 @@ namespace FilmWebAPI
             var originalTitle = new GetFilmOriginalTitle(movieId);
             return await ApiClient.Dispatch(originalTitle, token);
         }
+
+        public async Task<double> GetFilmAvgVote(ulong movieId, CancellationToken token = default)
+        {
+            var avgVote = new GetFilmVotesAvg(movieId);
+            return await ApiClient.Dispatch(avgVote, token);
+        }
     }
 }
