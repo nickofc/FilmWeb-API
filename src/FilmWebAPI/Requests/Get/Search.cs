@@ -40,9 +40,9 @@ namespace FilmWebAPI.Requests.Get
             var content = await responseMessage.Content.ReadAsStringAsync();
 
             const int MOVIE_ID_INDEX = 1;
-            foreach (var item in content.Split(new [] {"\\a"}, StringSplitOptions.None))
+            foreach (var item in content.Split(new[] { "\\a" }, StringSplitOptions.None))
             {
-                var oneResult = item.Split(new [] {"\\c"}, StringSplitOptions.None);
+                var oneResult = item.Split(new[] { "\\c" }, StringSplitOptions.None);
                 var itemType = oneResult[0];
                 if (itemType == "f" || itemType == "s")
                 {

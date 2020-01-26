@@ -1,11 +1,11 @@
-﻿using FilmWebAPI.Models;
+﻿using FilmWebAPI.Core.Communication;
+using FilmWebAPI.Models;
 using FilmWebAPI.Requests.Get;
 using FilmWebAPI.Requests.Post;
 using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using FilmWebAPI.Core.Communication;
 
 namespace FilmWebAPI
 {
@@ -16,7 +16,7 @@ namespace FilmWebAPI
         protected FilmWebConfig Config { get; set; }
 
         protected FilmWebApiClient ApiClient { get; set; }
-        
+
         public FilmWeb(FilmWebConfig config)
         {
             Config = config ?? throw new ArgumentNullException(nameof(config));
