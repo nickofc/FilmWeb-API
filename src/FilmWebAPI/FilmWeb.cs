@@ -62,7 +62,15 @@ namespace FilmWebAPI
             return await ApiClient.Dispatch(login, token);
         }
 
-        public async Task<IReadOnlyCollection<Person>> GetFilmPersons(long movieId, PersonType personType, int page, CancellationToken token = default)
+        /// <summary>
+        /// Powoduje wylogowanie się z sesji
+        /// </summary>
+        public void Logout()
+        {
+            _cookie = new CookieContainer();
+        }
+
+        public async Task<IReadOnlyCollection<Person>> GetFilmPersons(ulong movieId, PersonType personType, int page, CancellationToken token = default)
         {
             var getFilmPersons = new GetFilmPersons(movieId, personType, page);
             return await ApiClient.Dispatch(getFilmPersons, token);
@@ -98,12 +106,10 @@ namespace FilmWebAPI
             return await ApiClient.Dispatch(getAllChannels, token);
         }
 
-        /// <summary>
-        /// Powoduje wylogowanie się z sesji
-        /// </summary>
-        public void Logout()
+        public async Task<string> GetPolishTitle(ulong movieId, CancellationToken token = default)
         {
-            _cookie = new CookieContainer();
+            var polishTitle = new GetPolishTitle(movieId);
+            return await ApiClient.Dispatch(polishTitle, token);
         }
     }
 }
