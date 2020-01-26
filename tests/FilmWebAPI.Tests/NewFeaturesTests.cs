@@ -28,6 +28,7 @@ namespace FilmWebAPI.Tests
         [TestCase("CHILLING ADVENTURES OF SABRINA", 800447)]
         [TestCase("Forrest Gump", 998)]
         [TestCase("Zielona mila", 862)]
+        [TestCase("Cast away", 1470)]
         public async Task ShouldFindMovieId(string movieTitle, long expectedId)
         {
             var movieId = await _filmWeb.GetMovieId(movieTitle);
@@ -37,10 +38,21 @@ namespace FilmWebAPI.Tests
         [Test]
         [TestCase(998, "Forrest Gump")]
         [TestCase(862, "Zielona mila")]
+        [TestCase(1470, "Cast Away - poza światem")]
         public async Task ShouldGetPolishTitle(long movieId, string expectedPolishTitle)
         {
             var polishTitle = await _filmWeb.GetPolishTitle((ulong)movieId);
             Assert.AreEqual(expectedPolishTitle, polishTitle);
+        }
+
+        [Test]
+        [TestCase(998, "Forrest Gump")]
+        [TestCase(862, "The Green Mile")]
+        [TestCase(1470, "Cast Away")]
+        public async Task ShouldGetOriginalTitle(long movieId, string expectedOriginalTitle)
+        {
+            var originalTitle = await _filmWeb.GetOriginalTitle((ulong)movieId);
+            Assert.AreEqual(expectedOriginalTitle, originalTitle);
         }
     }
 }

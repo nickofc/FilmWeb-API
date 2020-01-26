@@ -111,5 +111,11 @@ namespace FilmWebAPI
             var polishTitle = new GetPolishTitle(movieId);
             return await ApiClient.Dispatch(polishTitle, token);
         }
+
+        public async Task<string> GetOriginalTitle(ulong movieId, CancellationToken token = default)
+        {
+            var originalTitle = new GetOriginalTitle(movieId);
+            return await ApiClient.Dispatch(originalTitle, token);
+        }
     }
 }

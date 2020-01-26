@@ -25,5 +25,7 @@ namespace FilmWebAPI
         Task<ulong?> GetMovieId(string movieTitle, CancellationToken token = default);
 
         Task<string> GetPolishTitle(ulong movieId, CancellationToken token = default);
+
+        Task<string> GetOriginalTitle(ulong movieId, CancellationToken token = default);
     }
 }
