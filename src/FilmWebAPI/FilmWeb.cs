@@ -3,8 +3,6 @@ using FilmWebAPI.Requests.Get;
 using FilmWebAPI.Requests.Post;
 using System;
 using System.Collections.Generic;
-using System.Net;
-using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using FilmWebAPI.Core.Communication;
@@ -13,40 +11,21 @@ namespace FilmWebAPI
 {
     public class FilmWeb : IFilmWebApi
     {
-        #region Constant
-
         public const string API_URL = "https://ssl.filmweb.pl/api";
-        public const string API_KEY = "qjcGhW2JnvGT9dfCt3uT_jozR3s";
 
-        #endregion Constant
-
-        private CookieContainer _cookie;
-
-        protected HttpExecute HttpExecute { get; set; }
+        protected FilmWebConfig Config { get; set; }
 
         protected FilmWebApiClient ApiClient { get; set; }
-
-        //TODO: Max age regex pattern t(s?):(\\d+)$
-
-        public FilmWeb(CookieContainer cookies = default, int timeoutInSeconds = 10)
+        
+        public FilmWeb(FilmWebConfig config)
         {
-            _cookie = cookies ?? new CookieContainer();
-            HttpExecute = new HttpExecute(new HttpClient(new HttpClientHandler
-            {
-                AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate,
-                CookieContainer = _cookie,
-                UseCookies = true,
-            }, true)
-            {
-                BaseAddress = new Uri(API_URL),
-                DefaultRequestHeaders =
-                {
-                    {"User-Agent", "FilmWebAPI"},
-                    {"Accept-Encoding", "gzip, deflate"},
-                },
-                Timeout = TimeSpan.FromSeconds(timeoutInSeconds),
-            });
-            ApiClient = new FilmWebApiClient(HttpExecute);
+            Config = config ?? throw new ArgumentNullException(nameof(config));
+            ApiClient = new FilmWebApiClient(config);
+        }
+
+        public FilmWeb() : this(FilmWebConfig.Default())
+        {
+
         }
 
         /// <summary>
@@ -58,6 +37,16 @@ namespace FilmWebAPI
         /// <returns>Zwraca informacje (<see cref="LoginResult"/>) o użytkowniku i stanie operacji</returns>
         public async Task<LoginResult> Login(string username, string password, CancellationToken token = default)
         {
+            if (string.IsNullOrWhiteSpace(username))
+            {
+                throw new ArgumentException("Nazwa użytkownika nie może być pusta.", nameof(username));
+            }
+
+            if (string.IsNullOrWhiteSpace(password))
+            {
+                throw new ArgumentException("Hasło nie może być puste.", nameof(password));
+            }
+
             var login = new Login(username, password);
             return await ApiClient.Dispatch(login, token);
         }
@@ -67,7 +56,7 @@ namespace FilmWebAPI
         /// </summary>
         public void Logout()
         {
-            _cookie = new CookieContainer();
+            ApiClient = new FilmWebApiClient(Config);
         }
 
         public async Task<IReadOnlyCollection<Person>> GetFilmPersons(ulong movieId, PersonType personType, int page, CancellationToken token = default)

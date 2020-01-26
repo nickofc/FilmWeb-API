@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -37,13 +38,11 @@ namespace FilmWebAPI
             {
                 case FilmWebHttpMethod.Get:
                     return new HttpRequestMessage(HttpMethod.Get, Url.Create(FilmWeb.API_URL, args));
-
                 case FilmWebHttpMethod.Post:
                     return new HttpRequestMessage(HttpMethod.Post, FilmWeb.API_URL)
                     {
                         Content = new FormUrlEncodedContent(args)
                     };
-
                 default:
                     throw new FilmWebException("Ta metoda nie jest obsługiwana!", FilmWebExceptionType.HttpMethodNotSupported);
             }
@@ -55,7 +54,7 @@ namespace FilmWebAPI
         {
             if (responseMessage is null)
             {
-                throw new System.ArgumentNullException(nameof(responseMessage));
+                throw new ArgumentNullException(nameof(responseMessage));
             }
 
             var content = await responseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
@@ -71,7 +70,7 @@ namespace FilmWebAPI
         {
             if (responseMessage is null)
             {
-                throw new System.ArgumentNullException(nameof(responseMessage));
+                throw new ArgumentNullException(nameof(responseMessage));
             }
 
             var content = await responseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);

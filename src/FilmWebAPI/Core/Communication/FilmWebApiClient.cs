@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Net;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -8,9 +10,23 @@ namespace FilmWebAPI.Core.Communication
     {
         private readonly HttpExecute _httpExecute;
 
-        public FilmWebApiClient(HttpExecute httpExecute)
+        public FilmWebApiClient(FilmWebConfig filmWebConfig)
         {
-            _httpExecute = httpExecute ?? throw new ArgumentNullException(nameof(httpExecute));
+            _httpExecute = new HttpExecute(new HttpClient(new HttpClientHandler
+            {
+                AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate,
+                CookieContainer = new CookieContainer(),
+                UseCookies = true,
+            }, true)
+            {
+                BaseAddress = new Uri(FilmWeb.API_URL),
+                DefaultRequestHeaders =
+                {
+                    {"User-Agent", "FilmWebAPI"},
+                    {"Accept-Encoding", "gzip, deflate"},
+                },
+                Timeout = filmWebConfig.Timeout,
+            });
         }
 
         public async Task<T> Dispatch<T>(RequestBase<T> instance, CancellationToken token = default)

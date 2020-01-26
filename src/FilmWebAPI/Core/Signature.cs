@@ -10,6 +10,8 @@ namespace FilmWebAPI
     /// </summary>
     public sealed class Signature : ISignature
     {
+        const string API_KEY = "qjcGhW2JnvGT9dfCt3uT_jozR3s";
+
         private readonly string _method;
         private string _signature;
 
@@ -36,7 +38,7 @@ namespace FilmWebAPI
         private string ComputeSign()
         {
             const string version = "android";
-            return $"1.0,{Md5.ComputeHash($"{_method}{version}{FilmWeb.API_KEY}")}";
+            return $"1.0,{Md5.ComputeHash($"{_method}{version}{API_KEY}")}";
         }
 
         internal static string ToCSV(string method, params object[] arguments)
