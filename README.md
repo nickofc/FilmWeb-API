@@ -1,4 +1,5 @@
-# FilmWebAPI [![Build status](https://ci.appveyor.com/api/projects/status/46s536xho6was2h7/branch/master?svg=true)](https://ci.appveyor.com/project/nickofc/filmweb-api/branch/master)
+# FilmWebAPI [![Build status](https://ci.appveyor.com/api/projects/status/bes1sload217ypag/branch/master?svg=true)](https://ci.appveyor.com/project/nickofc/filmweb-api/branch/master)
+
 
 Nieoficjalny klient API 
 

@@ -20,8 +20,12 @@ namespace FilmWebAPI
 
         Task<IReadOnlyCollection<PersonBirthdate>> GetBornTodayPersons(CancellationToken token = default);
 
-        Task<IReadOnlyCollection<Person>> GetFilmPersons(long movieId, PersonType personType, int page, CancellationToken token = default);
+        Task<IReadOnlyCollection<Person>> GetFilmPersons(ulong movieId, PersonType personType, int page, CancellationToken token = default);
 
-        Task<Nullable<ulong>> GetMovieId(string movieTitle, CancellationToken token = default);
+        Task<ulong?> GetMovieId(string movieTitle, CancellationToken token = default);
+
+        Task<string> GetFilmPolishTitle(ulong movieId, CancellationToken token = default);
+
+        Task<string> GetFilmOriginalTitle(ulong movieId, CancellationToken token = default);
     }
 }

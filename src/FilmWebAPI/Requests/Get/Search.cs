@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace FilmWebAPI.Requests.Get
 {
-    public class Search : RequestBase<Nullable<ulong>>
+    public class Search : RequestBase<ulong?>
     {
         private const string CINEMA_TYPE = "c";
         private const string FILM_TYPE = "f";
@@ -25,7 +25,7 @@ namespace FilmWebAPI.Requests.Get
             _movieTitle = movieTitle;
         }
 
-        public override async Task<Nullable<ulong>> Parse(HttpResponseMessage responseMessage)
+        public override async Task<ulong?> Parse(HttpResponseMessage responseMessage)
         {
             if (responseMessage == null)
             {
