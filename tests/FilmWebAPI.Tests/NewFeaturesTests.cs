@@ -124,13 +124,13 @@ namespace FilmWebAPI.Tests
             Assert.AreEqual(expectedDate, premiereInAskedPlace.Value);
         }
 
-        //[Test]
-        //[TestCase(810167, "Strudzony życiem komik popada w obłęd i staje się psychopatycznym mordercą.")]
-        //public async Task ShouldGetDescription(long movieId, string expectedDescription)
-        //{
-        //    var description = await _filmWeb.GetFilmDescription((ulong)movieId);
-        //    Assert.AreEqual(expectedDescription, description);
-        //}
+        [Test]
+        [TestCase(810167, "Strudzony życiem komik popada w obłęd i staje się psychopatycznym mordercą.")]
+        public async Task ShouldGetDescription(long movieId, string expectedDescription)
+        {
+            var description = await _filmWeb.GetFilmDescription((ulong)movieId);
+            Assert.AreEqual(expectedDescription, description);
+        }
 
         //[Test]
         //[TestCase(810167, new[] { "Hildur Guðnadóttir" })]
