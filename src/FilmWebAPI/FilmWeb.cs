@@ -118,5 +118,11 @@ namespace FilmWebAPI
             var getGenres = new GetFilmGenres(movieId);
             return await ApiClient.Dispatch(getGenres, token);
         }
+
+        public async Task<IEnumerable<string>> GetFilmProductionCountries(ulong movieId, CancellationToken token = default)
+        {
+            var getCountries = new GetFilmProductionCountries(movieId);
+            return await ApiClient.Dispatch(getCountries, token);
+        }
     }
 }

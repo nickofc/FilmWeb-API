@@ -30,5 +30,7 @@ namespace FilmWebAPI
         Task<double> GetFilmAvgVote(ulong movieId, CancellationToken token = default);
 
         Task<IEnumerable<string>> GetFilmGenres(ulong movieId, CancellationToken token = default);
+
+        Task<IEnumerable<string>> GetFilmProductionCountries(ulong movieId, CancellationToken token = default);
     }
 }
