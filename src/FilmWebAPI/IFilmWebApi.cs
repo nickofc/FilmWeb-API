@@ -35,5 +35,7 @@ namespace FilmWebAPI
         Task<IEnumerable<string>> GetFilmProductionCountries(ulong movieId, CancellationToken token = default);
 
         Task<TimeSpan> GetFilmDuration(ulong movieId, CancellationToken token = default);
+
+        Task<IEnumerable<KeyValuePair<string, DateTime>>> GetFilmPremieres(ulong movieId, CancellationToken token = default);
     }
 }

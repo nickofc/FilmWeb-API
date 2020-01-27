@@ -130,5 +130,11 @@ namespace FilmWebAPI
             var getDuration = new GetFilmDuration(movieId);
             return await ApiClient.Dispatch(getDuration, token);
         }
+
+        public async Task<IEnumerable<KeyValuePair<string, DateTime>>> GetFilmPremieres(ulong movieId, CancellationToken token = default)
+        {
+            var getPremieres = new GetFilmPremieres(movieId);
+            return await ApiClient.Dispatch(getPremieres, token);
+        }
     }
 }
