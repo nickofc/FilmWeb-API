@@ -124,5 +124,11 @@ namespace FilmWebAPI
             var getCountries = new GetFilmProductionCountries(movieId);
             return await ApiClient.Dispatch(getCountries, token);
         }
+
+        public async Task<TimeSpan> GetFilmDuration(ulong movieId, CancellationToken token = default)
+        {
+            var getDuration = new GetFilmDuration(movieId);
+            return await ApiClient.Dispatch(getDuration, token);
+        }
     }
 }

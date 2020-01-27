@@ -98,5 +98,43 @@ namespace FilmWebAPI.Tests
             Assert.AreEqual(expectedCountries, countries);
         }
 
+        [Test]
+        [TestCase(998, 142)]
+        [TestCase(816980, 119)]
+        [TestCase(810167, 122)]
+        [TestCase(724464, 60)]
+        public async Task ShouldGetDuration(long movieId, int expectedNumberOfMinutes)
+        {
+            var duration = await _filmWeb.GetFilmDuration((ulong)movieId);
+            var expectedTimeSpan = TimeSpan.FromMinutes(expectedNumberOfMinutes);
+            Assert.AreEqual(expectedTimeSpan, duration);
+        }
+
+        //[Test]
+        //[TestCase(998, "world", "23 czerwca 1994")]
+        //[TestCase(816980, "poland", "24 stycznia 2020")]
+        //[TestCase(816980, "world", "25 grudnia 2019")]
+        //[TestCase(810167, "world", "31 sierpnia 2019")]
+        //public async Task ShouldGetPremiers(long movieId, string country, string expectedPremierDate)
+        //{
+        //    var premier = await _filmWeb.GetFilmPremier((ulong)movieId);
+
+        //}
+
+        //[Test]
+        //[TestCase(810167, "Strudzony życiem komik popada w obłęd i staje się psychopatycznym mordercą.")]
+        //public async Task ShouldGetDescription(long movieId, string expectedDescription)
+        //{
+        //    var description = await _filmWeb.GetFilmDescription((ulong)movieId);
+        //    Assert.AreEqual(expectedDescription, description);
+        //}
+
+        //[Test]
+        //[TestCase(810167, new[] { "Hildur Guðnadóttir" })]
+        //public async Task ShouldGetMusicCreators(long movieId, string[] expectedMusicCreators)
+        //{
+        //    var musicCreators = await _filmWeb.GetFilmMusicCreators((ulong)movieId);
+        //    Assert.AreEqual(expectedMusicCreators, musicCreators);
+        //}
     }
 }

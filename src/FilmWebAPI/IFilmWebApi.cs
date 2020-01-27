@@ -1,4 +1,5 @@
-﻿using FilmWebAPI.Models;
+﻿using System;
+using FilmWebAPI.Models;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -32,5 +33,7 @@ namespace FilmWebAPI
         Task<IEnumerable<string>> GetFilmGenres(ulong movieId, CancellationToken token = default);
 
         Task<IEnumerable<string>> GetFilmProductionCountries(ulong movieId, CancellationToken token = default);
+
+        Task<TimeSpan> GetFilmDuration(ulong movieId, CancellationToken token = default);
     }
 }
