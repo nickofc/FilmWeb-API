@@ -39,5 +39,7 @@ namespace FilmWebAPI
         Task<IEnumerable<KeyValuePair<string, DateTime>>> GetFilmPremieres(ulong movieId, CancellationToken token = default);
 
         Task<string> GetFilmDescription(ulong movieId, CancellationToken token = default);
+
+        Task<string> GetFilmShortDescription(ulong movieId, CancellationToken token = default);
     }
 }

@@ -126,10 +126,10 @@ namespace FilmWebAPI.Tests
 
         [Test]
         [TestCase(810167, "Strudzony życiem komik popada w obłęd i staje się psychopatycznym mordercą.")]
-        public async Task ShouldGetDescription(long movieId, string expectedDescription)
+        public async Task ShouldGetShortDescription(long movieId, string expectedDescription)
         {
-            var description = await _filmWeb.GetFilmDescription((ulong)movieId);
-            Assert.AreEqual(expectedDescription, description);
+            var shortDescription = await _filmWeb.GetFilmShortDescription((ulong)movieId);
+            Assert.AreEqual(expectedDescription, shortDescription);
         }
 
         //[Test]
