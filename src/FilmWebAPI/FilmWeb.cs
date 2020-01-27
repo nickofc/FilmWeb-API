@@ -97,20 +97,26 @@ namespace FilmWebAPI
 
         public async Task<string> GetFilmPolishTitle(ulong movieId, CancellationToken token = default)
         {
-            var polishTitle = new GetFilmPolishTitle(movieId);
-            return await ApiClient.Dispatch(polishTitle, token);
+            var getPolishTitle = new GetFilmPolishTitle(movieId);
+            return await ApiClient.Dispatch(getPolishTitle, token);
         }
 
         public async Task<string> GetFilmOriginalTitle(ulong movieId, CancellationToken token = default)
         {
-            var originalTitle = new GetFilmOriginalTitle(movieId);
-            return await ApiClient.Dispatch(originalTitle, token);
+            var getOriginalTitle = new GetFilmOriginalTitle(movieId);
+            return await ApiClient.Dispatch(getOriginalTitle, token);
         }
 
         public async Task<double> GetFilmAvgVote(ulong movieId, CancellationToken token = default)
         {
-            var avgVote = new GetFilmVotesAvg(movieId);
-            return await ApiClient.Dispatch(avgVote, token);
+            var getAvgVote = new GetFilmVotesAvg(movieId);
+            return await ApiClient.Dispatch(getAvgVote, token);
+        }
+
+        public async Task<IEnumerable<string>> GetFilmGenres(ulong movieId, CancellationToken token = default)
+        {
+            var getGenres = new GetFilmGenres(movieId);
+            return await ApiClient.Dispatch(getGenres, token);
         }
     }
 }
