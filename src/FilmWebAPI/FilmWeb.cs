@@ -172,5 +172,11 @@ namespace FilmWebAPI
             var getSeasonsCount = new GetFilmSeasonsCount(movieId);
             return await ApiClient.Dispatch(getSeasonsCount, token);
         }
+
+        public async Task<int> GetFilmYear(ulong movieId, CancellationToken token = default)
+        {
+            var getYear = new GetFilmYear(movieId);
+            return await ApiClient.Dispatch(getYear, token);
+        }
     }
 }

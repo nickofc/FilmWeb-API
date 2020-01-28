@@ -184,7 +184,7 @@ namespace FilmWebAPI.Tests
         [TestCase(799827, 5)]
         public async Task ShouldGetEpisodes(long movieId, int expectedEpisodes)
         {
-            var episodesCount = await _filmWeb.GetFilmEpisodesCount((ulong) movieId);
+            var episodesCount = await _filmWeb.GetFilmEpisodesCount((ulong)movieId);
             Assert.AreEqual(expectedEpisodes, episodesCount);
         }
 
@@ -192,10 +192,17 @@ namespace FilmWebAPI.Tests
         [TestCase(799827, 0)]
         public async Task ShouldGetSeasons(long movieId, int expectedSeasons)
         {
-            var seasonsCount = await _filmWeb.GetFilmSeasonsCount((ulong) movieId);
+            var seasonsCount = await _filmWeb.GetFilmSeasonsCount((ulong)movieId);
             Assert.AreEqual(expectedSeasons, seasonsCount);
         }
 
-
+        [Test]
+        [TestCase(799827, 2019)]
+        [TestCase(800447, 2018)]
+        public async Task ShouldGetYear(long movieId, int expectedYear)
+        {
+            var year = await _filmWeb.GetFilmYear((ulong)movieId);
+            Assert.AreEqual(expectedYear, year);
+        }
     }
 }

@@ -49,5 +49,7 @@ namespace FilmWebAPI
         Task<int> GetFilmEpisodesCount(ulong movieId, CancellationToken token = default);
 
         Task<int> GetFilmSeasonsCount(ulong movieId, CancellationToken token = default);
+
+        Task<int> GetFilmYear(ulong movieId, CancellationToken token = default);
     }
 }
