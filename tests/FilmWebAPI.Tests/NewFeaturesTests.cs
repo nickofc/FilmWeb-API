@@ -29,6 +29,22 @@ namespace FilmWebAPI.Tests
         }
 
         [Test]
+        [TestCase(810167, PersonType.Aktor, "Robert De Niro")]
+        [TestCase(810167, PersonType.Rezyser, "Todd Phillips")]
+        [TestCase(810167, PersonType.Scenarzysta, "Todd Phillips")]
+        [TestCase(810167, PersonType.Scenarzysta, "Scott Silver")]
+        [TestCase(810167, PersonType.Zdjecia, "Lawrence Sher")]
+        [TestCase(810167, PersonType.Muzyka, "Hildur Guðnadóttir")]
+        [TestCase(810167, PersonType.MaterialyDoScenariusza, "Bob Kane")]
+        [TestCase(810167, PersonType.Montaz, "Jeff Groth")]
+        [TestCase(810167, PersonType.Producent, "Bradley Cooper")]
+        public async Task ShouldGetFilmPerson(long movieId, PersonType personType, string expectedPerson)
+        {
+            var persons = await _filmWeb.GetFilmPersons((ulong) movieId, personType, 0);
+            Assert.IsTrue(persons.Any(x => x.Name == expectedPerson));
+        }
+
+        [Test]
         [TestCase("CHILLING ADVENTURES OF SABRINA", 800447)]
         [TestCase("Forrest Gump", 998)]
         [TestCase("Zielona Mila", 862)]
