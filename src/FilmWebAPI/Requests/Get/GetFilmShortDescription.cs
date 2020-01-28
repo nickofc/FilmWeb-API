@@ -6,10 +6,12 @@ using Newtonsoft.Json.Linq;
 
 namespace FilmWebAPI.Requests.Get
 {
-    public class GetFilmDescription : RequestBase<string>
+    class GetFilmShortDescription : RequestBase<string>
     {
-        public GetFilmDescription(ulong movieId) 
-            : base(Signature.Create("getFilmDescription", movieId), FilmWebHttpMethod.Get)
+        private const int SHORT_DESCRIPTION_INDEX = 19;
+
+        public GetFilmShortDescription(ulong movieId)
+            : base(Signature.Create("getFilmInfoFull", movieId), FilmWebHttpMethod.Get)
         {
         }
 
@@ -17,8 +19,8 @@ namespace FilmWebAPI.Requests.Get
         {
             var jsonBody = await base.GetJsonBody(responseMessage);
             var json = JsonConvert.DeserializeObject<JArray>(Regex.Replace(jsonBody, "t(s?):(\\d+)$", string.Empty));
-            
-            return json.ToString().Trim("\r\n[] \"".ToCharArray()).Replace("\\\"", "\"").Replace("\\n", "\n");
+
+            return json[SHORT_DESCRIPTION_INDEX].ToString();
         }
     }
 }

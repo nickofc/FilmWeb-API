@@ -118,5 +118,65 @@ namespace FilmWebAPI
             var getGenres = new GetFilmGenres(movieId);
             return await ApiClient.Dispatch(getGenres, token);
         }
+
+        public async Task<IEnumerable<string>> GetFilmProductionCountries(ulong movieId, CancellationToken token = default)
+        {
+            var getCountries = new GetFilmProductionCountries(movieId);
+            return await ApiClient.Dispatch(getCountries, token);
+        }
+
+        public async Task<TimeSpan> GetFilmDuration(ulong movieId, CancellationToken token = default)
+        {
+            var getDuration = new GetFilmDuration(movieId);
+            return await ApiClient.Dispatch(getDuration, token);
+        }
+
+        public async Task<IEnumerable<KeyValuePair<string, DateTime>>> GetFilmPremieres(ulong movieId, CancellationToken token = default)
+        {
+            var getPremieres = new GetFilmPremieres(movieId);
+            return await ApiClient.Dispatch(getPremieres, token);
+        }
+
+        public async Task<string> GetFilmDescription(ulong movieId, CancellationToken token = default)
+        {
+            var getDescription = new GetFilmDescription(movieId);
+            return await ApiClient.Dispatch(getDescription, token);
+        }
+
+        public async Task<string> GetFilmShortDescription(ulong movieId, CancellationToken token = default)
+        {
+            var getShortDescription = new GetFilmShortDescription(movieId);
+            return await ApiClient.Dispatch(getShortDescription, token);
+        }
+
+        public async Task<ulong> GetFilmVotesCount(ulong movieId, CancellationToken token = default)
+        {
+            var getVotesCount = new GetFilmVotesCount(movieId);
+            return await ApiClient.Dispatch(getVotesCount, token);
+        }
+
+        public async Task<IEnumerable<string>> GetFilmVideosUrls(ulong movieId, CancellationToken token = default)
+        {
+            var getVideosUrl = new GetFilmVideosUrls(movieId);
+            return await ApiClient.Dispatch(getVideosUrl, token);
+        }
+
+        public async Task<int> GetFilmEpisodesCount(ulong movieId, CancellationToken token = default)
+        {
+            var getEpisodesCount = new GetFilmEpisodesCount(movieId);
+            return await ApiClient.Dispatch(getEpisodesCount, token);
+        }
+
+        public async Task<int> GetFilmSeasonsCount(ulong movieId, CancellationToken token = default)
+        {
+            var getSeasonsCount = new GetFilmSeasonsCount(movieId);
+            return await ApiClient.Dispatch(getSeasonsCount, token);
+        }
+
+        public async Task<int> GetFilmYear(ulong movieId, CancellationToken token = default)
+        {
+            var getYear = new GetFilmYear(movieId);
+            return await ApiClient.Dispatch(getYear, token);
+        }
     }
 }
