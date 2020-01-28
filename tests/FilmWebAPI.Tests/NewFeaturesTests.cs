@@ -40,7 +40,7 @@ namespace FilmWebAPI.Tests
         [TestCase(810167, PersonType.Producent, "Bradley Cooper")]
         public async Task ShouldGetFilmPerson(long movieId, PersonType personType, string expectedPerson)
         {
-            var persons = await _filmWeb.GetFilmPersons((ulong) movieId, personType, 0);
+            var persons = await _filmWeb.GetFilmPersons((ulong)movieId, personType, 0);
             Assert.IsTrue(persons.Any(x => x.Name == expectedPerson));
         }
 
@@ -168,8 +168,16 @@ namespace FilmWebAPI.Tests
         [TestCase(799827, 140933U)]
         public async Task ShouldGetVotesCount(long movieId, ulong expectedVotesCount)
         {
-            var votesCount = await _filmWeb.GetFilmVotesCount((ulong) movieId);
+            var votesCount = await _filmWeb.GetFilmVotesCount((ulong)movieId);
             Assert.GreaterOrEqual(expectedVotesCount, votesCount);
+        }
+
+        [Test]
+        [TestCase(799827, "https://mm.filmweb.pl/799827/chernobyl__2019__official_trailer_hbo.iphone.mp4")]
+        public async Task ShouldGetVideoUrls(long movieId, string expectedUrl)
+        {
+            var videosUrl = await _filmWeb.GetFilmVideosUrls((ulong)movieId);
+            Assert.Contains(expectedUrl, videosUrl.ToList());
         }
     }
 }

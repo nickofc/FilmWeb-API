@@ -43,5 +43,7 @@ namespace FilmWebAPI
         Task<string> GetFilmShortDescription(ulong movieId, CancellationToken token = default);
 
         Task<ulong> GetFilmVotesCount(ulong movieId, CancellationToken token = default);
+
+        Task<IEnumerable<string>> GetFilmVideosUrls(ulong movieId, CancellationToken token = default);
     }
 }
