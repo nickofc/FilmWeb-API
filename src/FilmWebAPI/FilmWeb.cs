@@ -160,5 +160,17 @@ namespace FilmWebAPI
             var getVideosUrl = new GetFilmVideosUrls(movieId);
             return await ApiClient.Dispatch(getVideosUrl, token);
         }
+
+        public async Task<int> GetFilmEpisodesCount(ulong movieId, CancellationToken token = default)
+        {
+            var getEpisodesCount = new GetFilmEpisodesCount(movieId);
+            return await ApiClient.Dispatch(getEpisodesCount, token);
+        }
+
+        public async Task<int> GetFilmSeasonsCount(ulong movieId, CancellationToken token = default)
+        {
+            var getSeasonsCount = new GetFilmSeasonsCount(movieId);
+            return await ApiClient.Dispatch(getSeasonsCount, token);
+        }
     }
 }

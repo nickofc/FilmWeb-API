@@ -45,5 +45,9 @@ namespace FilmWebAPI
         Task<ulong> GetFilmVotesCount(ulong movieId, CancellationToken token = default);
 
         Task<IEnumerable<string>> GetFilmVideosUrls(ulong movieId, CancellationToken token = default);
+
+        Task<int> GetFilmEpisodesCount(ulong movieId, CancellationToken token = default);
+
+        Task<int> GetFilmSeasonsCount(ulong movieId, CancellationToken token = default);
     }
 }
