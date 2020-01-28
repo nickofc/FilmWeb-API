@@ -20,8 +20,8 @@ namespace FilmWebAPI.Requests.Get
             var jsonBody = await base.GetJsonBody(responseMessage);
             var json = JsonConvert.DeserializeObject<JArray>(Regex.Replace(jsonBody, "t(s?):(\\d+)$", string.Empty));
 
-            var avgRate = json[AVG_RATE_INDEX].ToString();
-            return double.Parse(avgRate);
+            var parsed = double.TryParse(json[AVG_RATE_INDEX].ToString(), out var avgRate);
+            return parsed ? avgRate : default;
         }
     }
 }

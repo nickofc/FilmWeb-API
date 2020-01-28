@@ -160,5 +160,16 @@ namespace FilmWebAPI.Tests
             var description = await _filmWeb.GetFilmDescription((ulong)movieId);
             Assert.AreEqual(expectedDescription, description);
         }
+
+        [Test]
+        [TestCase(724464, 112003U)]
+        [TestCase(816980, 11289U)]
+        [TestCase(810167, 181278U)]
+        [TestCase(799827, 140933U)]
+        public async Task ShouldGetVotesCount(long movieId, ulong expectedVotesCount)
+        {
+            var votesCount = await _filmWeb.GetFilmVotesCount((ulong) movieId);
+            Assert.GreaterOrEqual(expectedVotesCount, votesCount);
+        }
     }
 }
