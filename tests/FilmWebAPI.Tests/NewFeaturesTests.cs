@@ -162,14 +162,14 @@ namespace FilmWebAPI.Tests
         }
 
         [Test]
-        [TestCase(724464, 112003U)]
-        [TestCase(816980, 11289U)]
-        [TestCase(810167, 181278U)]
-        [TestCase(799827, 140933U)]
+        [TestCase(724464, 111003U)]
+        [TestCase(816980, 11189U)]
+        [TestCase(810167, 181078U)]
+        [TestCase(799827, 140533U)]
         public async Task ShouldGetVotesCount(long movieId, ulong expectedVotesCount)
         {
             var votesCount = await _filmWeb.GetFilmVotesCount((ulong)movieId);
-            Assert.GreaterOrEqual(expectedVotesCount, votesCount);
+            Assert.GreaterOrEqual(votesCount, expectedVotesCount);
         }
 
         [Test]
@@ -179,5 +179,23 @@ namespace FilmWebAPI.Tests
             var videosUrl = await _filmWeb.GetFilmVideosUrls((ulong)movieId);
             Assert.Contains(expectedUrl, videosUrl.ToList());
         }
+
+        [Test]
+        [TestCase(799827, 5)]
+        public async Task ShouldGetEpisodes(long movieId, int expectedEpisodes)
+        {
+            var episodesCount = await _filmWeb.GetFilmEpisodesCount((ulong) movieId);
+            Assert.AreEqual(expectedEpisodes, episodesCount);
+        }
+
+        [Test]
+        [TestCase(799827, 0)]
+        public async Task ShouldGetSeasons(long movieId, int expectedSeasons)
+        {
+            var seasonsCount = await _filmWeb.GetFilmSeasonsCount((ulong) movieId);
+            Assert.AreEqual(expectedSeasons, seasonsCount);
+        }
+
+
     }
 }
