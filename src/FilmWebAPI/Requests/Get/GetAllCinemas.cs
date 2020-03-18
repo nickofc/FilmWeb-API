@@ -17,6 +17,7 @@ namespace FilmWebAPI.Requests.Get
 
         public override async Task<IReadOnlyCollection<Cinema>> Parse(HttpResponseMessage responseMessage)
         {
+            // doesn't work since last api changes - maybe it's possible to fix
             var content = await responseMessage.Content.ReadAsStringAsync();
             if (content.StartsWith("ok"))
             {

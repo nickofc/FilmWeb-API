@@ -18,9 +18,9 @@ namespace FilmWebAPI.Tests
         [Test]
         [TestCase(816980, PersonType.Rezyser, 1)]
         [TestCase(816980, PersonType.Scenarzysta, 2)]
-        [TestCase(816980, PersonType.Aktor, 53)]
+        [TestCase(816980, PersonType.Aktor, 63)]
         [TestCase(998, PersonType.Aktor, 142)]
-        [TestCase(724464, PersonType.Rezyser, 5)]
+        [TestCase(724464, PersonType.Rezyser, 9)]
         [TestCase(810167, PersonType.Muzyka, 1)]
         public async Task ShouldGetFilmPersons(long movieId, PersonType personType, int expectedCount)
         {
@@ -63,6 +63,7 @@ namespace FilmWebAPI.Tests
         [TestCase(1470, "Cast Away - poza światem")]
         [TestCase(33404, "Shrek 2")]
         [TestCase(810167, "Joker")]
+        [TestCase(816980, "1917")]
         public async Task ShouldGetPolishTitle(long movieId, string expectedPolishTitle)
         {
             var polishTitle = await _filmWeb.GetFilmPolishTitle((ulong)movieId);
@@ -75,6 +76,7 @@ namespace FilmWebAPI.Tests
         [TestCase(1470, "Cast Away")]
         [TestCase(33404, "")] // Shrek 2
         [TestCase(810167, "")]
+        [TestCase(816980, "")]
         public async Task ShouldGetOriginalTitle(long movieId, string expectedOriginalTitle)
         {
             var originalTitle = await _filmWeb.GetFilmOriginalTitle((ulong)movieId);
@@ -170,14 +172,6 @@ namespace FilmWebAPI.Tests
         {
             var votesCount = await _filmWeb.GetFilmVotesCount((ulong)movieId);
             Assert.GreaterOrEqual(votesCount, expectedVotesCount);
-        }
-
-        [Test]
-        [TestCase(799827, "https://mm.filmweb.pl/799827/chernobyl__2019__official_trailer_hbo.iphone.mp4")]
-        public async Task ShouldGetVideoUrls(long movieId, string expectedUrl)
-        {
-            var videosUrl = await _filmWeb.GetFilmVideosUrls((ulong)movieId);
-            Assert.Contains(expectedUrl, videosUrl.ToList());
         }
 
         [Test]

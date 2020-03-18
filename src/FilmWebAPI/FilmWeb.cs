@@ -83,11 +83,11 @@ namespace FilmWebAPI
             return await ApiClient.Dispatch(getAllCities, token);
         }
 
-        public async Task<IReadOnlyCollection<Cinema>> GetAllCinemas(CancellationToken token = default)
-        {
-            var getAllCinemas = new GetAllCinemas();
-            return await ApiClient.Dispatch(getAllCinemas, token);
-        }
+        //public async Task<IReadOnlyCollection<Cinema>> GetAllCinemas(CancellationToken token = default)
+        //{
+        //    var getAllCinemas = new GetAllCinemas();
+        //    return await ApiClient.Dispatch(getAllCinemas, token);
+        //}
 
         public async Task<IReadOnlyCollection<Channel>> GetAllChannels(CancellationToken token = default)
         {
@@ -153,12 +153,6 @@ namespace FilmWebAPI
         {
             var getVotesCount = new GetFilmVotesCount(movieId);
             return await ApiClient.Dispatch(getVotesCount, token);
-        }
-
-        public async Task<IEnumerable<string>> GetFilmVideosUrls(ulong movieId, CancellationToken token = default)
-        {
-            var getVideosUrl = new GetFilmVideosUrls(movieId);
-            return await ApiClient.Dispatch(getVideosUrl, token);
         }
 
         public async Task<int> GetFilmEpisodesCount(ulong movieId, CancellationToken token = default)

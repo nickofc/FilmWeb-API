@@ -14,8 +14,6 @@ namespace FilmWebAPI
 
         Task<IReadOnlyCollection<Channel>> GetAllChannels(CancellationToken token = default);
 
-        Task<IReadOnlyCollection<Cinema>> GetAllCinemas(CancellationToken token = default);
-
         Task<IReadOnlyCollection<City>> GetAllCities(CancellationToken token = default);
 
         Task<IReadOnlyCollection<PersonBirthdate>> GetBornTodayPersons(CancellationToken token = default);
@@ -43,8 +41,6 @@ namespace FilmWebAPI
         Task<string> GetFilmShortDescription(ulong movieId, CancellationToken token = default);
 
         Task<ulong> GetFilmVotesCount(ulong movieId, CancellationToken token = default);
-
-        Task<IEnumerable<string>> GetFilmVideosUrls(ulong movieId, CancellationToken token = default);
 
         Task<int> GetFilmEpisodesCount(ulong movieId, CancellationToken token = default);
 
