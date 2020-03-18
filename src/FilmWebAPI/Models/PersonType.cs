@@ -4,17 +4,17 @@
     {
         Rezyser = 1,
         Scenarzysta = 2,
-        Muzyka = 3,
-        Zdjecia = 4,
-        MaterialyDoScenariusza = 5,
+        Zdjecia = 3,
+        Muzyka = 4,
+        Scenografia = 5,
         Aktor = 6,
-        Producent = 9,
+        Producent = 7,
         Montaz = 10,
-        Kostiumy = 11,
-        Scenografia, // todo: sprawdzić numery
-        Dzwiek,
+        Kostiumy = 12,
+        MaterialyDoScenariusza = 17,
+        Dzwiek = 18,
+        Glos = 20,
         MaterialyArchiwalne,
-        Glos,
-        WeWlasnejOsobie
+        WeWlasnejOsobie = 21
     }
 }
