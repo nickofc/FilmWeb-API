@@ -22,13 +22,6 @@ namespace FilmWebAPI.Tests
         }
 
         [Fact]
-        public async Task GetAllCinemasTests()
-        {
-            var cinemas = await _filmWeb.GetAllCinemas();
-            Assert.True(cinemas.Any());
-        }
-
-        [Fact]
         public async Task GetAllChannelsTests()
         {
             var channels = await _filmWeb.GetAllChannels();

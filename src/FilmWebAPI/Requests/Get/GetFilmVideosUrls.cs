@@ -17,6 +17,7 @@ namespace FilmWebAPI.Requests.Get
 
         public override async Task<IEnumerable<string>> Parse(HttpResponseMessage responseMessage)
         {
+            // doesn't work since last api changes - maybe it's possible to fix
             var jsonBody = await base.GetJsonBody(responseMessage);
             var json = JsonConvert.DeserializeObject<JArray>(Regex.Replace(jsonBody, "t(s?):(\\d+)$", string.Empty));
 
