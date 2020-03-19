@@ -11,10 +11,10 @@
         Producent = 9,
         Montaz = 10,
         Kostiumy = 11,
-        Scenografia, // todo: sprawdzić numery
+        MaterialyArchiwalne = 12,
         Dzwiek,
-        MaterialyArchiwalne,
         Glos,
-        WeWlasnejOsobie
+        WeWlasnejOsobie,
+        Scenografia,
     }
 }
