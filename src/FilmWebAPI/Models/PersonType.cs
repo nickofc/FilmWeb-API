@@ -4,17 +4,17 @@
     {
         Rezyser = 1,
         Scenarzysta = 2,
-        Zdjecia = 3,
-        Muzyka = 4,
-        Scenografia = 5,
+        Muzyka = 3,
+        Zdjecia = 4,
+        MaterialyDoScenariusza = 5,
         Aktor = 6,
         Producent = 7,
         Montaz = 10,
-        Kostiumy = 12,
-        MaterialyDoScenariusza = 17,
-        Dzwiek = 18,
-        Glos = 20,
-        MaterialyArchiwalne,
-        WeWlasnejOsobie = 21
+        Kostiumy = 11,
+        MaterialyArchiwalne = 12,
+        Dzwiek,
+        Glos,
+        WeWlasnejOsobie,
+        Scenografia,
     }
 }
