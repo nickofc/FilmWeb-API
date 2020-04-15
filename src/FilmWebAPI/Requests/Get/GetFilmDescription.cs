@@ -17,8 +17,8 @@ namespace FilmWebAPI.Requests.Get
         {
             var jsonBody = await base.GetJsonBody(responseMessage);
             var json = JsonConvert.DeserializeObject<JArray>(Regex.Replace(jsonBody, "t(s?):(\\d+)$", string.Empty));
-            
-            return json.ToString().Trim("\r\n[] \"".ToCharArray()).Replace("\\\"", "\"").Replace("\\n", "\n");
+            var description = json.ToString().Trim("\r\n[] \"".ToCharArray()).Replace("\\\"", "\"").Replace("\\n", "\n");
+            return description != "null" ? description : null;
         }
     }
 }

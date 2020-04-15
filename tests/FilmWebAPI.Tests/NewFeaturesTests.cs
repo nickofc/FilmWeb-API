@@ -134,6 +134,7 @@ namespace FilmWebAPI.Tests
         [TestCase(816980, "country", "2020-01-24")]
         [TestCase(816980, "world", "2019-12-25")]
         [TestCase(810167, "world", "2019-08-31")]
+        [TestCase(842425, "world", "2020-03-20")]
         public async Task ShouldGetPremieres(long movieId, string country, string expectedPremierDate)
         {
             var premieres = await _filmWeb.GetFilmPremieres((ulong)movieId);
@@ -147,6 +148,7 @@ namespace FilmWebAPI.Tests
         [TestCase(810167, "Strudzony życiem komik popada w obłęd i staje się psychopatycznym mordercą.")]
         [TestCase(998, "Historia życia Forresta, chłopca o niskim ilorazie inteligencji z niedowładem kończyn, który staje się miliarderem i bohaterem wojny w Wietnamie.")]
         [TestCase(724464, "Wiedźmin Geralt, zmutowany łowca potworów, szuka swojego miejsca w świecie, gdzie ludzie często okazują się gorsi niż najstraszniejsze monstra.")]
+        [TestCase(691412, "Nowy Jork, 1981 r. Ambitny imigrant próbuje chronić swój biznes oraz rodzinę podczas najbardziej niebezpiecznego roku pod względem przestępczości.")]
         public async Task ShouldGetShortDescription(long movieId, string expectedShortDescription)
         {
             var shortDescription = await _filmWeb.GetFilmShortDescription((ulong)movieId);
@@ -157,6 +159,7 @@ namespace FilmWebAPI.Tests
         [TestCase(810167, "Historia jednego z cieszących się najgorszą sławą superprzestępców uniwersum DC — Jokera. Przedstawiony przez Phillipsa obraz śledzi losy kultowego czarnego charakteru, człowieka zepchniętego na margines. To nie tylko kontrowersyjne studium postaci, ale także opowieść ku przestrodze w szerszym kontekście.")]
         [TestCase(998, "\"Forrest Gump\" to romantyczna historia, w której Tom Hanks wcielił się w tytułową postać - nierozgarniętego młodego człowieka o wielkim sercu i zdolności do odnajdywania się w największych wydarzeniach w historii USA, począwszy od swego dzieciństwa w latach 50-tych. Po tym, jak staje się gwiazdą footballu, odznaczonym bohaterem wojennym i odnoszącym sukcesy biznesmenem, główny bohater zyskuje status osobistości, lecz nigdy nie rezygnuje z poszukiwania tego, co dla niego najważniejsze - miłości swej przyjaciółki, Jenny Curran.\n\nForrest jest małym chłopcem, kiedy jego ojciec porzuca rodzinę, a matka utrzymuje siebie i syna biorąc pod swój dach lokatorów. Kiedy okazuje się, że jej chłopiec ma bardzo niski iloraz inteligencji, pozostaje nieustraszona w swoim przekonaniu, że ma on takie same możliwości, jak każdy inny. To prawda - takie same, a nawet dużo większe. W całym swym życiu Forrest niezamierzenie znajduje się twarzą w twarz z wieloma legendarnymi postaciami lat 50-tych, 60-tych i 70-tych. Wiedzie go to na boisko piłki nożnej, poprzez dżungle Wietnamu, Waszyngton, Chiny, Nowy Jork, do Luizjany i w wiele innych miejsc, a wszystko to relacjonuje on w swych poruszających i wstrząsających opowieściach przypadkowo spotkanym osobom.")]
         [TestCase(724464, "\"Wiedźmin\" to epicka opowieść na podstawie kultowej sagi fantasy Andrzeja Sapkowskiego. Geralt z Rivii, samotny zabójca potworów, usiłuje odnaleźć się w świecie, w którym ludzie bywają gorsi niż bestie, na które poluje. Przeznaczenie splata jego losy z potężną czarodziejką i skrywającą groźną tajemnicę młodą księżniczką. Razem muszą stawić czoła licznym zagrożeniom na pogrążającym się w chaosie Kontynencie.")]
+        [TestCase(691412, null)]
         public async Task ShouldGetDescription(long movieId, string expectedDescription)
         {
             var description = await _filmWeb.GetFilmDescription((ulong)movieId);
