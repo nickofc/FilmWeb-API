@@ -36,24 +36,46 @@ namespace FilmWebAPI.Core.Communication
             });
         }
 
-        public async Task<T> Dispatch<T>(RequestBase<T> instance, CancellationToken token = default)
+        public async Task<T> Dispatch<T>(RequestBase<T> instance, 
+            CancellationToken token = default)
         {
             if (instance is null)
             {
                 throw new ArgumentNullException(nameof(instance));
             }
 
+            return await InnerDispatch(instance, token);
+        }
+
+        private async Task<T> InnerDispatch<T>(RequestBase<T> instance, 
+            CancellationToken token)
+        {
             try
             {
                 using (var request = instance.GetRequestMessage())
-                using (var message = await _httpExecute.Execute(request, token).ConfigureAwait(false))
+                using (var message = await _httpExecute.Execute(request, token)
+                    .ConfigureAwait(false))
                 {
-                    return await instance.Parse(message).ConfigureAwait(false);
+                    return await ParseAsync(instance, message);
                 }
             }
             catch (System.Exception exception)
             {
                 throw new FilmWebException("There was an exception during the dispatch.", exception);
+            }
+        }
+
+        private static async Task<T> ParseAsync<T>(IRequest<T> instance, 
+            HttpResponseMessage message)
+        {
+            try
+            {
+                return await instance.Parse(message)
+                    .ConfigureAwait(false);
+            }
+            catch (System.Exception exception)
+            {
+                throw new FilmWebParseException("There was an exception during the parse.", exception);
             }
         }
     }

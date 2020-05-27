@@ -7,7 +7,7 @@ using FilmWebAPI.Core.Communication;
 
 namespace FilmWebAPI.Requests.Post
 {
-    public class Login : RequestBase<LoginResult>
+    internal class Login : RequestBase<LoginResult>
     {
         public Login(string username, string password) : base(Signature.Create("login", username, password, "1"), FilmWebHttpMethod.Post)
         {
@@ -15,7 +15,6 @@ namespace FilmWebAPI.Requests.Post
 
         public override async Task<LoginResult> Parse(HttpResponseMessage responseMessage)
         {
-            throw new NotImplementedException();
 
             var json = await GetJsonBody<dynamic>(responseMessage);
 

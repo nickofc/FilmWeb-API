@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using FilmWebAPI.Core.Abstraction;
@@ -72,10 +73,10 @@ namespace FilmWebAPI.Core.Communication
 
             var content = await responseMessage.Content.ReadAsStringAsync()
                 .ConfigureAwait(false);
-           
+
             if (!content.StartsWith("ok"))
             {
-                throw new FilmWebApiFailureException("FilmWebAPI returned an exception.");
+                throw new FilmWebApiFailureException("FilmWebAPI returned an problem.");
             }
 
             content = content.Remove(0, 3);
@@ -86,6 +87,14 @@ namespace FilmWebAPI.Core.Communication
             {
                 content = content.Substring(0, 
                     endJsonBraceIndex + 1);
+            }
+
+            content = content.Trim();
+
+            if (content.StartsWith("exc"))
+            {
+                throw new FilmWebInternalException("FilmWebAPI returned an internal exception. \n" + 
+                                                   $"{content.Substring(3, content.Length -3)}.");
             }
 
             return content;

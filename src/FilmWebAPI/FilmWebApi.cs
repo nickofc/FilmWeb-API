@@ -50,7 +50,7 @@ namespace FilmWebAPI
             }
 
             var login = new Login(username, password);
-            return await ApiClient.Dispatch(login, token);
+            return await ApiClient.Dispatch(login, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace FilmWebAPI
         public async Task<IReadOnlyCollection<Person>> GetFilmPersons(ulong movieId, PersonType personType, int page, CancellationToken token = default)
         {
             var getFilmPersons = new GetFilmPersons(movieId, personType, page);
-            return await ApiClient.Dispatch(getFilmPersons, token);
+            return await ApiClient.Dispatch(getFilmPersons, token).ConfigureAwait(false);
         }
 
         public async Task<ulong?> GetMovieId(string movieTitle, CancellationToken token = default)
@@ -76,97 +76,97 @@ namespace FilmWebAPI
         public async Task<IReadOnlyCollection<PersonBirthdate>> GetBornTodayPersons(CancellationToken token = default)
         {
             var getBornTodayPersons = new GetBornTodayPersons();
-            return await ApiClient.Dispatch(getBornTodayPersons, token);
+            return await ApiClient.Dispatch(getBornTodayPersons, token).ConfigureAwait(false);
         }
 
         public async Task<IReadOnlyCollection<City>> GetAllCities(CancellationToken token = default)
         {
             var getAllCities = new GetAllCities();
-            return await ApiClient.Dispatch(getAllCities, token);
+            return await ApiClient.Dispatch(getAllCities, token).ConfigureAwait(false);
         }
 
         public async Task<IReadOnlyCollection<Channel>> GetAllChannels(CancellationToken token = default)
         {
             var getAllChannels = new GetAllChannels();
-            return await ApiClient.Dispatch(getAllChannels, token);
+            return await ApiClient.Dispatch(getAllChannels, token).ConfigureAwait(false);
         }
 
         public async Task<string> GetFilmPolishTitle(ulong movieId, CancellationToken token = default)
         {
             var getPolishTitle = new GetFilmPolishTitle(movieId);
-            return await ApiClient.Dispatch(getPolishTitle, token);
+            return await ApiClient.Dispatch(getPolishTitle, token).ConfigureAwait(false);
         }
 
         public async Task<string> GetFilmOriginalTitle(ulong movieId, CancellationToken token = default)
         {
             var getOriginalTitle = new GetFilmOriginalTitle(movieId);
-            return await ApiClient.Dispatch(getOriginalTitle, token);
+            return await ApiClient.Dispatch(getOriginalTitle, token).ConfigureAwait(false);
         }
 
         public async Task<double> GetFilmAvgVote(ulong movieId, CancellationToken token = default)
         {
             var getAvgVote = new GetFilmVotesAvg(movieId);
-            return await ApiClient.Dispatch(getAvgVote, token);
+            return await ApiClient.Dispatch(getAvgVote, token).ConfigureAwait(false);
         }
 
         public async Task<IReadOnlyCollection<string>> GetFilmGenres(ulong movieId, CancellationToken token = default)
         {
             var getGenres = new GetFilmGenres(movieId);
-            return await ApiClient.Dispatch(getGenres, token);
+            return await ApiClient.Dispatch(getGenres, token).ConfigureAwait(false);
         }
 
         public async Task<IReadOnlyCollection<string>> GetFilmProductionCountries(ulong movieId, CancellationToken token = default)
         {
             var getCountries = new GetFilmProductionCountries(movieId);
-            return await ApiClient.Dispatch(getCountries, token);
+            return await ApiClient.Dispatch(getCountries, token).ConfigureAwait(false);
         }
 
         public async Task<TimeSpan> GetFilmDuration(ulong movieId, CancellationToken token = default)
         {
             var getDuration = new GetFilmDuration(movieId);
-            return await ApiClient.Dispatch(getDuration, token);
+            return await ApiClient.Dispatch(getDuration, token).ConfigureAwait(false);
         }
 
         public async Task<IReadOnlyCollection<KeyValuePair<string, DateTime>>> GetFilmPremieres(ulong movieId, CancellationToken token = default)
         {
             var getPremieres = new GetFilmPremieres(movieId);
-            return await ApiClient.Dispatch(getPremieres, token);
+            return await ApiClient.Dispatch(getPremieres, token).ConfigureAwait(false);
         }
 
         public async Task<string> GetFilmDescription(ulong movieId, CancellationToken token = default)
         {
             var getDescription = new GetFilmDescription(movieId);
-            return await ApiClient.Dispatch(getDescription, token);
+            return await ApiClient.Dispatch(getDescription, token).ConfigureAwait(false);
         }
 
         public async Task<string> GetFilmShortDescription(ulong movieId, CancellationToken token = default)
         {
             var getShortDescription = new GetFilmShortDescription(movieId);
-            return await ApiClient.Dispatch(getShortDescription, token);
+            return await ApiClient.Dispatch(getShortDescription, token).ConfigureAwait(false);
         }
 
         public async Task<ulong> GetFilmVotesCount(ulong movieId, CancellationToken token = default)
         {
             var getVotesCount = new GetFilmVotesCount(movieId);
-            return await ApiClient.Dispatch(getVotesCount, token);
+            return await ApiClient.Dispatch(getVotesCount, token).ConfigureAwait(false);
         }
 
         public async Task<int> GetFilmEpisodesCount(ulong movieId, CancellationToken token = default)
         {
             var getEpisodesCount = new GetFilmEpisodesCount(movieId);
-            return await ApiClient.Dispatch(getEpisodesCount, token);
+            return await ApiClient.Dispatch(getEpisodesCount, token).ConfigureAwait(false);
         }
 
         public async Task<int> GetFilmSeasonsCount(ulong movieId, CancellationToken token = default)
         {
             var getSeasonsCount = new GetFilmSeasonsCount(movieId);
-            return await ApiClient.Dispatch(getSeasonsCount, token);
+            return await ApiClient.Dispatch(getSeasonsCount, token).ConfigureAwait(false);
         }
 
         public async Task<int> GetFilmYear(ulong movieId, CancellationToken token = default)
         {
             var getYear = new GetFilmYear(movieId);
-            return await ApiClient.Dispatch(getYear, token);
+            return await ApiClient.Dispatch(getYear, token).ConfigureAwait(false);
         }
     }
 }
