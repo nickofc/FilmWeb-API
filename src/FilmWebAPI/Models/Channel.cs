@@ -1,5 +1,4 @@
 ﻿using System;
-using FilmWebAPI.Core;
 
 namespace FilmWebAPI.Models
 {

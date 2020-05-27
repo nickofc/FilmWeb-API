@@ -73,7 +73,7 @@ namespace FilmWebAPI.Core.Communication
             var content = await responseMessage.Content.ReadAsStringAsync()
                 .ConfigureAwait(false);
 
-            if (!content.StartsWith("ok"))
+            if (content.StartsWith("err"))
             {
                 throw new FilmWebApiFailureException("FilmWebAPI returned an problem.");
             }

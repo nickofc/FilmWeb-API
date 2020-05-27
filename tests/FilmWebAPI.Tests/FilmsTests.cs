@@ -57,54 +57,54 @@ namespace FilmWebAPI.Tests
             Assert.AreEqual(expectedId, movieId.Value);
         }
 
-        [Test]
-        [TestCase(998, "Forrest Gump")]
-        [TestCase(862, "Zielona mila")]
-        [TestCase(1470, "Cast Away - poza światem")]
-        [TestCase(33404, "Shrek 2")]
-        [TestCase(810167, "Joker")]
-        [TestCase(816980, "1917")]
-        public async Task ShouldGetPolishTitle(long movieId, string expectedPolishTitle)
-        {
-            var polishTitle = await _filmWebApi.GetFilmPolishTitle((ulong)movieId);
-            Assert.AreEqual(expectedPolishTitle, polishTitle);
-        }
+        //[Test]
+        //[TestCase(998, "Forrest Gump")]
+        //[TestCase(862, "Zielona mila")]
+        //[TestCase(1470, "Cast Away - poza światem")]
+        //[TestCase(33404, "Shrek 2")]
+        //[TestCase(810167, "Joker")]
+        //[TestCase(816980, "1917")]
+        //public async Task ShouldGetPolishTitle(long movieId, string expectedPolishTitle)
+        //{
+        //    var polishTitle = await _filmWebApi.GetFilmPolishTitle((ulong)movieId);
+        //    Assert.AreEqual(expectedPolishTitle, polishTitle);
+        //}
 
-        [Test]
-        [TestCase(998, "Forrest Gump")]
-        [TestCase(862, "The Green Mile")]
-        [TestCase(1470, "Cast Away")]
-        [TestCase(33404, "")] // Shrek 2
-        [TestCase(810167, "")]
-        [TestCase(816980, "")]
-        public async Task ShouldGetOriginalTitle(long movieId, string expectedOriginalTitle)
-        {
-            var originalTitle = await _filmWebApi.GetFilmOriginalTitle((ulong)movieId);
-            Assert.AreEqual(expectedOriginalTitle, originalTitle);
-        }
+        //[Test]
+        //[TestCase(998, "Forrest Gump")]
+        //[TestCase(862, "The Green Mile")]
+        //[TestCase(1470, "Cast Away")]
+        //[TestCase(33404, "")] // Shrek 2
+        //[TestCase(810167, "")]
+        //[TestCase(816980, "")]
+        //public async Task ShouldGetOriginalTitle(long movieId, string expectedOriginalTitle)
+        //{
+        //    var originalTitle = await _filmWebApi.GetFilmOriginalTitle((ulong)movieId);
+        //    Assert.AreEqual(expectedOriginalTitle, originalTitle);
+        //}
 
-        [Test]
-        [TestCase(1470, 7.5)]
-        [TestCase(816980, 7.9)]
-        [TestCase(862, 8.6)]
-        [TestCase(799827, 9.0)]
-        [TestCase(998, 8.5)]
-        public async Task ShouldGetAvgVote(long movieId, double expectedVote)
-        {
-            var avgVote = await _filmWebApi.GetFilmAvgVote((ulong)movieId);
-            Assert.IsTrue(Math.Abs(avgVote - expectedVote) < 0.9);
-        }
+        //[Test]
+        //[TestCase(1470, 7.5)]
+        //[TestCase(816980, 7.9)]
+        //[TestCase(862, 8.6)]
+        //[TestCase(799827, 9.0)]
+        //[TestCase(998, 8.5)]
+        //public async Task ShouldGetAvgVote(long movieId, double expectedVote)
+        //{
+        //    var avgVote = await _filmWebApi.GetFilmAvgVote((ulong)movieId);
+        //    Assert.IsTrue(Math.Abs(avgVote - expectedVote) < 0.9);
+        //}
 
-        [Test]
-        [TestCase(998, new[] { "USA" })]
-        [TestCase(816980, new[] { "USA", "Wielka Brytania" })]
-        [TestCase(810167, new[] { "Kanada", "USA" })]
-        [TestCase(724464, new[] { "Polska", "USA" })]
-        public async Task ShouldGetProductionCountries(long movieId, string[] expectedCountries)
-        {
-            var countries = await _filmWebApi.GetFilmProductionCountries((ulong)movieId);
-            Assert.AreEqual(expectedCountries, countries);
-        }
+        //[Test]
+        //[TestCase(998, new[] { "USA" })]
+        //[TestCase(816980, new[] { "USA", "Wielka Brytania" })]
+        //[TestCase(810167, new[] { "Kanada", "USA" })]
+        //[TestCase(724464, new[] { "Polska", "USA" })]
+        //public async Task ShouldGetProductionCountries(long movieId, string[] expectedCountries)
+        //{
+        //    var countries = await _filmWebApi.GetFilmProductionCountries((ulong)movieId);
+        //    Assert.AreEqual(expectedCountries, countries);
+        //}
 
         [Test]
         [TestCase(998, 142)]
@@ -118,31 +118,31 @@ namespace FilmWebAPI.Tests
             Assert.AreEqual(expectedTimeSpan, duration);
         }
 
-        [Test]
-        [TestCase(998, "world", "1994-06-23")]
-        [TestCase(816980, "country", "2020-01-24")]
-        [TestCase(816980, "world", "2019-12-25")]
-        [TestCase(810167, "world", "2019-08-31")]
-        [TestCase(842425, "world", "2020-03-20")]
-        public async Task ShouldGetPremieres(long movieId, string country, string expectedPremierDate)
-        {
-            var premieres = await _filmWebApi.GetFilmPremieres((ulong)movieId);
-            var premiereInAskedPlace = premieres.First(x => x.Key == country);
+        //[Test]
+        //[TestCase(998, "world", "1994-06-23")]
+        //[TestCase(816980, "country", "2020-01-24")]
+        //[TestCase(816980, "world", "2019-12-25")]
+        //[TestCase(810167, "world", "2019-08-31")]
+        //[TestCase(842425, "world", "2020-03-20")]
+        //public async Task ShouldGetPremieres(long movieId, string country, string expectedPremierDate)
+        //{
+        //    var premieres = await _filmWebApi.GetFilmPremieres((ulong)movieId);
+        //    var premiereInAskedPlace = premieres.First(x => x.Key == country);
 
-            var expectedDate = DateTime.Parse(expectedPremierDate);
-            Assert.AreEqual(expectedDate, premiereInAskedPlace.Value);
-        }
+        //    var expectedDate = DateTime.Parse(expectedPremierDate);
+        //    Assert.AreEqual(expectedDate, premiereInAskedPlace.Value);
+        //}
 
-        [Test]
-        [TestCase(810167, "Strudzony życiem komik popada w obłęd i staje się psychopatycznym mordercą.")]
-        [TestCase(998, "Historia życia Forresta, chłopca o niskim ilorazie inteligencji z niedowładem kończyn, który staje się miliarderem i bohaterem wojny w Wietnamie.")]
-        [TestCase(724464, "Wiedźmin Geralt, zmutowany łowca potworów, szuka swojego miejsca w świecie, gdzie ludzie często okazują się gorsi niż najstraszniejsze monstra.")]
-        [TestCase(691412, "Nowy Jork, 1981 r. Ambitny imigrant próbuje chronić swój biznes oraz rodzinę podczas najbardziej niebezpiecznego roku pod względem przestępczości.")]
-        public async Task ShouldGetShortDescription(long movieId, string expectedShortDescription)
-        {
-            var shortDescription = await _filmWebApi.GetFilmShortDescription((ulong)movieId);
-            Assert.AreEqual(expectedShortDescription, shortDescription);
-        }
+        //[Test]
+        //[TestCase(810167, "Strudzony życiem komik popada w obłęd i staje się psychopatycznym mordercą.")]
+        //[TestCase(998, "Historia życia Forresta, chłopca o niskim ilorazie inteligencji z niedowładem kończyn, który staje się miliarderem i bohaterem wojny w Wietnamie.")]
+        //[TestCase(724464, "Wiedźmin Geralt, zmutowany łowca potworów, szuka swojego miejsca w świecie, gdzie ludzie często okazują się gorsi niż najstraszniejsze monstra.")]
+        //[TestCase(691412, "Nowy Jork, 1981 r. Ambitny imigrant próbuje chronić swój biznes oraz rodzinę podczas najbardziej niebezpiecznego roku pod względem przestępczości.")]
+        //public async Task ShouldGetShortDescription(long movieId, string expectedShortDescription)
+        //{
+        //    var shortDescription = await _filmWebApi.GetFilmShortDescription((ulong)movieId);
+        //    Assert.AreEqual(expectedShortDescription, shortDescription);
+        //}
 
         [Test]
         [TestCase(810167, "Historia jednego z cieszących się najgorszą sławą superprzestępców uniwersum DC — Jokera. Przedstawiony przez Phillipsa obraz śledzi losy kultowego czarnego charakteru, człowieka zepchniętego na margines. To nie tylko kontrowersyjne studium postaci, ale także opowieść ku przestrodze w szerszym kontekście.")]
@@ -155,32 +155,32 @@ namespace FilmWebAPI.Tests
             Assert.AreEqual(expectedDescription, description);
         }
 
-        [Test]
-        [TestCase(724464, 111003U)]
-        [TestCase(816980, 11189U)]
-        [TestCase(810167, 181078U)]
-        [TestCase(799827, 140533U)]
-        public async Task ShouldGetVotesCount(long movieId, ulong expectedVotesCount)
-        {
-            var votesCount = await _filmWebApi.GetFilmVotesCount((ulong)movieId);
-            Assert.GreaterOrEqual(votesCount, expectedVotesCount);
-        }
+        //[Test]
+        //[TestCase(724464, 111003U)]
+        //[TestCase(816980, 11189U)]
+        //[TestCase(810167, 181078U)]
+        //[TestCase(799827, 140533U)]
+        //public async Task ShouldGetVotesCount(long movieId, ulong expectedVotesCount)
+        //{
+        //    var votesCount = await _filmWebApi.GetFilmVotesCount((ulong)movieId);
+        //    Assert.GreaterOrEqual(votesCount, expectedVotesCount);
+        //}
 
-        [Test]
-        [TestCase(799827, 0)]
-        public async Task ShouldGetSeasons(long movieId, int expectedSeasons)
-        {
-            var seasonsCount = await _filmWebApi.GetFilmSeasonsCount((ulong)movieId);
-            Assert.AreEqual(expectedSeasons, seasonsCount);
-        }
+        //[Test]
+        //[TestCase(799827, 0)]
+        //public async Task ShouldGetSeasons(long movieId, int expectedSeasons)
+        //{
+        //    var seasonsCount = await _filmWebApi.GetFilmSeasonsCount((ulong)movieId);
+        //    Assert.AreEqual(expectedSeasons, seasonsCount);
+        //}
 
-        [Test]
-        [TestCase(799827, 2019)]
-        [TestCase(800447, 2018)]
-        public async Task ShouldGetYear(long movieId, int expectedYear)
-        {
-            var year = await _filmWebApi.GetFilmYear((ulong)movieId);
-            Assert.AreEqual(expectedYear, year);
-        }
+        //[Test]
+        //[TestCase(799827, 2019)]
+        //[TestCase(800447, 2018)]
+        //public async Task ShouldGetYear(long movieId, int expectedYear)
+        //{
+        //    var year = await _filmWebApi.GetFilmYear((ulong)movieId);
+        //    Assert.AreEqual(expectedYear, year);
+        //}
     }
 }

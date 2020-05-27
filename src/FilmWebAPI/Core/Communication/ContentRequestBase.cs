@@ -6,6 +6,9 @@ namespace FilmWebAPI.Core.Communication
 {
     public abstract class ContentRequestBase<TEntity> : RequestBase<TEntity>
     {
+
+        protected ContentRequestBase() { }
+
         protected ContentRequestBase(ISignature signature, FilmWebHttpMethod filmWebHttpMethod) : base(signature, filmWebHttpMethod)
         {
         }

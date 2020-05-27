@@ -27,7 +27,8 @@ namespace FilmWebAPI.Tests
         {
             var filmWebApiClient = new FilmWebApiClient(FilmWebConfig.Default());
 
-            var request = new GetFilmPersons(30571, PersonType.Aktor, 0);
+            var request = new LiveSearch("Harry");
+                //new GetFilmPersons(30571, PersonType.Aktor, 0);
 
             var resp = await filmWebApiClient.Dispatch(request, CancellationToken.None);
 

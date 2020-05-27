@@ -70,7 +70,7 @@ namespace FilmWebAPI
 
         public async Task<ulong?> GetMovieId(string movieTitle, CancellationToken token = default)
         {
-            var search = new Search(movieTitle);
+            var search = new LiveSearch(movieTitle);
             return await ApiClient.Dispatch(search, token);
         }
 
