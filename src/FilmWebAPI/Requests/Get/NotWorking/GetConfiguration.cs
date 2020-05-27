@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace FilmWebAPI.Requests.Get
 {
-    internal class GetConfiguration : RequestBase<dynamic>
+    public class GetConfiguration : ContentRequestBase<dynamic>
     {
         public GetConfiguration(string name) : base(Signature.Create("getConfiguration", name), FilmWebHttpMethod.Get)
         {
         }
 
-        public override async Task<dynamic> Parse(HttpResponseMessage responseMessage)
+        public override Task<dynamic> Parse(string content)
         {
             throw new NotImplementedException();
         }

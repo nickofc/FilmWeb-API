@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FilmWebAPI.Requests.Get
 {
-    internal class IsLoggedUser : RequestBase<dynamic>
+    public class IsLoggedUser : RequestBase<dynamic>
     {
         public IsLoggedUser() : base(Signature.Create("isLoggedUser"), FilmWebHttpMethod.Get)
         {

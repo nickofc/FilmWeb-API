@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace FilmWebAPI.Requests.Get
 {
-    internal class GetCityRepertoireDays : RequestBase<dynamic>
+    /* nie zwraca danych */
+    public class GetCityRepertoireDays : RequestBase<dynamic>
     {
         public GetCityRepertoireDays(long cityId) : base(Signature.Create("getCityRepertoireDays", cityId), FilmWebHttpMethod.Get)
         {

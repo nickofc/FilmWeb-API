@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace FilmWebAPI.Requests.Get
 {
-    //[Obsolete("Prawdobodobnie FilmWebAPI nie obsługuje tej metody!", true)]
-    internal class GetFilmComments : RequestBase<dynamic>
+    public class GetCurrentUserFriendsInfo : RequestBase<dynamic>
     {
-        public GetFilmComments(long movieId, int pageId) : base(Signature.Create($"getFilmComments", movieId, pageId * 5, (pageId + 1) * 5), FilmWebHttpMethod.Get)
+        public GetCurrentUserFriendsInfo() : base(Signature.Create("getUsersInfoShort"), FilmWebHttpMethod.Get)
         {
         }
 

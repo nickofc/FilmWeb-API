@@ -1,4 +1,5 @@
 ﻿using System;
+using FilmWebAPI.Core;
 
 namespace FilmWebAPI.Models
 {
@@ -14,7 +15,7 @@ namespace FilmWebAPI.Models
 
         public Uri GetImageUri()
         {
-            return new Uri($"http://1.fwcdn.pl/channels/{ImagePath}");
+            return new Uri("http://1.fwcdn.pl/channels" + ImagePath);
         }
     }
 }

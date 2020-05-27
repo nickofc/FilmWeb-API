@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FilmWebAPI.Requests.Get
 {
-    internal class GetRankingFilms : RequestBase<dynamic>
+    public class GetRankingFilms : RequestBase<dynamic>
     {
         public const string RankingName = "top_100_films_world";
 

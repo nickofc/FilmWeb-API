@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FilmWebAPI.Requests.Post
 {
-    internal class Login : RequestBase<LoginResult>
+    public class Login : RequestBase<LoginResult>
     {
         public Login(string username, string password) : base(Signature.Create("login", username, password, "1"), FilmWebHttpMethod.Post)
         {

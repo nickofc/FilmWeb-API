@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FilmWebAPI.Requests.Get
 {
-    internal class GetNotifications : RequestBase<dynamic>
+    public class GetNotifications : RequestBase<dynamic>
     {
         public GetNotifications() : base(Signature.Create("getNotifications"), FilmWebHttpMethod.Get)
         {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FilmWebAPI.Requests.Get
 {
-    internal class GetUserFilmWantToSeeDetails : RequestBase<dynamic>
+    public class GetUserFilmWantToSeeDetails : RequestBase<dynamic>
     {
         //return new StringBuilder(getMethodName()).append(" [").append(this.pageNo * 20).append(",").append(20).append(",").append(UserFilmWantToSeeDetails.typeName(this.type)).append(",").append(this.cityId).append("]").toString();
         public GetUserFilmWantToSeeDetails() : base(Signature.Create("getUserFilmWantToSeeDetails"), FilmWebHttpMethod.Get)

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FilmWebAPI.Requests.Get
 {
-    internal class GetUnreadFriendVoteFilmEventsCount : RequestBase<dynamic>
+    public class GetUnreadFriendVoteFilmEventsCount : RequestBase<dynamic>
     {
         public GetUnreadFriendVoteFilmEventsCount() : base(Signature.Create("getUnreadFriendVoteFilmEventsCount"), FilmWebHttpMethod.Get)
         {

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FilmWebAPI.Requests.Get
 {
-    internal class GetAllCities : JsonRequestBase<IReadOnlyCollection<City>, JArray>
+    public class GetAllCities : JsonRequestBase<IReadOnlyCollection<City>, JArray>
     {
         public GetAllCities() : base(Signature.Create("getAllCities", -1), FilmWebHttpMethod.Get)
         {

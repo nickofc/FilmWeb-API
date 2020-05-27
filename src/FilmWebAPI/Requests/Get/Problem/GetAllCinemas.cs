@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace FilmWebAPI.Requests.Get
 {
     /* zwraca jeden wynik */
-    internal class GetAllCinemas : JsonRequestBase<IReadOnlyCollection<Cinema>, JArray>
+    public class GetAllCinemas : JsonRequestBase<IReadOnlyCollection<Cinema>, JArray>
     {
         public GetAllCinemas() : base(Signature.Create("getAllCinemas", -1), FilmWebHttpMethod.Get)
         {

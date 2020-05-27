@@ -5,8 +5,9 @@ using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace FilmWebAPI.Requests.Get
-{
-    internal class GetFilmImages : RequestBase<dynamic>
+{    // nie zwraca danych (samo ok - może zły id)
+
+    public class GetFilmImages : RequestBase<dynamic>
     {
         public GetFilmImages(long movieId, int pageId) : base(Signature.Create($"getFilmImages_{movieId}_{pageId}"), FilmWebHttpMethod.Get)
         {

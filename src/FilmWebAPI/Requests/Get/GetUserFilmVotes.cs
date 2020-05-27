@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FilmWebAPI.Requests.Get
 {
-    internal class GetUserFilmVotes : RequestBase<dynamic>
+    public class GetUserFilmVotes : RequestBase<dynamic>
     {
         public GetUserFilmVotes() : base(Signature.Create("getUserFilmVotes", -1), FilmWebHttpMethod.Get)
         {

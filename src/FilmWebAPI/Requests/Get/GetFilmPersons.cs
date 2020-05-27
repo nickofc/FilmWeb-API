@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FilmWebAPI.Requests.Get
 {
-    internal class GetFilmPersons : RequestBase<IReadOnlyCollection<Person>>
+    public class GetFilmPersons : RequestBase<IReadOnlyCollection<Person>>
     {
         public GetFilmPersons(ulong movieId, PersonType personType, int pageId)
             : base(Signature.Create("getFilmPersons", movieId, (int)personType, pageId * 50, (pageId + 1) * 50), FilmWebHttpMethod.Get)

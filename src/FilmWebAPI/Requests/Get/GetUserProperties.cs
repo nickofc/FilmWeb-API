@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FilmWebAPI.Requests.Get
 {
-    internal class GetUserProperties : RequestBase<dynamic>
+    public class GetUserProperties : RequestBase<dynamic>
     {
         public GetUserProperties() : base(Signature.Create("getUserProperties"), FilmWebHttpMethod.Get)
         {

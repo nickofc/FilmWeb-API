@@ -15,5 +15,11 @@ namespace FilmWebAPI.Models
         public string Poster { get; internal set; }
 
         public bool IsAlive => Deathdate <= Birthdate;
+
+
+        public Uri GetPosterUrl()
+        {
+            return new Uri("https://fwcdn.pl/ppo" + Poster);
+        }
     }
 }

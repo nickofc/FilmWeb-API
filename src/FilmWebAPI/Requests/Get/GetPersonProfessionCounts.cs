@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FilmWebAPI.Requests.Get
 {
-    internal class GetPersonProfessionCounts : RequestBase<dynamic>
+    public class GetPersonProfessionCounts : RequestBase<dynamic>
     {
         public GetPersonProfessionCounts(long personId) : base(Signature.Create("getPersonProfessionCounts", personId), FilmWebHttpMethod.Get)
         {

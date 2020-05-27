@@ -18,30 +18,8 @@ namespace FilmWebAPI
 
         Task<ulong?> GetMovieId(string movieTitle, CancellationToken token = default);
 
-        Task<string> GetFilmPolishTitle(ulong movieId, CancellationToken token = default);
-
-        Task<string> GetFilmOriginalTitle(ulong movieId, CancellationToken token = default);
-
-        Task<double> GetFilmAvgVote(ulong movieId, CancellationToken token = default);
-
-        Task<IReadOnlyCollection<string>> GetFilmGenres(ulong movieId, CancellationToken token = default);
-
-        Task<IReadOnlyCollection<string>> GetFilmProductionCountries(ulong movieId, CancellationToken token = default);
-
-        Task<TimeSpan> GetFilmDuration(ulong movieId, CancellationToken token = default);
-
-        Task<IReadOnlyCollection<KeyValuePair<string, DateTime>>> GetFilmPremieres(ulong movieId, CancellationToken token = default);
+        Task<FilmInfo> GetFilmInfo(ulong movieId, CancellationToken token = default);
 
         Task<string> GetFilmDescription(ulong movieId, CancellationToken token = default);
-
-        Task<string> GetFilmShortDescription(ulong movieId, CancellationToken token = default);
-
-        Task<ulong> GetFilmVotesCount(ulong movieId, CancellationToken token = default);
-
-        Task<int> GetFilmEpisodesCount(ulong movieId, CancellationToken token = default);
-
-        Task<int> GetFilmSeasonsCount(ulong movieId, CancellationToken token = default);
-
-        Task<int> GetFilmYear(ulong movieId, CancellationToken token = default);
     }
 }

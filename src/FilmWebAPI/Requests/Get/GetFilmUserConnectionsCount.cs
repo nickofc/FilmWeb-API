@@ -5,7 +5,7 @@ using System.Net.Http;
 
 namespace FilmWebAPI.Requests.Get
 {
-    internal class GetFilmUserConnectionsCount : RequestBase<dynamic>
+    public class GetFilmUserConnectionsCount : RequestBase<dynamic>
     {
         public GetFilmUserConnectionsCount(long movieId) : base(Signature.Create("getFilmUserConnectionsCount", movieId), FilmWebHttpMethod.Get)
         {

@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace FilmWebAPI.Requests.Get
 {
-    internal class GetCommingSoon : RequestBase<dynamic>
+    /* nie zwraca danych */
+    public class GetCommingSoon : ContentRequestBase<dynamic>
     {
         public GetCommingSoon() : base(Signature.Create("getUpcommingFilms"), FilmWebHttpMethod.Get)
         {
         }
 
-        public override async Task<dynamic> Parse(HttpResponseMessage responseMessage)
+        public override Task<dynamic> Parse(string content)
         {
             throw new NotImplementedException();
         }

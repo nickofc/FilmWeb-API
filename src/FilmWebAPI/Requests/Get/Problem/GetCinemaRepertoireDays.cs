@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace FilmWebAPI.Requests.Get
 {
     // nie zwraca danych (samo ok - może zły id)
-    internal class GetCinemaRepertoireDays : RequestBase<dynamic>
+    public class GetCinemaRepertoireDays : RequestBase<dynamic>
     {
         public GetCinemaRepertoireDays(ulong cinemaId) : base(Signature.Create("getCinemaRepertoireDays"), FilmWebHttpMethod.Get)
         {

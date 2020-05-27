@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace FilmWebAPI.Requests.Get
 {
-    internal class GetFilmVideosUrls : RequestBase<IEnumerable<string>>
+    public class GetFilmVideosUrls : RequestBase<IEnumerable<string>>
     {
         public GetFilmVideosUrls(ulong movieId)
             : base(Signature.Create("getFilmVideos", movieId, 0, 100), FilmWebHttpMethod.Get)

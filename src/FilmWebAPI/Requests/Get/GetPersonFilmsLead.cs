@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FilmWebAPI.Requests.Get
 {
-    internal class GetPersonFilmsLead : RequestBase<dynamic>
+    public class GetPersonFilmsLead : RequestBase<dynamic>
     {
         public GetPersonFilmsLead(long personId, int limit) : base(Signature.Create("getPersonFilmsLead", personId, limit), FilmWebHttpMethod.Get)
         {

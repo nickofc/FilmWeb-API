@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FilmWebAPI.Requests.Get
 {
-    internal class GetAllChannels : JsonRequestBase<IReadOnlyCollection<Channel>, JArray>
+    public class GetAllChannels : JsonRequestBase<IReadOnlyCollection<Channel>, JArray>
     {
         public GetAllChannels() : base(Signature.Create("getAllChannels", -1), FilmWebHttpMethod.Get)
         {

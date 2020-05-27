@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FilmWebAPI.Requests.Get
 {
-    internal class Search : RequestBase<ulong?>
+    public class Search : RequestBase<ulong?>
     {
         private const string CINEMA_TYPE = "c";
         private const string FILM_TYPE = "f";

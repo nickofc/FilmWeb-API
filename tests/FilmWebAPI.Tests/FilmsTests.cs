@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FilmWebAPI.Tests
 {
-    internal class FilmsTests
+    public class FilmsTests
     {
         private readonly FilmWebApi _filmWebApi;
 
@@ -96,17 +96,6 @@ namespace FilmWebAPI.Tests
         }
 
         [Test]
-        [TestCase(998, new[] { "Dramat", "Komedia" })]
-        [TestCase(1470, new[] { "Dramat" })]
-        [TestCase(33404, new[] { "Animacja", "Familijny", "Komedia" })]
-        [TestCase(724464, new[] { "Fantasy", "Przygodowy" })]
-        public async Task ShouldGetGenres(long movieId, string[] expectedGenres)
-        {
-            var genres = await _filmWebApi.GetFilmGenres((ulong)movieId);
-            Assert.AreEqual(expectedGenres, genres);
-        }
-
-        [Test]
         [TestCase(998, new[] { "USA" })]
         [TestCase(816980, new[] { "USA", "Wielka Brytania" })]
         [TestCase(810167, new[] { "Kanada", "USA" })]
@@ -124,7 +113,7 @@ namespace FilmWebAPI.Tests
         [TestCase(724464, 60)]
         public async Task ShouldGetDuration(long movieId, int expectedNumberOfMinutes)
         {
-            var duration = await _filmWebApi.GetFilmDuration((ulong)movieId);
+            var duration = await _filmWebApi.GetFilmInfo((ulong)movieId);
             var expectedTimeSpan = TimeSpan.FromMinutes(expectedNumberOfMinutes);
             Assert.AreEqual(expectedTimeSpan, duration);
         }
@@ -175,14 +164,6 @@ namespace FilmWebAPI.Tests
         {
             var votesCount = await _filmWebApi.GetFilmVotesCount((ulong)movieId);
             Assert.GreaterOrEqual(votesCount, expectedVotesCount);
-        }
-
-        [Test]
-        [TestCase(799827, 5)]
-        public async Task ShouldGetEpisodes(long movieId, int expectedEpisodes)
-        {
-            var episodesCount = await _filmWebApi.GetFilmEpisodesCount((ulong)movieId);
-            Assert.AreEqual(expectedEpisodes, episodesCount);
         }
 
         [Test]

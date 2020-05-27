@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FilmWebAPI.Requests.Get
 {
-    internal class GetUserFavoriteCinemas : RequestBase<dynamic>
+    public class GetUserFavoriteCinemas : RequestBase<dynamic>
     {
         public GetUserFavoriteCinemas() : base(Signature.Create("getUserFavouriteCinemas", -1), FilmWebHttpMethod.Get)
         {

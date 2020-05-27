@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FilmWebAPI.Requests.Get
 {
-    internal class GetRepertoire : RequestBase<dynamic>
+    public class GetRepertoire : RequestBase<dynamic>
     {
         public GetRepertoire(long cityId, DateTime time) : base(Signature.Create("getRepertoire", cityId, time), FilmWebHttpMethod.Get)
         {

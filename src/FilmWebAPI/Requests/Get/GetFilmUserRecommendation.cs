@@ -5,7 +5,7 @@ using System.Net.Http;
 
 namespace FilmWebAPI.Requests.Get
 {
-    internal class GetFilmUserRecommendation : RequestBase<dynamic>
+    public class GetFilmUserRecommendation : RequestBase<dynamic>
     {
         public GetFilmUserRecommendation(long movieId) : base(Signature.Create("getFilmUserRecommendation", movieId), FilmWebHttpMethod.Get)
         {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FilmWebAPI.Requests.Get
 {
-    internal class GetTvScheduleDays : RequestBase<dynamic>
+    public class GetTvScheduleDays : RequestBase<dynamic>
     {
         public GetTvScheduleDays() : base(Signature.Create("getTvScheduleDays"), FilmWebHttpMethod.Get)
         {

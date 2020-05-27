@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace FilmWebAPI.Requests.Get
 {
-    internal class GetFilmDescription : JsonRequestBase<string, JArray>
+    public class GetFilmDescription : JsonRequestBase<string, JArray>
     {
         public GetFilmDescription(ulong movieId)
             : base(Signature.Create("getFilmDescription", movieId), FilmWebHttpMethod.Get)

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FilmWebAPI.Requests.Get
 {
-    internal class GetBornTodayPersons : JsonRequestBase<PersonBirthdate[], JArray>
+    public class GetBornTodayPersons : JsonRequestBase<PersonBirthdate[], JArray>
     {
         public GetBornTodayPersons() : base(Signature.Create("getBornTodayPersons", -1), FilmWebHttpMethod.Get)
         {
