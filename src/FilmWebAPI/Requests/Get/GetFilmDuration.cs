@@ -1,32 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
+using FilmWebAPI.Core;
+using FilmWebAPI.Core.Communication;
 using Newtonsoft.Json.Linq;
 
 namespace FilmWebAPI.Requests.Get
 {
-    class GetFilmDuration : RequestBase<TimeSpan>
+    internal class GetFilmDuration : JsonRequestBase<TimeSpan, JArray>
     {
-        private const int DURATION_INDEX = 6;
 
         public GetFilmDuration(ulong movieId)
             : base(Signature.Create("getFilmInfoFull", movieId), FilmWebHttpMethod.Get)
         {
         }
 
-        public override async Task<TimeSpan> Parse(HttpResponseMessage responseMessage)
+        public override async Task<TimeSpan> Parse(JArray entity)
         {
-            var jsonBody = await base.GetJsonBody(responseMessage);
-            var json = JsonConvert.DeserializeObject<JArray>(Regex.Replace(jsonBody, "t(s?):(\\d+)$", string.Empty));
+            const int DURATION_INDEX = 6;
 
-            var duration = json[DURATION_INDEX].ToString();
+            var duration = entity[DURATION_INDEX].ToString();
             var hasDuration = int.TryParse(duration, out var minutes);
 
-            return hasDuration 
+            return hasDuration
                 ? TimeSpan.FromMinutes(minutes)
                 : TimeSpan.Zero;
         }

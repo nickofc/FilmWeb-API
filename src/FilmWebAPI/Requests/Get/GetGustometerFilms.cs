@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using FilmWebAPI.Core;
+using FilmWebAPI.Core.Communication;
 
 namespace FilmWebAPI.Requests.Get
 {
-    public class GetGustometerFilms : RequestBase<dynamic>
+    internal class GetGustometerFilms : RequestBase<dynamic>
     {
         public GetGustometerFilms(int offset, int limit) : base(Signature.Create("getGustometerFilms", offset, limit), FilmWebHttpMethod.Get)
         {

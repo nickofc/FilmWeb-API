@@ -1,7 +1,8 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using FilmWebAPI.Core.Communication;
 
-namespace FilmWebAPI
+namespace FilmWebAPI.Core.Abstraction
 {
     public interface IFilmWebApiClient
     {

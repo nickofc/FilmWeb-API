@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace FilmWebAPI.Security
+namespace FilmWebAPI.Core.Security
 {
     internal static class Md5
     {

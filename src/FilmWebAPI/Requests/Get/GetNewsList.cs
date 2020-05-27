@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using FilmWebAPI.Core;
+using FilmWebAPI.Core.Communication;
 
 namespace FilmWebAPI.Requests.Get
 {
-    public class GetNewsList : RequestBase<dynamic>
+    internal class GetNewsList : RequestBase<dynamic>
     {
         public GetNewsList(int page) : base(Signature.Create("getNewsList", page), FilmWebHttpMethod.Get)
         {

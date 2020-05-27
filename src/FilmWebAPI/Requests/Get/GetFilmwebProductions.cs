@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using FilmWebAPI.Core;
+using FilmWebAPI.Core.Communication;
 
 namespace FilmWebAPI.Requests.Get
 {
-    public class GetFilmwebProductions : RequestBase<dynamic>
+    internal class GetFilmWebProductions : RequestBase<dynamic>
     {
-        public GetFilmwebProductions(int offset, int limit, string category) : base(Signature.Create("getFilmwebProductions", $@"\{category}\", offset, limit), FilmWebHttpMethod.Get)
+        public GetFilmWebProductions(int offset, int limit, string category) : base(Signature.Create("getFilmwebProductions", $@"\{category}\", offset, limit), FilmWebHttpMethod.Get)
         {
         }
 

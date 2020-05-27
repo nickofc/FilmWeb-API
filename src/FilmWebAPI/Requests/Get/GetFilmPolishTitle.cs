@@ -3,10 +3,12 @@ using Newtonsoft.Json.Linq;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using FilmWebAPI.Core;
+using FilmWebAPI.Core.Communication;
 
 namespace FilmWebAPI.Requests.Get
 {
-    public class GetFilmPolishTitle : RequestBase<string>
+    internal class GetFilmPolishTitle : RequestBase<string>
     {
         private const int POLISH_TITLE_INDEX = 0;
 
@@ -17,7 +19,7 @@ namespace FilmWebAPI.Requests.Get
 
         public override async Task<string> Parse(HttpResponseMessage responseMessage)
         {
-            var jsonBody = await base.GetJsonBody(responseMessage);
+            var jsonBody = await base.GetRawBody(responseMessage);
             var json = JsonConvert.DeserializeObject<JArray>(Regex.Replace(jsonBody, "t(s?):(\\d+)$", string.Empty));
 
             return json[POLISH_TITLE_INDEX].ToString();

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using FilmWebAPI.Core;
+using FilmWebAPI.Core.Communication;
 
 namespace FilmWebAPI.Requests.Get
 {
-    public class GetWallEntryComments : RequestBase<dynamic>
+    internal class GetWallEntryComments : RequestBase<dynamic>
     {
         public GetWallEntryComments() : base(Signature.Create("getWallEntryComments"), FilmWebHttpMethod.Get)
         {

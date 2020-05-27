@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using FilmWebAPI.Core;
+using FilmWebAPI.Core.Communication;
 
 namespace FilmWebAPI.Requests.Get
 {
-    public class GetUserPersonVotes : RequestBase<dynamic>
+    internal class GetUserPersonVotes : RequestBase<dynamic>
     {
         public GetUserPersonVotes() : base(Signature.Create("getUserPersonVotes"), FilmWebHttpMethod.Get)
         {

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using FilmWebAPI.Core;
+using FilmWebAPI.Core.Communication;
 
 namespace FilmWebAPI.Requests.Get
 {
-    public class GetTvScheduleRecommendations : RequestBase<dynamic>
+    internal class GetTvScheduleRecommendations : RequestBase<dynamic>
     {
         public GetTvScheduleRecommendations(long channelId, DateTime time) : base(Signature.Create("getTvScheduleRecommendations", time, channelId), FilmWebHttpMethod.Get)
         {

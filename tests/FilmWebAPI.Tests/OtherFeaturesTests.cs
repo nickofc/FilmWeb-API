@@ -6,40 +6,40 @@ namespace FilmWebAPI.Tests
 {
     public class OtherFeaturesTests
     {
-        private readonly FilmWeb _filmWeb;
+        private readonly FilmWebApi _filmWebApi;
 
         public OtherFeaturesTests()
         {
-            _filmWeb = new FilmWeb();
+            _filmWebApi = new FilmWebApi();
         }
 
-        [Ignore("Method Login isn't used anywhere and it's not always working")]
+       // [Ignore("Method Login isn't used anywhere and it's not always working")]
         [Theory]
         [TestCase("fake-user", "fake-pass", false)]
         public async Task LoginTests(string username, string password, bool expectedResult)
         {
-            //var result = await _filmWeb.Login(username, password);
-            //Assert.AreEqual(result.IsLoggedIn, expectedResult);
+            var result = await _filmWebApi.Login(username, password);
+            Assert.AreEqual(result.IsLoggedIn, expectedResult);
         }
 
         [Test]
         public async Task GetAllChannelsTests()
         {
-            var channels = await _filmWeb.GetAllChannels();
+            var channels = await _filmWebApi.GetAllChannels();
             Assert.True(channels.Any());
         }
 
         [Test]
         public async Task GetAllCitiesTests()
         {
-            var cities = await _filmWeb.GetAllCities();
+            var cities = await _filmWebApi.GetAllCities();
             Assert.True(cities.Any());
         }
 
         [Test]
         public async Task GetBornTodayPersonsTests()
         {
-            var birthdates = await _filmWeb.GetBornTodayPersons();
+            var birthdates = await _filmWebApi.GetBornTodayPersons();
             Assert.True(birthdates.Any());
         }
     }

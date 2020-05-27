@@ -1,4 +1,4 @@
-﻿namespace FilmWebAPI
+﻿namespace FilmWebAPI.Core.Abstraction
 {
     public interface ISignature
     {

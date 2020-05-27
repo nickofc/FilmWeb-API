@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using FilmWebAPI.Core;
+using FilmWebAPI.Core.Communication;
 
 namespace FilmWebAPI.Requests.Get
 {
-    public class GetUserProperties : RequestBase<dynamic>
+    internal class GetUserProperties : RequestBase<dynamic>
     {
         public GetUserProperties() : base(Signature.Create("getUserProperties"), FilmWebHttpMethod.Get)
         {

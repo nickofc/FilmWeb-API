@@ -3,12 +3,14 @@ using System.Linq;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using FilmWebAPI.Core;
+using FilmWebAPI.Core.Communication;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace FilmWebAPI.Requests.Get
 {
-    class GetFilmProductionCountries : RequestBase<IEnumerable<string>>
+    internal class GetFilmProductionCountries : RequestBase<IReadOnlyCollection<string>>
     {
         private const int COUNTRIES_PRODUCTION = 18;
 
@@ -17,12 +19,12 @@ namespace FilmWebAPI.Requests.Get
         {
         }
 
-        public override async Task<IEnumerable<string>> Parse(HttpResponseMessage responseMessage)
+        public override async Task<IReadOnlyCollection<string>> Parse(HttpResponseMessage responseMessage)
         {
-            var jsonBody = await base.GetJsonBody(responseMessage);
+            var jsonBody = await base.GetRawBody(responseMessage);
             var json = JsonConvert.DeserializeObject<JArray>(Regex.Replace(jsonBody, "t(s?):(\\d+)$", string.Empty));
 
-            return json[COUNTRIES_PRODUCTION].ToString().Split(',').Select(x => x.TrimStart());
+            return json[COUNTRIES_PRODUCTION].ToString().Split(',').Select(x => x.TrimStart()).ToArray();
         }
     }
 }

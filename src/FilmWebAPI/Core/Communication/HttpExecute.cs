@@ -2,8 +2,9 @@
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using FilmWebAPI.Core.Abstraction;
 
-namespace FilmWebAPI
+namespace FilmWebAPI.Core.Communication
 {
     public sealed class HttpExecute : IHttpExecute
     {
@@ -11,7 +12,7 @@ namespace FilmWebAPI
 
         public HttpExecute(HttpClient httpClient)
         {
-            _httpClient = httpClient;
+            _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
         }
 
         public async Task<HttpResponseMessage> Execute(HttpRequestMessage message, CancellationToken token = default)

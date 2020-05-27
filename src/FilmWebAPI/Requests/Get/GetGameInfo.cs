@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using FilmWebAPI.Core;
+using FilmWebAPI.Core.Communication;
 
 namespace FilmWebAPI.Requests.Get
 {
-    public class GetGameInfo : RequestBase<dynamic>
+    internal class GetGameInfo : RequestBase<dynamic>
     {
         public GetGameInfo(int movieId) : base(Signature.Create("getGameInfo", movieId), FilmWebHttpMethod.Get)
         {

@@ -1,26 +1,24 @@
 ﻿using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
+using FilmWebAPI.Core;
+using FilmWebAPI.Core.Communication;
 using Newtonsoft.Json.Linq;
 
 namespace FilmWebAPI.Requests.Get
 {
-    class GetFilmEpisodesCount : RequestBase<int>
+    internal class GetFilmEpisodesCount : JsonRequestBase<int, JArray>
     {
-        private const int EPISODES_COUNT_INDEX = 17;
-
         public GetFilmEpisodesCount(ulong movieId)
             : base(Signature.Create("getFilmInfoFull", movieId), FilmWebHttpMethod.Get)
         {
         }
 
-        public override async Task<int> Parse(HttpResponseMessage responseMessage)
+        public override async Task<int> Parse(JArray entity)
         {
-            var jsonBody = await base.GetJsonBody(responseMessage);
-            var json = JsonConvert.DeserializeObject<JArray>(Regex.Replace(jsonBody, "t(s?):(\\d+)$", string.Empty));
+            const int EPISODES_COUNT_INDEX = 17;
 
-            var parsed = int.TryParse(json[EPISODES_COUNT_INDEX].ToString(), out var episodesCount);
+            var parsed = int.TryParse(entity[EPISODES_COUNT_INDEX].ToString(), out var episodesCount);
             return parsed ? episodesCount : default;
         }
     }

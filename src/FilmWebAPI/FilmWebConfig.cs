@@ -8,7 +8,7 @@ namespace FilmWebAPI
 
         public static FilmWebConfig Default()
         {
-            return new FilmWebConfig()
+            return new FilmWebConfig
             {
                 Timeout = TimeSpan.FromSeconds(10)
             };

@@ -1,6 +1,9 @@
+using System;
 using FilmWebAPI.Models;
 using System.Net.Http;
 using System.Threading.Tasks;
+using FilmWebAPI.Core;
+using FilmWebAPI.Core.Communication;
 
 namespace FilmWebAPI.Requests.Post
 {
@@ -12,13 +15,9 @@ namespace FilmWebAPI.Requests.Post
 
         public override async Task<LoginResult> Parse(HttpResponseMessage responseMessage)
         {
-            var apiResponse = await GetAsApiResponseAsync(responseMessage);
-            if (!apiResponse.IsSucceed)
-            {
-                return new LoginResult(false, null);
-            }
+            throw new NotImplementedException();
 
-            var json = apiResponse.ToJson<dynamic>();
+            var json = await GetJsonBody<dynamic>(responseMessage);
 
             var user = new User
             {

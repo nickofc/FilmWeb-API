@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace FilmWebAPI.Helpers
+namespace FilmWebAPI.Core
 {
     internal static class Csv
     {
@@ -12,7 +12,7 @@ namespace FilmWebAPI.Helpers
             }
 
             var sb = new StringBuilder();
-            for (int i = 0; i < arguments.Length; i++)
+            for (var i = 0; i < arguments.Length; i++)
             {
                 if (i > 0)
                 {

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using FilmWebAPI.Core;
+using FilmWebAPI.Core.Communication;
 
 namespace FilmWebAPI.Requests.Get
 {
-    public class Search : RequestBase<ulong?>
+    internal class Search : RequestBase<ulong?>
     {
         private const string CINEMA_TYPE = "c";
         private const string FILM_TYPE = "f";
@@ -30,11 +32,6 @@ namespace FilmWebAPI.Requests.Get
             if (responseMessage == null)
             {
                 throw new ArgumentNullException(nameof(responseMessage));
-            }
-
-            if (!responseMessage.IsSuccessStatusCode)
-            {
-                throw new FilmWebException(FilmWebExceptionType.UnableToGetData);
             }
 
             var content = await responseMessage.Content.ReadAsStringAsync();

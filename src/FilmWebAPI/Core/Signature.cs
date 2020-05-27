@@ -1,13 +1,10 @@
-﻿using FilmWebAPI.Helpers;
-using FilmWebAPI.Security;
-using System;
+﻿using System;
 using System.Linq;
+using FilmWebAPI.Core.Abstraction;
+using FilmWebAPI.Core.Security;
 
-namespace FilmWebAPI
+namespace FilmWebAPI.Core
 {
-    /// <summary>
-    /// Klasa do podpisywania zapytań API
-    /// </summary>
     public sealed class Signature : ISignature
     {
         const string API_KEY = "qjcGhW2JnvGT9dfCt3uT_jozR3s";

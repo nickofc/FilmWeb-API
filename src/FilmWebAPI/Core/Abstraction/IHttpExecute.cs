@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace FilmWebAPI
+namespace FilmWebAPI.Core.Abstraction
 {
     public interface IHttpExecute
     {

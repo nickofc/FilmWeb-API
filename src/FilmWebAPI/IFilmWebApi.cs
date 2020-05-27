@@ -24,13 +24,13 @@ namespace FilmWebAPI
 
         Task<double> GetFilmAvgVote(ulong movieId, CancellationToken token = default);
 
-        Task<IEnumerable<string>> GetFilmGenres(ulong movieId, CancellationToken token = default);
+        Task<IReadOnlyCollection<string>> GetFilmGenres(ulong movieId, CancellationToken token = default);
 
-        Task<IEnumerable<string>> GetFilmProductionCountries(ulong movieId, CancellationToken token = default);
+        Task<IReadOnlyCollection<string>> GetFilmProductionCountries(ulong movieId, CancellationToken token = default);
 
         Task<TimeSpan> GetFilmDuration(ulong movieId, CancellationToken token = default);
 
-        Task<IEnumerable<KeyValuePair<string, DateTime>>> GetFilmPremieres(ulong movieId, CancellationToken token = default);
+        Task<IReadOnlyCollection<KeyValuePair<string, DateTime>>> GetFilmPremieres(ulong movieId, CancellationToken token = default);
 
         Task<string> GetFilmDescription(ulong movieId, CancellationToken token = default);
 

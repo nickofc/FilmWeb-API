@@ -1,10 +1,12 @@
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using FilmWebAPI.Core;
+using FilmWebAPI.Core.Communication;
 
 namespace FilmWebAPI.Requests.Get
 {
-    public class GetUserFriendsFilmWantToSeeByFilm : RequestBase<dynamic>
+    internal class GetUserFriendsFilmWantToSeeByFilm : RequestBase<dynamic>
     {
         public GetUserFriendsFilmWantToSeeByFilm(long movieId) : base(Signature.Create("getUserFriendsFilmWantToSeeByFilm", movieId, null), FilmWebHttpMethod.Get)
         {

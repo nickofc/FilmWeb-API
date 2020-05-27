@@ -1,24 +1,24 @@
-﻿using System.Net.Http;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
+﻿using System.Threading.Tasks;
+using FilmWebAPI.Core;
+using FilmWebAPI.Core.Communication;
 using Newtonsoft.Json.Linq;
 
 namespace FilmWebAPI.Requests.Get
 {
-    public class GetFilmDescription : RequestBase<string>
+    internal class GetFilmDescription : JsonRequestBase<string, JArray>
     {
         public GetFilmDescription(ulong movieId) 
             : base(Signature.Create("getFilmDescription", movieId), FilmWebHttpMethod.Get)
         {
         }
 
-        public override async Task<string> Parse(HttpResponseMessage responseMessage)
+        public override async Task<string> Parse(JArray entity)
         {
-            var jsonBody = await base.GetJsonBody(responseMessage);
-            var json = JsonConvert.DeserializeObject<JArray>(Regex.Replace(jsonBody, "t(s?):(\\d+)$", string.Empty));
-            var description = json.ToString().Trim("\r\n[] \"".ToCharArray()).Replace("\\\"", "\"").Replace("\\n", "\n");
-            return description != "null" ? description : null;
+            var description = entity.ToString().Trim("\r\n[] \"".ToCharArray())
+                .Replace("\\\"", "\"")
+                .Replace("\\n", "\n");
+
+            return description != "null" ? description : string.Empty;
         }
     }
 }

@@ -2,19 +2,22 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using FilmWebAPI.Core.Abstraction;
+using FilmWebAPI.Core.Exception;
+using Newtonsoft.Json;
 
-namespace FilmWebAPI
+namespace FilmWebAPI.Core.Communication
 {
-    public abstract class RequestBase<T> : IRequest<T>
+    public abstract class RequestBase<TEntity> : IRequest<TEntity>
     {
-        private readonly Signature _signature;
+        private readonly ISignature _signature;
         private readonly FilmWebHttpMethod _filmWebHttpMethod;
 
         protected RequestBase() { }
 
-        protected RequestBase(Signature signature, FilmWebHttpMethod filmWebHttpMethod)
+        protected RequestBase(ISignature signature, FilmWebHttpMethod filmWebHttpMethod)
         {
-            _signature = signature ?? throw new System.ArgumentNullException(nameof(signature));
+            _signature = signature ?? throw new ArgumentNullException(nameof(signature));
             _filmWebHttpMethod = filmWebHttpMethod;
         }
 
@@ -37,49 +40,67 @@ namespace FilmWebAPI
             switch (_filmWebHttpMethod)
             {
                 case FilmWebHttpMethod.Get:
-                    return new HttpRequestMessage(HttpMethod.Get, Url.Create(FilmWeb.API_URL, args));
+                    return new HttpRequestMessage(HttpMethod.Get, Url.Create(FilmWebApi.API_URL, args));
                 case FilmWebHttpMethod.Post:
-                    return new HttpRequestMessage(HttpMethod.Post, FilmWeb.API_URL)
+                    return new HttpRequestMessage(HttpMethod.Post, FilmWebApi.API_URL)
                     {
                         Content = new FormUrlEncodedContent(args)
                     };
                 default:
-                    throw new FilmWebException("Ta metoda nie jest obsługiwana!", FilmWebExceptionType.HttpMethodNotSupported);
+                    throw new NotImplementedException($"The {_filmWebHttpMethod} method is not supported!");
             }
         }
 
-        public abstract Task<T> Parse(HttpResponseMessage responseMessage);
+        public abstract Task<TEntity> Parse(HttpResponseMessage responseMessage);
 
-        protected async Task<string> GetJsonBody(HttpResponseMessage responseMessage)
+        protected async Task<TJsonEntity> GetJsonBody<TJsonEntity>(HttpResponseMessage responseMessage)
         {
             if (responseMessage is null)
             {
                 throw new ArgumentNullException(nameof(responseMessage));
             }
 
-            var content = await responseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+            var raw = await GetRawBody(responseMessage);
+            return ParseJson<TJsonEntity>(raw);
+        }
+        protected async Task<string> GetRawBody(HttpResponseMessage responseMessage)
+        {
+            if (responseMessage is null)
+            {
+                throw new ArgumentNullException(nameof(responseMessage));
+            }
+
+            var content = await responseMessage.Content.ReadAsStringAsync()
+                .ConfigureAwait(false);
+           
             if (!content.StartsWith("ok"))
             {
-                throw new FilmWebException(FilmWebExceptionType.UnableToGetData);
+                throw new FilmWebApiFailureException("FilmWebAPI returned an exception.");
             }
 
-            return content.Substring(3);
+            content = content.Remove(0, 3);
+            var endJsonBraceIndex = content.LastIndexOf("]",
+                StringComparison.OrdinalIgnoreCase);
+
+            if (endJsonBraceIndex > 0)
+            {
+                content = content.Substring(0, 
+                    endJsonBraceIndex + 1);
+            }
+
+            return content;
         }
 
-        protected async Task<ApiResponse> GetAsApiResponseAsync(HttpResponseMessage responseMessage)
+        private static TJsonType ParseJson<TJsonType>(string raw)
         {
-            if (responseMessage is null)
+            try
             {
-                throw new ArgumentNullException(nameof(responseMessage));
+                return JsonConvert.DeserializeObject<TJsonType>(raw);
             }
-
-            var content = await responseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
-            if (content.StartsWith("err"))
+            catch (JsonException exception)
             {
-                return ApiResponse.Failure();
+                throw new FilmWebApiFailureException("FilmWebAPI returned an invalid json format.", exception);
             }
-
-            return ApiResponse.Succeed(content.Substring(3));
         }
     }
 }

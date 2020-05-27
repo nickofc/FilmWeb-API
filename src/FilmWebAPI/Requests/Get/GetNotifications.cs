@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using FilmWebAPI.Core;
+using FilmWebAPI.Core.Communication;
 
 namespace FilmWebAPI.Requests.Get
 {
-    public class GetNotifications : RequestBase<dynamic>
+    internal class GetNotifications : RequestBase<dynamic>
     {
         public GetNotifications() : base(Signature.Create("getNotifications"), FilmWebHttpMethod.Get)
         {

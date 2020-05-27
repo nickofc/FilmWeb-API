@@ -1,10 +1,12 @@
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using FilmWebAPI.Core;
+using FilmWebAPI.Core.Communication;
 
 namespace FilmWebAPI.Requests.Get
 {
-    public class GetPersonFilmsLead : RequestBase<dynamic>
+    internal class GetPersonFilmsLead : RequestBase<dynamic>
     {
         public GetPersonFilmsLead(long personId, int limit) : base(Signature.Create("getPersonFilmsLead", personId, limit), FilmWebHttpMethod.Get)
         {

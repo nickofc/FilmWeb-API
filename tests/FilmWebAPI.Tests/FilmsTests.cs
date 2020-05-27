@@ -8,11 +8,11 @@ namespace FilmWebAPI.Tests
 {
     internal class FilmsTests
     {
-        private readonly FilmWeb _filmWeb;
+        private readonly FilmWebApi _filmWebApi;
 
         public FilmsTests()
         {
-            _filmWeb = new FilmWeb();
+            _filmWebApi = new FilmWebApi();
         }
 
         [Test]
@@ -24,7 +24,7 @@ namespace FilmWebAPI.Tests
         [TestCase(810167, PersonType.Muzyka, 1)]
         public async Task ShouldGetFilmPersons(long movieId, PersonType personType, int expectedCount)
         {
-            var persons = await _filmWeb.GetFilmPersons((ulong)movieId, personType, 0);
+            var persons = await _filmWebApi.GetFilmPersons((ulong)movieId, personType, 0);
             Assert.AreEqual(expectedCount, persons.Count);
         }
 
@@ -40,7 +40,7 @@ namespace FilmWebAPI.Tests
         [TestCase(810167, PersonType.Producent, "Bradley Cooper")]
         public async Task ShouldGetFilmPerson(long movieId, PersonType personType, string expectedPerson)
         {
-            var persons = await _filmWeb.GetFilmPersons((ulong)movieId, personType, 0);
+            var persons = await _filmWebApi.GetFilmPersons((ulong)movieId, personType, 0);
             Assert.IsTrue(persons.Any(x => x.Name == expectedPerson));
         }
 
@@ -53,7 +53,7 @@ namespace FilmWebAPI.Tests
         [TestCase("Shrek 2", 33404)]
         public async Task ShouldFindMovieId(string movieTitle, long expectedId)
         {
-            var movieId = await _filmWeb.GetMovieId(movieTitle);
+            var movieId = await _filmWebApi.GetMovieId(movieTitle);
             Assert.AreEqual(expectedId, movieId.Value);
         }
 
@@ -66,7 +66,7 @@ namespace FilmWebAPI.Tests
         [TestCase(816980, "1917")]
         public async Task ShouldGetPolishTitle(long movieId, string expectedPolishTitle)
         {
-            var polishTitle = await _filmWeb.GetFilmPolishTitle((ulong)movieId);
+            var polishTitle = await _filmWebApi.GetFilmPolishTitle((ulong)movieId);
             Assert.AreEqual(expectedPolishTitle, polishTitle);
         }
 
@@ -79,7 +79,7 @@ namespace FilmWebAPI.Tests
         [TestCase(816980, "")]
         public async Task ShouldGetOriginalTitle(long movieId, string expectedOriginalTitle)
         {
-            var originalTitle = await _filmWeb.GetFilmOriginalTitle((ulong)movieId);
+            var originalTitle = await _filmWebApi.GetFilmOriginalTitle((ulong)movieId);
             Assert.AreEqual(expectedOriginalTitle, originalTitle);
         }
 
@@ -91,7 +91,7 @@ namespace FilmWebAPI.Tests
         [TestCase(998, 8.5)]
         public async Task ShouldGetAvgVote(long movieId, double expectedVote)
         {
-            var avgVote = await _filmWeb.GetFilmAvgVote((ulong)movieId);
+            var avgVote = await _filmWebApi.GetFilmAvgVote((ulong)movieId);
             Assert.IsTrue(Math.Abs(avgVote - expectedVote) < 0.9);
         }
 
@@ -102,7 +102,7 @@ namespace FilmWebAPI.Tests
         [TestCase(724464, new[] { "Fantasy", "Przygodowy" })]
         public async Task ShouldGetGenres(long movieId, string[] expectedGenres)
         {
-            var genres = await _filmWeb.GetFilmGenres((ulong)movieId);
+            var genres = await _filmWebApi.GetFilmGenres((ulong)movieId);
             Assert.AreEqual(expectedGenres, genres);
         }
 
@@ -113,7 +113,7 @@ namespace FilmWebAPI.Tests
         [TestCase(724464, new[] { "Polska", "USA" })]
         public async Task ShouldGetProductionCountries(long movieId, string[] expectedCountries)
         {
-            var countries = await _filmWeb.GetFilmProductionCountries((ulong)movieId);
+            var countries = await _filmWebApi.GetFilmProductionCountries((ulong)movieId);
             Assert.AreEqual(expectedCountries, countries);
         }
 
@@ -124,7 +124,7 @@ namespace FilmWebAPI.Tests
         [TestCase(724464, 60)]
         public async Task ShouldGetDuration(long movieId, int expectedNumberOfMinutes)
         {
-            var duration = await _filmWeb.GetFilmDuration((ulong)movieId);
+            var duration = await _filmWebApi.GetFilmDuration((ulong)movieId);
             var expectedTimeSpan = TimeSpan.FromMinutes(expectedNumberOfMinutes);
             Assert.AreEqual(expectedTimeSpan, duration);
         }
@@ -137,7 +137,7 @@ namespace FilmWebAPI.Tests
         [TestCase(842425, "world", "2020-03-20")]
         public async Task ShouldGetPremieres(long movieId, string country, string expectedPremierDate)
         {
-            var premieres = await _filmWeb.GetFilmPremieres((ulong)movieId);
+            var premieres = await _filmWebApi.GetFilmPremieres((ulong)movieId);
             var premiereInAskedPlace = premieres.First(x => x.Key == country);
 
             var expectedDate = DateTime.Parse(expectedPremierDate);
@@ -151,7 +151,7 @@ namespace FilmWebAPI.Tests
         [TestCase(691412, "Nowy Jork, 1981 r. Ambitny imigrant próbuje chronić swój biznes oraz rodzinę podczas najbardziej niebezpiecznego roku pod względem przestępczości.")]
         public async Task ShouldGetShortDescription(long movieId, string expectedShortDescription)
         {
-            var shortDescription = await _filmWeb.GetFilmShortDescription((ulong)movieId);
+            var shortDescription = await _filmWebApi.GetFilmShortDescription((ulong)movieId);
             Assert.AreEqual(expectedShortDescription, shortDescription);
         }
 
@@ -162,7 +162,7 @@ namespace FilmWebAPI.Tests
         [TestCase(691412, null)]
         public async Task ShouldGetDescription(long movieId, string expectedDescription)
         {
-            var description = await _filmWeb.GetFilmDescription((ulong)movieId);
+            var description = await _filmWebApi.GetFilmDescription((ulong)movieId);
             Assert.AreEqual(expectedDescription, description);
         }
 
@@ -173,7 +173,7 @@ namespace FilmWebAPI.Tests
         [TestCase(799827, 140533U)]
         public async Task ShouldGetVotesCount(long movieId, ulong expectedVotesCount)
         {
-            var votesCount = await _filmWeb.GetFilmVotesCount((ulong)movieId);
+            var votesCount = await _filmWebApi.GetFilmVotesCount((ulong)movieId);
             Assert.GreaterOrEqual(votesCount, expectedVotesCount);
         }
 
@@ -181,7 +181,7 @@ namespace FilmWebAPI.Tests
         [TestCase(799827, 5)]
         public async Task ShouldGetEpisodes(long movieId, int expectedEpisodes)
         {
-            var episodesCount = await _filmWeb.GetFilmEpisodesCount((ulong)movieId);
+            var episodesCount = await _filmWebApi.GetFilmEpisodesCount((ulong)movieId);
             Assert.AreEqual(expectedEpisodes, episodesCount);
         }
 
@@ -189,7 +189,7 @@ namespace FilmWebAPI.Tests
         [TestCase(799827, 0)]
         public async Task ShouldGetSeasons(long movieId, int expectedSeasons)
         {
-            var seasonsCount = await _filmWeb.GetFilmSeasonsCount((ulong)movieId);
+            var seasonsCount = await _filmWebApi.GetFilmSeasonsCount((ulong)movieId);
             Assert.AreEqual(expectedSeasons, seasonsCount);
         }
 
@@ -198,7 +198,7 @@ namespace FilmWebAPI.Tests
         [TestCase(800447, 2018)]
         public async Task ShouldGetYear(long movieId, int expectedYear)
         {
-            var year = await _filmWeb.GetFilmYear((ulong)movieId);
+            var year = await _filmWebApi.GetFilmYear((ulong)movieId);
             Assert.AreEqual(expectedYear, year);
         }
     }

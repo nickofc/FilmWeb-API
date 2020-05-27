@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using FilmWebAPI.Core;
+using FilmWebAPI.Core.Communication;
 
 namespace FilmWebAPI.Requests.Get
 {
-    public class GetRepertoireByCinema : RequestBase<dynamic>
+    internal class GetRepertoireByCinema : RequestBase<dynamic>
     {
         public GetRepertoireByCinema(long cinemaId, DateTime time) : base(Signature.Create("getRepertoireByCinema", cinemaId, time), FilmWebHttpMethod.Get)
         {

@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Web;
 
-namespace FilmWebAPI
+namespace FilmWebAPI.Core
 {
     internal static class Url
     {
-        internal static string Create(string baseUrl, ICollection<KeyValuePair<string, string>> arguments)
+        internal static string Create(string baseUrl, 
+            ICollection<KeyValuePair<string, string>> arguments)
         {
             var builder = new UriBuilder(baseUrl);
             var query = HttpUtility.ParseQueryString(string.Empty);

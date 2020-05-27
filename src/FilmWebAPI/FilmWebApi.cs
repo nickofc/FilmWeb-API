@@ -6,59 +6,60 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using FilmWebAPI.Core.Abstraction;
 
 namespace FilmWebAPI
 {
-    public class FilmWeb : IFilmWebApi
+    public class FilmWebApi : IFilmWebApi
     {
         public const string API_URL = "https://ssl.filmweb.pl/api";
 
         protected FilmWebConfig Config { get; set; }
 
-        protected FilmWebApiClient ApiClient { get; set; }
+        protected IFilmWebApiClient ApiClient { get; set; }
 
-        public FilmWeb(FilmWebConfig config)
+        public FilmWebApi(FilmWebConfig config)
         {
             Config = config ?? throw new ArgumentNullException(nameof(config));
             ApiClient = new FilmWebApiClient(config);
         }
 
-        public FilmWeb() : this(FilmWebConfig.Default())
+        public FilmWebApi() : this(FilmWebConfig.Default())
         {
 
         }
 
         // todo: fix login
-        ///// <summary>
-        ///// Pozwala zalogować się do serwisu
-        ///// </summary>
-        ///// <param name="username">Nazwa użytkownika lub adres e-mail</param>
-        ///// <param name="password">Hasło</param>
-        ///// <param name="token">Token do przerwania zadania</param>
-        ///// <returns>Zwraca informacje (<see cref="LoginResult"/>) o użytkowniku i stanie operacji</returns>
-        //public async Task<LoginResult> Login(string username, string password, CancellationToken token = default)
-        //{
-        //    if (string.IsNullOrWhiteSpace(username))
-        //    {
-        //        throw new ArgumentException("Nazwa użytkownika nie może być pusta.", nameof(username));
-        //    }
+        /// <summary>
+        /// Pozwala zalogować się do serwisu
+        /// </summary>
+        /// <param name="username">Nazwa użytkownika lub adres e-mail</param>
+        /// <param name="password">Hasło</param>
+        /// <param name="token">Token do przerwania zadania</param>
+        /// <returns>Zwraca informacje (<see cref="LoginResult"/>) o użytkowniku i stanie operacji</returns>
+        public async Task<LoginResult> Login(string username, string password, CancellationToken token = default)
+        {
+            if (string.IsNullOrWhiteSpace(username))
+            {
+                throw new ArgumentException("Nazwa użytkownika nie może być pusta.", nameof(username));
+            }
 
-        //    if (string.IsNullOrWhiteSpace(password))
-        //    {
-        //        throw new ArgumentException("Hasło nie może być puste.", nameof(password));
-        //    }
+            if (string.IsNullOrWhiteSpace(password))
+            {
+                throw new ArgumentException("Hasło nie może być puste.", nameof(password));
+            }
 
-        //    var login = new Login(username, password);
-        //    return await ApiClient.Dispatch(login, token);
-        //}
+            var login = new Login(username, password);
+            return await ApiClient.Dispatch(login, token);
+        }
 
-        ///// <summary>
-        ///// Powoduje wylogowanie się z sesji
-        ///// </summary>
-        //public void Logout()
-        //{
-        //    ApiClient = new FilmWebApiClient(Config);
-        //}
+        /// <summary>
+        /// Powoduje wylogowanie się z sesji
+        /// </summary>
+        public void Logout()
+        {
+            ApiClient = new FilmWebApiClient(Config);
+        }
 
         public async Task<IReadOnlyCollection<Person>> GetFilmPersons(ulong movieId, PersonType personType, int page, CancellationToken token = default)
         {
@@ -108,13 +109,13 @@ namespace FilmWebAPI
             return await ApiClient.Dispatch(getAvgVote, token);
         }
 
-        public async Task<IEnumerable<string>> GetFilmGenres(ulong movieId, CancellationToken token = default)
+        public async Task<IReadOnlyCollection<string>> GetFilmGenres(ulong movieId, CancellationToken token = default)
         {
             var getGenres = new GetFilmGenres(movieId);
             return await ApiClient.Dispatch(getGenres, token);
         }
 
-        public async Task<IEnumerable<string>> GetFilmProductionCountries(ulong movieId, CancellationToken token = default)
+        public async Task<IReadOnlyCollection<string>> GetFilmProductionCountries(ulong movieId, CancellationToken token = default)
         {
             var getCountries = new GetFilmProductionCountries(movieId);
             return await ApiClient.Dispatch(getCountries, token);
@@ -126,7 +127,7 @@ namespace FilmWebAPI
             return await ApiClient.Dispatch(getDuration, token);
         }
 
-        public async Task<IEnumerable<KeyValuePair<string, DateTime>>> GetFilmPremieres(ulong movieId, CancellationToken token = default)
+        public async Task<IReadOnlyCollection<KeyValuePair<string, DateTime>>> GetFilmPremieres(ulong movieId, CancellationToken token = default)
         {
             var getPremieres = new GetFilmPremieres(movieId);
             return await ApiClient.Dispatch(getPremieres, token);

@@ -3,29 +3,36 @@ using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using FilmWebAPI.Core.Abstraction;
+using FilmWebAPI.Core.Exception;
 
 namespace FilmWebAPI.Core.Communication
 {
     public class FilmWebApiClient : IFilmWebApiClient
     {
-        private readonly HttpExecute _httpExecute;
+        private readonly IHttpExecute _httpExecute;
 
         public FilmWebApiClient(FilmWebConfig filmWebConfig)
         {
+            if (filmWebConfig == null)
+            {
+                throw new ArgumentNullException(nameof(filmWebConfig));
+            }
+
             _httpExecute = new HttpExecute(new HttpClient(new HttpClientHandler
             {
                 AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate,
                 CookieContainer = new CookieContainer(),
-                UseCookies = true,
+                UseCookies = true
             }, true)
             {
-                BaseAddress = new Uri(FilmWeb.API_URL),
+                BaseAddress = new Uri(FilmWebApi.API_URL),
                 DefaultRequestHeaders =
                 {
                     {"User-Agent", "FilmWebAPI"},
-                    {"Accept-Encoding", "gzip, deflate"},
+                    {"Accept-Encoding", "gzip, deflate"}
                 },
-                Timeout = filmWebConfig.Timeout,
+                Timeout = filmWebConfig.Timeout
             });
         }
 
@@ -36,10 +43,17 @@ namespace FilmWebAPI.Core.Communication
                 throw new ArgumentNullException(nameof(instance));
             }
 
-            using (var request = instance.GetRequestMessage())
-            using (var message = await _httpExecute.Execute(request, token).ConfigureAwait(false))
+            try
             {
-                return await instance.Parse(message).ConfigureAwait(false);
+                using (var request = instance.GetRequestMessage())
+                using (var message = await _httpExecute.Execute(request, token).ConfigureAwait(false))
+                {
+                    return await instance.Parse(message).ConfigureAwait(false);
+                }
+            }
+            catch (System.Exception exception)
+            {
+                throw new FilmWebException("There was an exception during the dispatch.", exception);
             }
         }
     }

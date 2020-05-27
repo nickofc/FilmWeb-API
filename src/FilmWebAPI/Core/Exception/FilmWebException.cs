@@ -1,19 +1,14 @@
-﻿using System;
-
-namespace FilmWebAPI
+﻿namespace FilmWebAPI.Core.Exception
 {
-    public class FilmWebException : Exception
+    public class FilmWebException : System.Exception
     {
-        public readonly FilmWebExceptionType FilmWebExceptionType;
-
-        public FilmWebException(FilmWebExceptionType exceptionType)
+        public FilmWebException(string message) : base(message)
         {
-            FilmWebExceptionType = exceptionType;
         }
 
-        public FilmWebException(string message, FilmWebExceptionType filmWebExceptionType) : base(message)
+        public FilmWebException(string message, System.Exception innerException) : base(message, innerException)
         {
-            FilmWebExceptionType = filmWebExceptionType;
+
         }
     }
 }

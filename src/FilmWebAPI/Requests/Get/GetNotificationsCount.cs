@@ -1,10 +1,12 @@
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using FilmWebAPI.Core;
+using FilmWebAPI.Core.Communication;
 
 namespace FilmWebAPI.Requests.Get
 {
-    public class GetNotificationsCount : RequestBase<dynamic>
+    internal class GetNotificationsCount : RequestBase<dynamic>
     {
         public GetNotificationsCount() : base(Signature.Create("getUnreadNotificationsCount"), FilmWebHttpMethod.Get)
         {

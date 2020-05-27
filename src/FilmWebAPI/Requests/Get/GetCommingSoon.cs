@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using FilmWebAPI.Core;
+using FilmWebAPI.Core.Communication;
 
 namespace FilmWebAPI.Requests.Get
 {
-    public class GetCommingSoon : RequestBase<dynamic>
+    internal class GetCommingSoon : RequestBase<dynamic>
     {
         public GetCommingSoon() : base(Signature.Create("getUpcommingFilms"), FilmWebHttpMethod.Get)
         {

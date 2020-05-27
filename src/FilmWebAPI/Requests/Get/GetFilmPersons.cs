@@ -6,10 +6,12 @@ using System.Linq;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using FilmWebAPI.Core;
+using FilmWebAPI.Core.Communication;
 
 namespace FilmWebAPI.Requests.Get
 {
-    public class GetFilmPersons : RequestBase<IReadOnlyCollection<Person>>
+    internal class GetFilmPersons : RequestBase<IReadOnlyCollection<Person>>
     {
         public GetFilmPersons(ulong movieId, PersonType personType, int pageId)
             : base(Signature.Create("getFilmPersons", movieId, (int)personType, pageId * 50, (pageId + 1) * 50), FilmWebHttpMethod.Get)
@@ -18,15 +20,14 @@ namespace FilmWebAPI.Requests.Get
 
         public override async Task<IReadOnlyCollection<Person>> Parse(HttpResponseMessage responseMessage)
         {
-            var jsonBody = await base.GetJsonBody(responseMessage);
-            var json = JsonConvert.DeserializeObject<JArray>(Regex.Replace(jsonBody, "t(s?):(\\d+)$", string.Empty));
+            var json = await GetJsonBody<JArray>(responseMessage);
 
             return json.Select(token =>
             {
                 if (!(token is JArray array))
                     return null;
 
-                return new Person()
+                return new Person
                 {
                     Id = array[0].ToObject<long>(),
                     Name = array[3].ToObject<string>(),

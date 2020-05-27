@@ -8,7 +8,7 @@ namespace FilmWebAPI.Models
 
         public DateTime Birthdate { get; internal set; }
 
-        public DateTime Deathdate { get; internal set; }
+        public DateTime? Deathdate { get; internal set; }
 
         public string Name { internal get; set; }
 
