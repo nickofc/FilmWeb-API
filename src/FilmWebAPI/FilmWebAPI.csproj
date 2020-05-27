@@ -20,4 +20,9 @@
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Requests\Get\NotWorking\" />
+    <Folder Include="Requests\Get\NotImplemented\" />
+  </ItemGroup>
+
 </Project>
