@@ -8,10 +8,6 @@ namespace FilmWebAPI
 {
     public interface IFilmWebApi
     {
-        Task<LoginResult> Login(string username, string password, CancellationToken token = default);
-
-        void Logout();
-
         Task<IReadOnlyCollection<Channel>> GetAllChannels(CancellationToken token = default);
 
         Task<IReadOnlyCollection<City>> GetAllCities(CancellationToken token = default);

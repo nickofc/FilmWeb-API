@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace FilmWebAPI.Tests
 {
-    internal class NewFeaturesTests
+    internal class FilmsTests
     {
         private readonly FilmWeb _filmWeb;
 
-        public NewFeaturesTests()
+        public FilmsTests()
         {
             _filmWeb = new FilmWeb();
         }
