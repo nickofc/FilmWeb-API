@@ -1,10 +1,10 @@
-﻿using FilmWebAPI.Models;
+﻿using FilmWebAPI.Core;
+using FilmWebAPI.Core.Communication;
+using FilmWebAPI.Models;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using FilmWebAPI.Core;
-using FilmWebAPI.Core.Communication;
 
 namespace FilmWebAPI.Requests.Get
 {
@@ -18,7 +18,7 @@ namespace FilmWebAPI.Requests.Get
         {
             return entity.Skip(1).Select(token =>
             {
-                if (!(token is JArray array)) 
+                if (!(token is JArray array))
                     return null;
 
                 return new PersonBirthdate

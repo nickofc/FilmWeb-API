@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using FilmWebAPI.Core;
+using FilmWebAPI.Core.Communication;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using FilmWebAPI.Core;
-using FilmWebAPI.Core.Communication;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace FilmWebAPI.Requests.Get
 {
@@ -14,7 +14,7 @@ namespace FilmWebAPI.Requests.Get
     {
         private const int COUNTRIES_PRODUCTION = 18;
 
-        public GetFilmProductionCountries(ulong movieId) 
+        public GetFilmProductionCountries(ulong movieId)
             : base(Signature.Create("getFilmInfoFull", movieId), FilmWebHttpMethod.Get)
         {
         }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FilmWebAPI.Core.Exception
+﻿namespace FilmWebAPI.Core.Exception
 {
     public class FilmWebInternalException : FilmWebException
     {

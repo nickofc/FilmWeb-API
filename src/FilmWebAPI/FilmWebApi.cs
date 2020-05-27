@@ -1,4 +1,5 @@
-﻿using FilmWebAPI.Core.Communication;
+﻿using FilmWebAPI.Core.Abstraction;
+using FilmWebAPI.Core.Communication;
 using FilmWebAPI.Models;
 using FilmWebAPI.Requests.Get;
 using FilmWebAPI.Requests.Post;
@@ -6,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using FilmWebAPI.Core.Abstraction;
 
 namespace FilmWebAPI
 {

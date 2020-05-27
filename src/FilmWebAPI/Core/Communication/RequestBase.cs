@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
-using FilmWebAPI.Core.Abstraction;
+﻿using FilmWebAPI.Core.Abstraction;
 using FilmWebAPI.Core.Exception;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace FilmWebAPI.Core.Communication
 {
@@ -85,7 +84,7 @@ namespace FilmWebAPI.Core.Communication
 
             if (endJsonBraceIndex > 0)
             {
-                content = content.Substring(0, 
+                content = content.Substring(0,
                     endJsonBraceIndex + 1);
             }
 
@@ -93,8 +92,8 @@ namespace FilmWebAPI.Core.Communication
 
             if (content.StartsWith("exc"))
             {
-                throw new FilmWebInternalException("FilmWebAPI returned an internal exception. \n" + 
-                                                   $"{content.Substring(3, content.Length -3)}.");
+                throw new FilmWebInternalException("FilmWebAPI returned an internal exception. \n" +
+                                                   $"{content.Substring(3, content.Length - 3)}.");
             }
 
             return content;

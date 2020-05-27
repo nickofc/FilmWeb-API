@@ -1,8 +1,8 @@
-﻿using System;
+﻿using FilmWebAPI.Core;
+using FilmWebAPI.Core.Communication;
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
-using FilmWebAPI.Core;
-using FilmWebAPI.Core.Communication;
 
 namespace FilmWebAPI.Requests.Get
 {

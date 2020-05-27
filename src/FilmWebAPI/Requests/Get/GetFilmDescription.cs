@@ -1,13 +1,13 @@
-﻿using System.Threading.Tasks;
-using FilmWebAPI.Core;
+﻿using FilmWebAPI.Core;
 using FilmWebAPI.Core.Communication;
 using Newtonsoft.Json.Linq;
+using System.Threading.Tasks;
 
 namespace FilmWebAPI.Requests.Get
 {
     internal class GetFilmDescription : JsonRequestBase<string, JArray>
     {
-        public GetFilmDescription(ulong movieId) 
+        public GetFilmDescription(ulong movieId)
             : base(Signature.Create("getFilmDescription", movieId), FilmWebHttpMethod.Get)
         {
         }

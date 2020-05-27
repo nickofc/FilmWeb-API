@@ -1,13 +1,13 @@
-﻿using System;
-using System.Linq;
-using FilmWebAPI.Core.Abstraction;
+﻿using FilmWebAPI.Core.Abstraction;
 using FilmWebAPI.Core.Security;
+using System;
+using System.Linq;
 
 namespace FilmWebAPI.Core
 {
     public sealed class Signature : ISignature
     {
-        const string API_KEY = "qjcGhW2JnvGT9dfCt3uT_jozR3s";
+        private const string API_KEY = "qjcGhW2JnvGT9dfCt3uT_jozR3s";
 
         private readonly string _method;
         private string _signature;

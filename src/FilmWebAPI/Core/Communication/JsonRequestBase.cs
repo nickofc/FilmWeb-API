@@ -1,6 +1,6 @@
-﻿using System.Net.Http;
+﻿using FilmWebAPI.Core.Abstraction;
+using System.Net.Http;
 using System.Threading.Tasks;
-using FilmWebAPI.Core.Abstraction;
 
 namespace FilmWebAPI.Core.Communication
 {

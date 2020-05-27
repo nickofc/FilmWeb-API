@@ -1,9 +1,8 @@
-using System;
+using FilmWebAPI.Core;
+using FilmWebAPI.Core.Communication;
 using FilmWebAPI.Models;
 using System.Net.Http;
 using System.Threading.Tasks;
-using FilmWebAPI.Core;
-using FilmWebAPI.Core.Communication;
 
 namespace FilmWebAPI.Requests.Post
 {

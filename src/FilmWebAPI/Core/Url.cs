@@ -6,7 +6,7 @@ namespace FilmWebAPI.Core
 {
     internal static class Url
     {
-        internal static string Create(string baseUrl, 
+        internal static string Create(string baseUrl,
             ICollection<KeyValuePair<string, string>> arguments)
         {
             var builder = new UriBuilder(baseUrl);

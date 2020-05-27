@@ -1,8 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
-using FilmWebAPI.Core;
+﻿using FilmWebAPI.Core;
 using FilmWebAPI.Core.Communication;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Threading.Tasks;
 
 namespace FilmWebAPI.Requests.Get
 {

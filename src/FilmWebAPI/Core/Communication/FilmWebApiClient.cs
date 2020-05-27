@@ -1,10 +1,10 @@
-﻿using System;
+﻿using FilmWebAPI.Core.Abstraction;
+using FilmWebAPI.Core.Exception;
+using System;
 using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using FilmWebAPI.Core.Abstraction;
-using FilmWebAPI.Core.Exception;
 
 namespace FilmWebAPI.Core.Communication
 {
@@ -36,7 +36,7 @@ namespace FilmWebAPI.Core.Communication
             });
         }
 
-        public async Task<T> Dispatch<T>(RequestBase<T> instance, 
+        public async Task<T> Dispatch<T>(RequestBase<T> instance,
             CancellationToken token = default)
         {
             if (instance is null)
@@ -47,7 +47,7 @@ namespace FilmWebAPI.Core.Communication
             return await InnerDispatch(instance, token);
         }
 
-        private async Task<T> InnerDispatch<T>(RequestBase<T> instance, 
+        private async Task<T> InnerDispatch<T>(RequestBase<T> instance,
             CancellationToken token)
         {
             try
@@ -65,7 +65,7 @@ namespace FilmWebAPI.Core.Communication
             }
         }
 
-        private static async Task<T> ParseAsync<T>(IRequest<T> instance, 
+        private static async Task<T> ParseAsync<T>(IRequest<T> instance,
             HttpResponseMessage message)
         {
             try
