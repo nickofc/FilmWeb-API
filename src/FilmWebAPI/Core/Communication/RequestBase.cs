@@ -78,17 +78,20 @@ namespace FilmWebAPI.Core.Communication
                 throw new FilmWebApiFailureException("FilmWebAPI returned an problem.");
             }
 
-            content = content.Remove(0, 3);
-            var endJsonBraceIndex = content.LastIndexOf("]",
-                StringComparison.OrdinalIgnoreCase);
-
-            if (endJsonBraceIndex > 0)
+            if (content.StartsWith("ok"))
             {
-                content = content.Substring(0,
-                    endJsonBraceIndex + 1);
-            }
+                content = content.Remove(0, 3);
+                var endJsonBraceIndex = content.LastIndexOf("]",
+                    StringComparison.OrdinalIgnoreCase);
 
-            content = content.Trim();
+                if (endJsonBraceIndex > 0)
+                {
+                    content = content.Substring(0,
+                        endJsonBraceIndex + 1);
+                }
+
+                content = content.Trim();
+            }
 
             if (content.StartsWith("exc"))
             {

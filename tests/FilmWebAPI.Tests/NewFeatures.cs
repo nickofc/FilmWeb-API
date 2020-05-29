@@ -31,11 +31,6 @@ namespace FilmWebAPI.Tests
                 //new GetFilmPersons(30571, PersonType.Aktor, 0);
 
             var resp = await filmWebApiClient.Dispatch(request, CancellationToken.None);
-
-
-            // 547
-            
-
         }
     }
 }
