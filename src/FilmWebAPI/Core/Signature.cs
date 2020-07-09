@@ -7,15 +7,15 @@ namespace FilmWebAPI.Core
 {
     public sealed class Signature : ISignature
     {
-        private const string API_KEY = "qjcGhW2JnvGT9dfCt3uT_jozR3s";
-
-        private readonly string _method;
-        private string _signature;
+        private const string ApiKey = "qjcGhW2JnvGT9dfCt3uT_jozR3s";
 
         private Signature(string method)
         {
             _method = method ?? throw new ArgumentNullException(nameof(method), "Nazwa metody nie może być pusta!");
         }
+
+        private readonly string _method;
+        private string _signature;
 
         public string GetMethod()
         {
@@ -27,20 +27,20 @@ namespace FilmWebAPI.Core
             return _signature ?? (_signature = ComputeSign());
         }
 
-        public static Signature Create(string method, params object[] arguments)
-        {
-            return arguments != null && arguments.Any() ? new Signature(ToCSV(method, arguments)) : new Signature(method);
-        }
-
         private string ComputeSign()
         {
             const string version = "android";
-            return $"1.0,{Md5.ComputeHash($"{_method}{version}{API_KEY}")}";
+            return $"1.0,{Md5.ComputeHash($"{_method}{version}{ApiKey}")}";
         }
 
-        internal static string ToCSV(string method, params object[] arguments)
+        public static Signature Create(string method, params object[] arguments)
         {
-            return $"{method} [{Csv.To(arguments)}]\n";
+            return arguments != null && arguments.Any() ? new Signature(GetMethod(method, arguments)) : new Signature(method);
+        }
+
+        private static string GetMethod(string method, params object[] arguments)
+        {
+            return $"{method} [{string.Join(", ", arguments)}]\n";
         }
     }
 }

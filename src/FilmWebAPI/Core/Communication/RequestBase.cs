@@ -40,9 +40,9 @@ namespace FilmWebAPI.Core.Communication
             switch (_filmWebHttpMethod)
             {
                 case FilmWebHttpMethod.Get:
-                    return new HttpRequestMessage(HttpMethod.Get, Url.Create(FilmWebApi.API_URL, args));
+                    return new HttpRequestMessage(HttpMethod.Get, Url.Create(FilmWebApi.ApiUrl, args));
                 case FilmWebHttpMethod.Post:
-                    return new HttpRequestMessage(HttpMethod.Post, FilmWebApi.API_URL)
+                    return new HttpRequestMessage(HttpMethod.Post, FilmWebApi.ApiUrl)
                     {
                         Content = new FormUrlEncodedContent(args)
                     };

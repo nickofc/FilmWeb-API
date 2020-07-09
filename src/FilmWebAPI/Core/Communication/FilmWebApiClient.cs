@@ -12,6 +12,11 @@ namespace FilmWebAPI.Core.Communication
     {
         private readonly IHttpExecute _httpExecute;
 
+        public FilmWebApiClient() : this(FilmWebConfig.Default)
+        {
+
+        }
+
         public FilmWebApiClient(FilmWebConfig filmWebConfig)
         {
             if (filmWebConfig == null)
@@ -26,7 +31,7 @@ namespace FilmWebAPI.Core.Communication
                 UseCookies = true
             }, true)
             {
-                BaseAddress = new Uri(FilmWebApi.API_URL),
+                BaseAddress = new Uri(FilmWebApi.ApiUrl),
                 DefaultRequestHeaders =
                 {
                     {"User-Agent", "FilmWebAPI"},

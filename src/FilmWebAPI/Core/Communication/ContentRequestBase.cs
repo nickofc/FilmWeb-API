@@ -14,8 +14,8 @@ namespace FilmWebAPI.Core.Communication
 
         public override async Task<TEntity> Parse(HttpResponseMessage responseMessage)
         {
-            var content = await GetRawBody(responseMessage).ConfigureAwait(false);
-            return await Parse(content).ConfigureAwait(false);
+            var raw = await GetRawBody(responseMessage).ConfigureAwait(false);
+            return await Parse(raw).ConfigureAwait(false);
         }
 
         public abstract Task<TEntity> Parse(string content);

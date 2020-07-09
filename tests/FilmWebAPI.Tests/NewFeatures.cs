@@ -15,7 +15,7 @@ namespace FilmWebAPI.Tests
 {
     public class NewFeatures
     {
-        private readonly IFilmWebApi _filmWebApi;
+        private readonly FilmWebApi _filmWebApi;
 
         public NewFeatures()
         {
@@ -25,9 +25,9 @@ namespace FilmWebAPI.Tests
         [Test]
         public async Task Fun()
         {
-            var filmWebApiClient = new FilmWebApiClient(FilmWebConfig.Default());
+            var filmWebApiClient = new FilmWebApiClient();
 
-            var request = new LiveSearch("Harry");
+            var request = new Search("Gra");
                 //new GetFilmPersons(30571, PersonType.Aktor, 0);
 
             var resp = await filmWebApiClient.Dispatch(request, CancellationToken.None);

@@ -2,21 +2,18 @@
 using FilmWebAPI.Core.Communication;
 using FilmWebAPI.Models;
 using FilmWebAPI.Requests.Get;
-using FilmWebAPI.Requests.Post;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace FilmWebAPI
 {
-    public class FilmWebApi : IFilmWebApi
+    public class FilmWebApi
     {
-        public const string API_URL = "https://ssl.filmweb.pl/api";
+        public const string ApiUrl = "https://ssl.filmweb.pl/api";
 
         protected FilmWebConfig Config { get; set; }
-
         protected IFilmWebApiClient ApiClient { get; set; }
 
         public FilmWebApi(FilmWebConfig config)
@@ -25,41 +22,9 @@ namespace FilmWebAPI
             ApiClient = new FilmWebApiClient(config);
         }
 
-        public FilmWebApi() : this(FilmWebConfig.Default())
+        public FilmWebApi() : this(FilmWebConfig.Default)
         {
 
-        }
-
-        // todo: fix login
-        /// <summary>
-        /// Pozwala zalogować się do serwisu
-        /// </summary>
-        /// <param name="username">Nazwa użytkownika lub adres e-mail</param>
-        /// <param name="password">Hasło</param>
-        /// <param name="token">Token do przerwania zadania</param>
-        /// <returns>Zwraca informacje (<see cref="LoginResult"/>) o użytkowniku i stanie operacji</returns>
-        public async Task<LoginResult> Login(string username, string password, CancellationToken token = default)
-        {
-            if (string.IsNullOrWhiteSpace(username))
-            {
-                throw new ArgumentException("Nazwa użytkownika nie może być pusta.", nameof(username));
-            }
-
-            if (string.IsNullOrWhiteSpace(password))
-            {
-                throw new ArgumentException("Hasło nie może być puste.", nameof(password));
-            }
-
-            var login = new Login(username, password);
-            return await ApiClient.Dispatch(login, token).ConfigureAwait(false);
-        }
-
-        /// <summary>
-        /// Powoduje wylogowanie się z sesji
-        /// </summary>
-        public void Logout()
-        {
-            ApiClient = new FilmWebApiClient(Config);
         }
 
         public async Task<IReadOnlyCollection<Person>> GetFilmPersons(ulong movieId, PersonType personType, int page, CancellationToken token = default)
@@ -68,10 +33,10 @@ namespace FilmWebAPI
             return await ApiClient.Dispatch(getFilmPersons, token).ConfigureAwait(false);
         }
 
-        public async Task<IReadOnlyCollection<Item>> LiveSearch(string query, CancellationToken token = default)
+        public async Task<SearchSummary> Search(string query, CancellationToken token = default)
         {
-            var search = new LiveSearch(query);
-            return await ApiClient.Dispatch(search, token);
+            var search = new Search(query);
+            return await ApiClient.Dispatch(search, token).ConfigureAwait(false);
         }
 
         public async Task<IReadOnlyCollection<PersonBirthdate>> GetBornTodayPersons(CancellationToken token = default)

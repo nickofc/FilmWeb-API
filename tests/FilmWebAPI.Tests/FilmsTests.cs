@@ -54,7 +54,7 @@ namespace FilmWebAPI.Tests
         //public async Task ShouldFindMovieId(string movieTitle, long expectedId)
         //{
         //    var movieId = await _filmWebApi.LiveSearch(movieTitle);
-        //    Assert.AreEqual(expectedId, movieId.Value);
+        //    Assert.AreEqual(expectedId, movieId.InternalValue);
         //}
 
         //[Test]
@@ -130,7 +130,7 @@ namespace FilmWebAPI.Tests
         //    var premiereInAskedPlace = premieres.First(x => x.Key == country);
 
         //    var expectedDate = DateTime.Parse(expectedPremierDate);
-        //    Assert.AreEqual(expectedDate, premiereInAskedPlace.Value);
+        //    Assert.AreEqual(expectedDate, premiereInAskedPlace.InternalValue);
         //}
 
         //[Test]
