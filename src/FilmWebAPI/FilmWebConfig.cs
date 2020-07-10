@@ -4,7 +4,21 @@ namespace FilmWebAPI
 {
     public class FilmWebConfig
     {
-        public TimeSpan Timeout { get; set; }
+        private TimeSpan _timeout;
+
+        public TimeSpan Timeout
+        {
+            get => _timeout;
+            set
+            {
+                if (value.TotalMilliseconds < 0)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(value));
+                }
+
+                _timeout = value;
+            }
+        }
 
         public static FilmWebConfig Default
         {
