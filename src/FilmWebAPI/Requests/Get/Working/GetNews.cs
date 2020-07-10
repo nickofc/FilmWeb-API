@@ -18,10 +18,9 @@ namespace FilmWebAPI.Requests.Get
 
         public override Task<News> Parse(string[] entity)
         {
-            /* news not found */
             if (entity == null)
             {
-                return null;
+                return Task.FromResult<News>(null);
             }
 
             long.TryParse(entity[3], out var unixTime);

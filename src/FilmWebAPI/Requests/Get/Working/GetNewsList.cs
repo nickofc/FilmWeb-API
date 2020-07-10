@@ -1,13 +1,11 @@
-﻿using FilmWebAPI.Core;
-using FilmWebAPI.Core.Communication;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
-using FilmWebAPI.Models;
+using FilmWebAPI.Core;
+using FilmWebAPI.Core.Communication;
 using Newtonsoft.Json.Linq;
 
-namespace FilmWebAPI.Requests.Get
+namespace FilmWebAPI.Requests.Get.Working
 {
     public class GetNewsList : JsonRequestBase<IReadOnlyCollection<NewsListItem>, JArray>
     {

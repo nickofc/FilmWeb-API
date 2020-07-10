@@ -16,7 +16,7 @@ namespace FilmWebAPI.Requests.Get
 
         public override async Task<IReadOnlyCollection<Channel>> Parse(JArray entity)
         {
-            return entity.Skip(1).Select(token =>
+            return entity.Select(token =>
             {
                 if (!(token is JArray array))
                     return null;

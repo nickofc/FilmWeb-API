@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using FilmWebAPI.Core.Communication;
 using FilmWebAPI.Models;
 using FilmWebAPI.Requests.Get;
+using FilmWebAPI.Requests.Get.Working;
 using NUnit.Framework;
 
 namespace FilmWebAPI.Tests
