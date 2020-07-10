@@ -5,9 +5,5 @@
         public FilmWebInternalException(string message) : base(message)
         {
         }
-
-        public FilmWebInternalException(string message, System.Exception innerException) : base(message, innerException)
-        {
-        }
     }
 }

@@ -26,8 +26,8 @@ namespace FilmWebAPI.Requests.Get
                 {
                     Id = array[0].ToObject<int>(),
                     Name = array[1].ToObject<string>(),
-                    Latitude = array[2].Value<double?>(),
-                    Longitude = array[3].Value<double?>(),
+                    Location = new Location(array[2].Value<double>(), 
+                        array[3].Value<double>()),
                     CityId = array[4].ToObject<int>(),
                     Address = array[5].ToObject<string>(),
                     Phone = array[6].ToObject<string>(),

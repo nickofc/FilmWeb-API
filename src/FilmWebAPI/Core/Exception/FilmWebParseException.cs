@@ -1,12 +1,10 @@
 ﻿namespace FilmWebAPI.Core.Exception
 {
+    using System;
+
     public class FilmWebParseException : FilmWebException
     {
-        public FilmWebParseException(string message) : base(message)
-        {
-        }
-
-        public FilmWebParseException(string message, System.Exception innerException) : base(message, innerException)
+        public FilmWebParseException(string message, Exception innerException) : base(message, innerException)
         {
 
         }

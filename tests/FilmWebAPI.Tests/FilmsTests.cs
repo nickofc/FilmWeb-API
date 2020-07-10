@@ -166,21 +166,68 @@ namespace FilmWebAPI.Tests
         //    Assert.GreaterOrEqual(votesCount, expectedVotesCount);
         //}
 
-        //[Test]
-        //[TestCase(799827, 0)]
-        //public async Task ShouldGetSeasons(long movieId, int expectedSeasons)
-        //{
-        //    var seasonsCount = await _filmWebApi.GetFilmSeasonsCount((ulong)movieId);
-        //    Assert.AreEqual(expectedSeasons, seasonsCount);
-        //}
+        // [Test]
+        // [TestCase(799827, 0)]
+        // public async Task ShouldGetSeasons(long movieId, int expectedSeasons)
+        // {
+        //     var seasonsCount = await _filmWebApi.GetFilmSeasonsCount((ulong)movieId);
+        //     Assert.AreEqual(expectedSeasons, seasonsCount);
+        // }
 
-        //[Test]
-        //[TestCase(799827, 2019)]
-        //[TestCase(800447, 2018)]
-        //public async Task ShouldGetYear(long movieId, int expectedYear)
-        //{
-        //    var year = await _filmWebApi.GetFilmYear((ulong)movieId);
-        //    Assert.AreEqual(expectedYear, year);
-        //}
+        // [Test]
+        // [TestCase(799827, 2019)]
+        // [TestCase(800447, 2018)]
+        // public async Task ShouldGetYear(long movieId, int expectedYear)
+        // {
+        //     var year = await _filmWebApi.GetFilmYear((ulong)movieId);
+        //     Assert.AreEqual(expectedYear, year);
+        // }
+
+
+        [Test]
+        public async Task ProvidedValidInput_ShouldFindMovie()
+        {
+            var searchSummary = await _filmWebApi.Search("Harry Potter");
+            var titles = searchSummary.Movies
+                .SelectMany(x => x.GetTitles())
+                .Select(x => x.ToLower())
+                .ToArray();
+
+            Assert.True(titles.Any(x => x.Contains("harry potter")));
+        }
+
+        [Test]
+        public async Task ProvidedValidInput_ShouldFindPerson()
+        {
+            var searchSummary = await _filmWebApi.Search("Daniel");
+            var person = searchSummary.Person
+                .Select(x => x.GetFullName())
+                .Select(x => x.ToLower())
+                .ToArray();
+
+            Assert.True(person.Any(x => x.Contains("daniel radcliffe")));
+        }
+
+
+        [Test]
+        public async Task ProvidedValidInput_ShouldFindSerial()
+        {
+            var searchSummary = await _filmWebApi.Search("Gra");
+            var serials = searchSummary.Serials
+                .SelectMany(x => x.GetTitles())
+                .Select(x => x.ToLower())
+                .ToArray();
+
+            Assert.True(serials.Any(x => x.Contains("gra o tron")));
+        }
+
+        [Test]
+        public async Task ProvidedNullInput_ShouldThrowException()
+        {
+            Assert.ThrowsAsync<ArgumentNullException>(async () =>
+            {
+                await _filmWebApi.Search(null);
+            });
+        }
     }
 }

@@ -14,13 +14,13 @@ namespace FilmWebAPI.Tests
         }
 
        // [Ignore("Method Login isn't used anywhere and it's not always working")]
-        [Theory]
-        [TestCase("fake-user", "fake-pass", false)]
-        public async Task LoginTests(string username, string password, bool expectedResult)
-        {
-            var result = await _filmWebApi.Login(username, password);
-            Assert.AreEqual(result.IsLoggedIn, expectedResult);
-        }
+        // [Theory]
+        // [TestCase("fake-user", "fake-pass", false)]
+        // public async Task LoginTests(string username, string password, bool expectedResult)
+        // {
+        //     var result = await _filmWebApi.Login(username, password);
+        //     Assert.AreEqual(result.IsLoggedIn, expectedResult);
+        // }
 
         [Test]
         public async Task GetAllChannelsTests()
