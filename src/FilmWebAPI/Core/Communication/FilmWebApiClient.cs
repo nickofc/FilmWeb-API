@@ -61,7 +61,8 @@ namespace FilmWebAPI.Core.Communication
                 using (var message = await _httpExecute.Execute(request, token)
                     .ConfigureAwait(false))
                 {
-                    return await ParseAsync(instance, message);
+                    return await ParseAsync(instance, message)
+                        .ConfigureAwait(false);
                 }
             }
             catch (System.Exception exception)

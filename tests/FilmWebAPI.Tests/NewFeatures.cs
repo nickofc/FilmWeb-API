@@ -27,10 +27,13 @@ namespace FilmWebAPI.Tests
         {
             var filmWebApiClient = new FilmWebApiClient();
 
-            var request = new Search("Gra");
-                //new GetFilmPersons(30571, PersonType.Aktor, 0);
-
+            var request = new GetNewsList(0);
             var resp = await filmWebApiClient.Dispatch(request, CancellationToken.None);
+
+
+            var asdf = new GetNews(resp.First().Id);
+
+            var asdff = await filmWebApiClient.Dispatch(asdf);
         }
     }
 }

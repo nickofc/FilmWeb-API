@@ -14,6 +14,8 @@ namespace FilmWebAPI.Requests.Get
 
         public override async Task<dynamic> Parse(HttpResponseMessage responseMessage)
         {
+            var content = await responseMessage.Content.ReadAsStringAsync();
+
             throw new NotImplementedException();
         }
     }

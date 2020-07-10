@@ -68,5 +68,17 @@ namespace FilmWebAPI
             var getDescription = new GetFilmDescription(movieId);
             return await ApiClient.Dispatch(getDescription, token).ConfigureAwait(false);
         }
+
+        public async Task<IReadOnlyCollection<NewsListItem>> GetNews(uint page, CancellationToken token = default)
+        {
+            var getNewsList = new GetNewsList(page);
+            return await ApiClient.Dispatch(getNewsList, token).ConfigureAwait(false);
+        }
+
+        public async Task<News> GetNews(NewsId newsId, CancellationToken token = default)
+        {
+            var getNews = new GetNews(newsId);
+            return await ApiClient.Dispatch(getNews, token).ConfigureAwait(false);
+        }
     }
 }

@@ -2,7 +2,9 @@
 using NUnit.Framework;
 using System;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using FilmWebAPI.Requests.Get;
 
 namespace FilmWebAPI.Tests
 {
@@ -115,7 +117,7 @@ namespace FilmWebAPI.Tests
         {
             var duration = await _filmWebApi.GetFilmInfo((ulong)movieId);
             var expectedTimeSpan = TimeSpan.FromMinutes(expectedNumberOfMinutes);
-            Assert.AreEqual(expectedTimeSpan, duration);
+            Assert.AreEqual(expectedTimeSpan, duration.Duration);
         }
 
         //[Test]
@@ -228,6 +230,33 @@ namespace FilmWebAPI.Tests
             {
                 await _filmWebApi.Search(null);
             });
+        }
+
+        [Test]
+        public async Task ShouldReturnNews()
+        {
+            var news = await _filmWebApi.GetNews(0);
+            Assert.True(news.Count > 0);
+        }
+
+        [Test]
+        public async Task ProvidedValidInput_ShouldReturnNews()
+        {
+            var newsListItems = await _filmWebApi.GetNews(0);
+
+            Assert.True(newsListItems.Count > 0);
+
+            var newsItem = newsListItems.FirstOrDefault();
+            var news = await _filmWebApi.GetNews(newsItem.Id);
+
+            Assert.NotNull(news);
+        }
+
+        [Test]
+        public async Task ProvidedInvalidInput_ShouldReturnNullNews()
+        {
+            var news = await _filmWebApi.GetNews(new NewsId(long.MaxValue));
+            Assert.IsNull(news);
         }
     }
 }

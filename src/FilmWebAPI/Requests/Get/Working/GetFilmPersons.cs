@@ -30,7 +30,7 @@ namespace FilmWebAPI.Requests.Get
                     InFilm = array[1].ToObject<string>(),
                     SubTitle = array[2].ToObject<string>(),
                     Name = array[3].ToObject<string>(),
-                    PhotoUrl = new Uri(array[4].ToObject<string>())
+                    PhotoUrl = Safe.ToUrl(array[4].ToObject<string>()),
                 };
 
             }).ToArray();
