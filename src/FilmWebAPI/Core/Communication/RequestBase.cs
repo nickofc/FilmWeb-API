@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using FilmWebAPI.Core.Common;
 
 namespace FilmWebAPI.Core.Communication
 {
@@ -37,18 +38,15 @@ namespace FilmWebAPI.Core.Communication
                 {"signature", _signature.GetSignature()},
             };
 
-            switch (_filmWebHttpMethod)
+            return _filmWebHttpMethod switch
             {
-                case FilmWebHttpMethod.Get:
-                    return new HttpRequestMessage(HttpMethod.Get, Url.Create(FilmWebApi.ApiUrl, args));
-                case FilmWebHttpMethod.Post:
-                    return new HttpRequestMessage(HttpMethod.Post, FilmWebApi.ApiUrl)
-                    {
-                        Content = new FormUrlEncodedContent(args)
-                    };
-                default:
-                    throw new NotImplementedException($"The {_filmWebHttpMethod} method is not supported!");
-            }
+                FilmWebHttpMethod.Get => new HttpRequestMessage(HttpMethod.Get, Url.Create(FilmWebApiClient.ApiUrl, args)),
+                FilmWebHttpMethod.Post => new HttpRequestMessage(HttpMethod.Post, FilmWebApiClient.ApiUrl)
+                {
+                    Content = new FormUrlEncodedContent(args)
+                },
+                _ => throw new NotImplementedException($"The {_filmWebHttpMethod} method is not supported!")
+            };
         }
 
         public abstract Task<TEntity> Parse(HttpResponseMessage responseMessage);

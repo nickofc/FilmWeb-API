@@ -1,7 +1,6 @@
 ﻿using System;
-using FilmWebAPI.Requests.Get.SearchImpl;
 
-namespace FilmWebAPI.Requests.Get
+namespace FilmWebAPI.Models
 {
     public class PersonSearchItem : SearchItemBase
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace FilmWebAPI.Requests.Get.SearchImpl
+namespace FilmWebAPI.Models
 {
     public class Movie
     {

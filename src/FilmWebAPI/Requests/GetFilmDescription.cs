@@ -1,9 +1,8 @@
-﻿using FilmWebAPI.Core;
+﻿using System.Threading.Tasks;
 using FilmWebAPI.Core.Communication;
 using Newtonsoft.Json.Linq;
-using System.Threading.Tasks;
 
-namespace FilmWebAPI.Requests.Get
+namespace FilmWebAPI.Requests
 {
     public class GetFilmDescription : JsonRequestBase<string, JArray>
     {

@@ -1,85 +1,87 @@
 ﻿using FilmWebAPI.Core.Abstraction;
 using FilmWebAPI.Core.Communication;
 using FilmWebAPI.Models;
-using FilmWebAPI.Requests.Get;
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
-using FilmWebAPI.Requests.Get.Working;
+using FilmWebAPI.Core;
+using FilmWebAPI.Requests;
+using FilmWebAPI.Requests.Get.Working.ToFix;
 
 namespace FilmWebAPI
 {
     public class FilmWebApi
     {
-        public const string ApiUrl = "https://ssl.filmweb.pl/api";
-
-        protected FilmWebConfig Config { get; set; }
-        protected IFilmWebApiClient ApiClient { get; set; }
-
-        public FilmWebApi(FilmWebConfig config)
+        public FilmWebApi() : this(FilmWebConfig.Default) { }
+        
+        public FilmWebApi(FilmWebConfig filmWebConfig)
         {
-            Config = config ?? throw new ArgumentNullException(nameof(config));
-            ApiClient = new FilmWebApiClient(config);
+            FilmWebConfig = filmWebConfig ?? throw new ArgumentNullException(nameof(filmWebConfig));
+            FilmWebApiClient = new FilmWebApiClient(filmWebConfig);
         }
 
-        public FilmWebApi() : this(FilmWebConfig.Default)
-        {
+        protected FilmWebConfig FilmWebConfig { get; set; }
+        protected IFilmWebApiClient FilmWebApiClient { get; set; }
 
+        public async Task<IReadOnlyCollection<Person>> GetFilmPersons(Movie movie, PersonType personType, int page,
+            CancellationToken token = default)
+        {
+            return await GetFilmPersons(movie.Id, personType, page, token).ConfigureAwait(false);
         }
 
-        public async Task<IReadOnlyCollection<Person>> GetFilmPersons(ulong movieId, PersonType personType, int page, CancellationToken token = default)
+        public async Task<IReadOnlyCollection<Person>> GetFilmPersons(MovieId movieId, PersonType personType, int page, CancellationToken token = default)
         {
             var getFilmPersons = new GetFilmPersons(movieId, personType, page);
-            return await ApiClient.Dispatch(getFilmPersons, token).ConfigureAwait(false);
+            return await FilmWebApiClient.Dispatch(getFilmPersons, token).ConfigureAwait(false);
         }
 
         public async Task<SearchSummary> Search(string query, CancellationToken token = default)
         {
             var search = new Search(query);
-            return await ApiClient.Dispatch(search, token).ConfigureAwait(false);
+            return await FilmWebApiClient.Dispatch(search, token).ConfigureAwait(false);
         }
 
         public async Task<IReadOnlyCollection<PersonBirthdate>> GetBornTodayPersons(CancellationToken token = default)
         {
             var getBornTodayPersons = new GetBornTodayPersons();
-            return await ApiClient.Dispatch(getBornTodayPersons, token).ConfigureAwait(false);
+            return await FilmWebApiClient.Dispatch(getBornTodayPersons, token).ConfigureAwait(false);
         }
 
         public async Task<IReadOnlyCollection<City>> GetAllCities(CancellationToken token = default)
         {
             var getAllCities = new GetAllCities();
-            return await ApiClient.Dispatch(getAllCities, token).ConfigureAwait(false);
+            return await FilmWebApiClient.Dispatch(getAllCities, token).ConfigureAwait(false);
         }
 
         public async Task<IReadOnlyCollection<Channel>> GetAllChannels(CancellationToken token = default)
         {
             var getAllChannels = new GetAllChannels();
-            return await ApiClient.Dispatch(getAllChannels, token).ConfigureAwait(false);
+            return await FilmWebApiClient.Dispatch(getAllChannels, token).ConfigureAwait(false);
         }
 
-        public async Task<FilmInfo> GetFilmInfo(ulong movieId, CancellationToken token = default)
+        public async Task<FilmInfo> GetFilmInfo(MovieId movieId, CancellationToken token = default)
         {
             var getDuration = new GetFilmInfoFull(movieId);
-            return await ApiClient.Dispatch(getDuration, token).ConfigureAwait(false);
+            return await FilmWebApiClient.Dispatch(getDuration, token).ConfigureAwait(false);
         }
 
-        public async Task<string> GetFilmDescription(ulong movieId, CancellationToken token = default)
-        {
-            var getDescription = new GetFilmDescription(movieId);
-            return await ApiClient.Dispatch(getDescription, token).ConfigureAwait(false);
-        }
-
-        public async Task<IReadOnlyCollection<NewsListItem>> GetNews(uint page, CancellationToken token = default)
+        public async Task<IReadOnlyCollection<NewsListItem>> GetNewsList(uint page, CancellationToken token = default)
         {
             var getNewsList = new GetNewsList(page);
-            return await ApiClient.Dispatch(getNewsList, token).ConfigureAwait(false);
+            return await FilmWebApiClient.Dispatch(getNewsList, token).ConfigureAwait(false);
         }
 
-        public async Task<News> GetNews(NewsId newsId, CancellationToken token = default)
+        public async Task<News> GetNewsDetails(NewsListItem newsListItem, CancellationToken token = default)
+        {
+            return await GetNewsDetails(newsListItem.Id, token).ConfigureAwait(false);
+        }
+
+        public async Task<News> GetNewsDetails(NewsId newsId, CancellationToken token = default)
         {
             var getNews = new GetNews(newsId);
-            return await ApiClient.Dispatch(getNews, token).ConfigureAwait(false);
+            return await FilmWebApiClient.Dispatch(getNews, token).ConfigureAwait(false);
         }
     }
 }

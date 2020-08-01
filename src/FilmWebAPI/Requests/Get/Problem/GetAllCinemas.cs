@@ -1,12 +1,11 @@
-﻿using FilmWebAPI.Core;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using FilmWebAPI.Core.Communication;
 using FilmWebAPI.Models;
 using Newtonsoft.Json.Linq;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace FilmWebAPI.Requests.Get
+namespace FilmWebAPI.Requests.Get.Problem
 {
     /* zwraca jeden wynik */
     public class GetAllCinemas : JsonRequestBase<IReadOnlyCollection<Cinema>, JArray>

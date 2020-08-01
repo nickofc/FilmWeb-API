@@ -1,12 +1,9 @@
-﻿using FilmWebAPI.Core;
+﻿using System.Threading.Tasks;
+using FilmWebAPI.Core.Common;
 using FilmWebAPI.Core.Communication;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Newtonsoft.Json.Linq;
+using FilmWebAPI.Models;
 
-namespace FilmWebAPI.Requests.Get
+namespace FilmWebAPI.Requests
 {
     public class GetNews : JsonRequestBase<News, string[]>
     {
@@ -32,7 +29,7 @@ namespace FilmWebAPI.Requests.Get
                 ShortBody = entity[1] ?? string.Empty,
                 FullBody = entity[2] ?? string.Empty,
                 CreatedAt = DateTimeEx.GetFromUnixTime(unixTime),
-                Image = Safe.ToUrl(entity[4] ?? string.Empty),
+                Image = Core.Common.Parse.Url(entity[4] ?? string.Empty),
 
                 UnknownField1 = entity[5],
                 UnknownField2 = entity[6],

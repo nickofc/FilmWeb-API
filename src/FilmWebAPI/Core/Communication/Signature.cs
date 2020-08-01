@@ -1,9 +1,9 @@
-﻿using FilmWebAPI.Core.Abstraction;
-using FilmWebAPI.Core.Security;
-using System;
+﻿using System;
 using System.Linq;
+using FilmWebAPI.Core.Abstraction;
+using FilmWebAPI.Core.Security;
 
-namespace FilmWebAPI.Core
+namespace FilmWebAPI.Core.Communication
 {
     public sealed class Signature : ISignature
     {

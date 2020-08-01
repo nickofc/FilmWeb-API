@@ -1,4 +1,4 @@
-﻿namespace FilmWebAPI.Requests.Get
+﻿namespace FilmWebAPI.Models
 {
     public class Review
     {

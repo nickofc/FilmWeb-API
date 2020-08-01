@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using FilmWebAPI.Requests.Get;
-using FilmWebAPI.Requests.Get.SearchImpl;
 
 namespace FilmWebAPI.Models
 {

@@ -1,17 +1,16 @@
-﻿using FilmWebAPI.Core;
-using FilmWebAPI.Core.Communication;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Threading.Tasks;
+using FilmWebAPI.Core.Communication;
 using FilmWebAPI.Models;
+using Newtonsoft.Json.Linq;
 
-namespace FilmWebAPI.Requests.Get
+namespace FilmWebAPI.Requests.Get.Working.ToFix
 {
     /* todo: testy */
     public class GetFilmInfoFull : JsonRequestBase<FilmInfo, JArray>
     {
 
-        public GetFilmInfoFull(ulong movieId)
+        public GetFilmInfoFull(long movieId)
             : base(Signature.Create("getFilmInfoFull", movieId), FilmWebHttpMethod.Get)
         {
         }

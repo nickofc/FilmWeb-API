@@ -6,10 +6,11 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using FilmWebAPI.Core;
 using FilmWebAPI.Core.Communication;
 using FilmWebAPI.Models;
-using FilmWebAPI.Requests.Get;
-using FilmWebAPI.Requests.Get.Working;
+using FilmWebAPI.Requests;
+using FilmWebAPI.Requests.Post;
 using NUnit.Framework;
 
 namespace FilmWebAPI.Tests
@@ -28,13 +29,7 @@ namespace FilmWebAPI.Tests
         {
             var filmWebApiClient = new FilmWebApiClient();
 
-            var request = new GetNewsList(0);
-            var resp = await filmWebApiClient.Dispatch(request, CancellationToken.None);
-
-
-            var asdf = new GetNews(resp.First().Id);
-
-            var asdff = await filmWebApiClient.Dispatch(asdf);
+            
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FilmWebAPI.Requests.Get.SearchImpl
+namespace FilmWebAPI.Models
 {
     public class MovieId
     {

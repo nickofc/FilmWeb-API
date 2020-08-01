@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Web;
 
-namespace FilmWebAPI.Core
+namespace FilmWebAPI.Core.Common
 {
     internal static class Url
     {

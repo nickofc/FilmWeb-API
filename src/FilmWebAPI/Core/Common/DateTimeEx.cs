@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace FilmWebAPI
+namespace FilmWebAPI.Core.Common
 {
     internal static class DateTimeEx
     {

@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using FilmWebAPI.Requests.Get.SearchImpl;
 
-namespace FilmWebAPI.Requests.Get
+namespace FilmWebAPI.Models
 {
     public class SerialSearchItem : SearchItemBase
     {

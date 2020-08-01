@@ -3,7 +3,6 @@
     public interface ISignature
     {
         string GetMethod();
-
         string GetSignature();
     }
 }

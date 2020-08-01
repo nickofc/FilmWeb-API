@@ -1,12 +1,11 @@
-﻿using FilmWebAPI.Core.Communication;
-using System;
+﻿using System;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using FilmWebAPI.Core.Communication;
 using FilmWebAPI.Models;
-using FilmWebAPI.Requests.Get.SearchImpl;
 
-namespace FilmWebAPI.Requests.Get
+namespace FilmWebAPI.Requests
 {
     public class Search : ContentRequestBase<SearchSummary>
     {

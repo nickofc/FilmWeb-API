@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FilmWebAPI.Requests.Get
+namespace FilmWebAPI.Models
 {
     public class NewsListItem
     {

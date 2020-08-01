@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace FilmWebAPI.Core
+namespace FilmWebAPI.Core.Common
 {
-    public static class Safe
+    internal static class Parse
     {
-        internal static Uri ToUrl(string s)
+        internal static Uri Url(string s)
         {
             if (string.IsNullOrEmpty(s))
             {

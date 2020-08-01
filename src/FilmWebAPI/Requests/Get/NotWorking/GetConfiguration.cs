@@ -1,10 +1,8 @@
-﻿using FilmWebAPI.Core;
-using FilmWebAPI.Core.Communication;
-using System;
-using System.Net.Http;
+﻿using System;
 using System.Threading.Tasks;
+using FilmWebAPI.Core.Communication;
 
-namespace FilmWebAPI.Requests.Get
+namespace FilmWebAPI.Requests.Get.NotWorking
 {
     public class GetConfiguration : ContentRequestBase<dynamic>
     {

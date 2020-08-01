@@ -1,14 +1,12 @@
-﻿using FilmWebAPI.Core;
-using FilmWebAPI.Core.Communication;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
+using FilmWebAPI.Core.Communication;
 using FilmWebAPI.Models;
 using Newtonsoft.Json.Linq;
 
-namespace FilmWebAPI.Requests.Get
+namespace FilmWebAPI.Requests
 {
     /* todo check size */
     public class GetFilmPersonsLead : JsonRequestBase<IReadOnlyCollection<Person>, JArray>

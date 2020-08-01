@@ -1,11 +1,8 @@
-﻿using FilmWebAPI.Core;
+﻿using System.Threading.Tasks;
 using FilmWebAPI.Core.Communication;
-using System;
-using System.Net.Http;
-using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 
-namespace FilmWebAPI.Requests.Get
+namespace FilmWebAPI.Requests.Get.NotWorking
 {
     public class GetFilmsInfoShort : JsonRequestBase<dynamic, JArray>
     {

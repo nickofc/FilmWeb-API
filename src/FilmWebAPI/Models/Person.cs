@@ -1,5 +1,4 @@
 ﻿using System;
-using FilmWebAPI.Requests.Get;
 
 namespace FilmWebAPI.Models
 {
